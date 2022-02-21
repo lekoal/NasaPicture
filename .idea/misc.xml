@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/antius/AndroidStudioProjects/NasaPicture/app/src/main/res/drawable/ic_baseline_no_photography_24.xml" value="0.1" />
         <entry key="..\:/Users/antius/AndroidStudioProjects/NasaPicture/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/antius/AndroidStudioProjects/NasaPicture/app/src/main/res/layout/picture_of_the_day_fragment.xml" value="0.2171875" />
       </map>

@@ -3,11 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     tools:context=".ui.PictureOfTheDayFragment">
 
-    <TextView
+    <com.example.nasapicture.tools.EquilateralImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:id="@+id/image_view"
+        android:layout_gravity="center"
+        android:contentDescription="@string/photo_of_the_day_sub"
+        app:srcCompat="@drawable/ic_baseline_no_photography_24" />
 
 </FrameLayout>
