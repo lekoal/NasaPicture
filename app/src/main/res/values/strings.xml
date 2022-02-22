@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">NasaPicture</string>
     <string name="photo_of_the_day_sub">Photo of the day</string>
+    <string name="photo_of_the_day_stub">Photo of the day</string>
 </resources>
