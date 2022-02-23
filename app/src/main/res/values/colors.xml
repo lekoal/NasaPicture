@@ -10,4 +10,5 @@
     <color name="lite_grey">#DDDDDD</color>
     <color name="bottom_app_bar_color">#506160</color>
     <color name="fab_color">#009688</color>
+    <color name="color_grey">#535353</color>
 </resources>

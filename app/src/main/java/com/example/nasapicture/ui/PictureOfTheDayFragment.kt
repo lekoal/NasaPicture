@@ -1,10 +1,10 @@
 package com.example.nasapicture.ui
 
 import android.os.Bundle
+import android.util.Log
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -46,6 +46,8 @@ class PictureOfTheDayFragment : Fragment() {
         viewModel.sendServerRequest()
 
         setBottomSheetBehavior(binding.included.bottomSheetContainer)
+
+        setBottomAppBar(view)
     }
 
     private fun renderData(pictureOfTheDayState: PictureOfTheDayState?) {
@@ -88,6 +90,27 @@ class PictureOfTheDayFragment : Fragment() {
             viewModel.sendServerRequest()
             renderData(appState)
         }.show()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.bottom_app_bar_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.app_bar_fav -> {
+                Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()
+            }
+            R.id.app_bar_search -> Toast.makeText(context, "Search", Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun setBottomAppBar(view: View) {
+        val context = activity as MainActivity
+        context.setSupportActionBar(view.findViewById(R.id.bottom_app_bar))
+        setHasOptionsMenu(true)
     }
 
     override fun onDestroy() {
