@@ -2,4 +2,7 @@
     <string name="app_name">NasaPicture</string>
     <string name="photo_of_the_day_sub">Photo of the day</string>
     <string name="photo_of_the_day_stub">Photo of the day</string>
+    <string name="snack_bar_error_text">Ошибка загрузки</string>
+    <string name="snack_bar_action_text">Попробовать снова</string>
+    <string name="live_data_error">Ошибка в получении данных!</string>
 </resources>

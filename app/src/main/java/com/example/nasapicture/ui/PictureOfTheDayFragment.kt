@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +14,7 @@ import com.example.nasapicture.databinding.PictureOfTheDayFragmentBinding
 import com.example.nasapicture.viewmodel.PictureOfTheDayState
 import com.example.nasapicture.viewmodel.PictureOfTheDayViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.snackbar.Snackbar
 
 class PictureOfTheDayFragment : Fragment() {
 
@@ -51,20 +51,43 @@ class PictureOfTheDayFragment : Fragment() {
     private fun renderData(pictureOfTheDayState: PictureOfTheDayState?) {
         when (pictureOfTheDayState) {
             is PictureOfTheDayState.Loading -> {
-
+                binding.loadingLayout.visibility = View.VISIBLE
             }
             is PictureOfTheDayState.Success -> {
+                binding.loadingLayout.visibility = View.GONE
                 binding.imageView.load(pictureOfTheDayState.serverResponseData.hdurl)
+                binding.included.bottomSheetDescriptionHeader.text = pictureOfTheDayState.serverResponseData.title
+                binding.included.bottomSheetDescription.text = pictureOfTheDayState.serverResponseData.explanation
             }
             is PictureOfTheDayState.Error -> {
-
+                binding.loadingLayout.visibility = View.GONE
+                with(binding.loadingLayout) {
+                    showActionSnackBar(
+                        R.string.snack_bar_error_text,
+                        R.string.snack_bar_action_text,
+                        pictureOfTheDayState
+                    )
+                }
             }
+            else -> {}
         }
     }
 
     private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+    }
+
+    private fun View.showActionSnackBar(
+        text: Int,
+        actionText: Int,
+        appState: PictureOfTheDayState,
+        length: Int = Snackbar.LENGTH_INDEFINITE
+    ) {
+        Snackbar.make(this, text, length).setAction(actionText) {
+            viewModel.sendServerRequest()
+            renderData(appState)
+        }.show()
     }
 
     override fun onDestroy() {
