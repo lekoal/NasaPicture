@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="lite_grey">#DDDDDD</color>
+    <color name="bottom_app_bar_color">#506160</color>
+    <color name="fab_color">#009688</color>
 </resources>
