@@ -11,4 +11,5 @@
     <color name="bottom_app_bar_color">#506160</color>
     <color name="fab_color">#009688</color>
     <color name="color_grey">#535353</color>
+    <color name="dark_green">#001C06</color>
 </resources>
