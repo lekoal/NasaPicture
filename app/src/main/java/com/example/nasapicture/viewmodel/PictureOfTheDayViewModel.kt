@@ -54,4 +54,36 @@ class PictureOfTheDayViewModel(
             )
     }
 
+    fun sendServerRequestForDate(date: String) {
+        liveData.postValue(PictureOfTheDayState.Loading(null))
+        pictureOfTheDayRetrofitImpl.getRetrofitImpl().getPictureOfTheDayForDate(date, BuildConfig.NASA_API_KEY)
+            .enqueue(
+                object : Callback<PictureOfTheDayDTO> {
+                    override fun onResponse(
+                        call: Call<PictureOfTheDayDTO>,
+                        response: Response<PictureOfTheDayDTO>
+                    ) {
+                        if (response.isSuccessful && response.body() != null) {
+                            response.body()?.let {
+                                liveData.postValue(PictureOfTheDayState.Success(it))
+                            }
+                        } else {
+                            liveData.postValue(
+                                PictureOfTheDayState.Error(
+                                    Exception(
+                                        Resources.getSystem().getString(R.string.live_data_error)
+                                    )
+                                )
+                            )
+                        }
+                    }
+
+                    override fun onFailure(call: Call<PictureOfTheDayDTO>, t: Throwable) {
+                        liveData.postValue(PictureOfTheDayState.Error(t))
+                    }
+
+                }
+            )
+    }
+
 }

@@ -18,7 +18,10 @@ import com.example.nasapicture.viewmodel.PictureOfTheDayState
 import com.example.nasapicture.viewmodel.PictureOfTheDayViewModel
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.chip.ChipGroup
 import com.google.android.material.snackbar.Snackbar
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PictureOfTheDayFragment : Fragment() {
 
@@ -30,6 +33,11 @@ class PictureOfTheDayFragment : Fragment() {
     }
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
+
+    private val cal = Calendar.getInstance()
+    private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    private lateinit var yesterdayDate: String
+    private lateinit var beforeYesterdayDate: String
 
     companion object {
         fun newInstance() = PictureOfTheDayFragment()
@@ -54,10 +62,18 @@ class PictureOfTheDayFragment : Fragment() {
 
         setBottomAppBar(view)
 
+        binding.chipGroup.check(R.id.chip_03)
+
         searchWiki()
 
         fabClicker()
 
+        chipsChanged()
+
+        cal.add(Calendar.DATE, -1)
+        yesterdayDate = simpleDateFormat.format(cal.time)
+        cal.add(Calendar.DATE, -1)
+        beforeYesterdayDate = simpleDateFormat.format(cal.time)
     }
 
     private fun renderData(pictureOfTheDayState: PictureOfTheDayState?) {
@@ -150,6 +166,20 @@ class PictureOfTheDayFragment : Fragment() {
                 binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_navigation)
             }
             isMain = !isMain
+        }
+    }
+
+    private fun chipsChanged() {
+        binding.chipGroup.setOnCheckedChangeListener { _, checkedId ->
+            when(checkedId) {
+                R.id.chip_01 -> {
+                    viewModel.sendServerRequestForDate(yesterdayDate)
+                }
+                R.id.chip_02 -> {
+                    viewModel.sendServerRequestForDate(beforeYesterdayDate)
+                }
+                R.id.chip_03 -> viewModel.sendServerRequest()
+            }
         }
     }
 
