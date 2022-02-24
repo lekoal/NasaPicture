@@ -7,4 +7,11 @@
     <string name="live_data_error">Ошибка в получении данных!</string>
     <string name="favourite">Избранное</string>
     <string name="settings">Yfcnhjqrb</string>
+    <string name="display_1">На экран 1</string>
+    <string name="display_2">На экран 2</string>
+    <string name="fab_text">fab pushing</string>
+    <string name="search_wiki">Найти в Википедии</string>
+    <string name="wiki_helper_text">Искать термин в Википедии</string>
+    <string name="image_desc">Картинка</string>
+
 </resources>

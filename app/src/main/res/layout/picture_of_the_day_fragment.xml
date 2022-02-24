@@ -14,10 +14,35 @@
             android:layout_height="match_parent"
             android:padding="10dp">
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/search_wiki"
+                app:counterEnabled="true"
+                app:counterMaxLength="20"
+                android:layout_marginTop="40dp"
+                app:endIconDrawable="@drawable/ic_wikipedia"
+                app:endIconMode="custom"
+                app:helperText="@string/wiki_helper_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:startIconContentDescription="@string/image_desc"
+                app:startIconDrawable="@drawable/ic_search">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <com.example.nasapicture.tools.EquilateralImageView
                 android:id="@+id/image_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/photo_of_the_day_stub"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -32,23 +57,23 @@
             layout="@layout/bottom_sheet_layout" />
 
         <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottom_app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/bottom_app_bar"
             android:layout_gravity="bottom"
-            app:fabAlignmentMode="center"
             android:backgroundTint="@color/bottom_app_bar_color"
-            app:navigationIcon="@drawable/ic_baseline_menu_24"/>
+            app:fabAlignmentMode="center"
+            app:navigationIcon="@drawable/ic_baseline_menu_24" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fab"
             android:backgroundTint="@color/fab_color"
+            android:contentDescription="@string/fab_text"
             app:layout_anchor="@id/bottom_app_bar"
             app:srcCompat="@drawable/ic_baseline_add_24"
             app:tint="@color/white" />
-
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

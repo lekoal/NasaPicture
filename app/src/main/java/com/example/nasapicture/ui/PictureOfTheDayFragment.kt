@@ -1,11 +1,14 @@
 package com.example.nasapicture.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
@@ -13,6 +16,7 @@ import com.example.nasapicture.R
 import com.example.nasapicture.databinding.PictureOfTheDayFragmentBinding
 import com.example.nasapicture.viewmodel.PictureOfTheDayState
 import com.example.nasapicture.viewmodel.PictureOfTheDayViewModel
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
 
@@ -29,6 +33,7 @@ class PictureOfTheDayFragment : Fragment() {
 
     companion object {
         fun newInstance() = PictureOfTheDayFragment()
+        var isMain:Boolean = true
     }
 
     override fun onCreateView(
@@ -48,6 +53,11 @@ class PictureOfTheDayFragment : Fragment() {
         setBottomSheetBehavior(binding.included.bottomSheetContainer)
 
         setBottomAppBar(view)
+
+        searchWiki()
+
+        fabClicker()
+
     }
 
     private fun renderData(pictureOfTheDayState: PictureOfTheDayState?) {
@@ -58,8 +68,10 @@ class PictureOfTheDayFragment : Fragment() {
             is PictureOfTheDayState.Success -> {
                 binding.loadingLayout.visibility = View.GONE
                 binding.imageView.load(pictureOfTheDayState.serverResponseData.hdurl)
-                binding.included.bottomSheetDescriptionHeader.text = pictureOfTheDayState.serverResponseData.title
-                binding.included.bottomSheetDescription.text = pictureOfTheDayState.serverResponseData.explanation
+                binding.included.bottomSheetDescriptionHeader.text =
+                    pictureOfTheDayState.serverResponseData.title
+                binding.included.bottomSheetDescription.text =
+                    pictureOfTheDayState.serverResponseData.explanation
             }
             is PictureOfTheDayState.Error -> {
                 binding.loadingLayout.visibility = View.GONE
@@ -103,6 +115,9 @@ class PictureOfTheDayFragment : Fragment() {
                 Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()
             }
             R.id.app_bar_search -> Toast.makeText(context, "Search", Toast.LENGTH_SHORT).show()
+            android.R.id.home -> {
+                BottomNavigationDrawerFragment().show(requireActivity().supportFragmentManager,"")
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -111,6 +126,31 @@ class PictureOfTheDayFragment : Fragment() {
         val context = activity as MainActivity
         context.setSupportActionBar(view.findViewById(R.id.bottom_app_bar))
         setHasOptionsMenu(true)
+    }
+
+    private fun searchWiki() {
+        binding.inputLayout.setEndIconOnClickListener{
+            startActivity(Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
+            })
+        }
+    }
+
+    private fun fabClicker() {
+        binding.fab.setOnClickListener{
+            if(isMain){
+                binding.bottomAppBar.navigationIcon = null
+                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
+                binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_back_fab))
+                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
+            }else{
+                binding.bottomAppBar.navigationIcon = ContextCompat.getDrawable(requireContext(),R.drawable.ic_baseline_menu_24)
+                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+                binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_plus_fab))
+                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_navigation)
+            }
+            isMain = !isMain
+        }
     }
 
     override fun onDestroy() {
