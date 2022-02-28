@@ -1,5 +1,7 @@
 package com.example.nasapicture.ui
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +11,16 @@ import com.example.nasapicture.R
 import com.example.nasapicture.databinding.NavigationDrawerLayoutBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
+const val SAVED_THEME_FILE = "SAVED THEME"
+const val CURRENT_THEME = "CURRENT THEME"
+
 class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
     private var _binding: NavigationDrawerLayoutBinding? = null
     private val binding get(): NavigationDrawerLayoutBinding = _binding!!
+
+    private val saveTheme = context?.getSharedPreferences(SAVED_THEME_FILE, Context.MODE_PRIVATE)
+    private val editor = saveTheme?.edit()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,8 +36,26 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
         binding.navigationView.setNavigationItemSelectedListener { menuItem ->
             when(menuItem.itemId) {
-                R.id.navigation_one -> Toast.makeText(context, "Экран 1", Toast.LENGTH_SHORT).show()
-                R.id.navigation_two -> Toast.makeText(context, "Экран 2", Toast.LENGTH_SHORT).show()
+                R.id.base_theme -> {
+                    editor?.putString(CURRENT_THEME, "BaseTheme")
+                    editor?.apply()
+                }
+                R.id.red_theme -> {
+                    editor?.putString(CURRENT_THEME, "RedTheme")
+                    editor?.apply()
+                }
+                R.id.green_theme -> {
+                    editor?.putString(CURRENT_THEME, "GreenTheme")
+                    editor?.apply()
+                }
+                R.id.blue_theme -> {
+                    editor?.putString(CURRENT_THEME, "BlueTheme")
+                    editor?.apply()
+                }
+                R.id.night_theme -> {
+                    editor?.putString(CURRENT_THEME, "NightTheme")
+                    editor?.apply()
+                }
             }
             true
         }

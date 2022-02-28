@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="none">
-    <item
-        android:id="@+id/navigation_one"
-        android:icon="@drawable/ic_archive"
-        android:title="@string/display_1" />
         <item
-            android:id="@+id/navigation_two"
-            android:icon="@drawable/ic_send"
-            android:title="@string/display_2" />
+            android:id="@+id/base_theme"
+            android:title="@string/base_theme_text" />
+        <item
+            android:id="@+id/red_theme"
+            android:title="@string/red_theme_text" />
+        <item
+            android:id="@+id/green_theme"
+            android:title="@string/green_theme_text" />
+        <item
+            android:id="@+id/blue_theme"
+            android:title="@string/blue_theme_text" />
+        <item
+            android:id="@+id/night_theme"
+            android:title="@string/night_theme_text" />
     </group>
 
 </menu>

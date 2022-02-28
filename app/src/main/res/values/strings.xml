@@ -17,5 +17,10 @@
     <string name="yesterday_text">Вчера</string>
     <string name="day_before_yesterday_text">Позавчера</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="base_theme_text">Базовая тема</string>
+    <string name="red_theme_text">Красная тема</string>
+    <string name="green_theme_text">Зелёная тема</string>
+    <string name="blue_theme_text">Синяя тема</string>
+    <string name="night_theme_text">Ночная тема</string>
 
 </resources>
