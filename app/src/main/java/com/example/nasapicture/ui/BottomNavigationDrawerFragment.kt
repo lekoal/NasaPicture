@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.nasapicture.R
 import com.example.nasapicture.databinding.NavigationDrawerLayoutBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -55,6 +56,7 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
                 R.id.night_theme -> {
                     editor?.putString(CURRENT_THEME, "NightTheme")
                     editor?.apply()
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 }
             }
             true
