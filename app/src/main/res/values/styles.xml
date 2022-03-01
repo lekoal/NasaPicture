@@ -21,55 +21,55 @@
 
     <style name="text_layout_red" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="startIconTint">@color/red_500</item>
-        <item name="endIconTint">?startIconTint</item>
+        <item name="endIconTint">@color/red_500</item>
         <item name="android:textColorHint">@color/dark_red</item>
-        <item name="android:textColor">?android:textColorHint</item>
-        <item name="boxStrokeColor">?android:textColorHint</item>
+        <item name="android:textColor">@color/dark_red</item>
+        <item name="boxStrokeColor">@color/dark_red</item>
         <item name="hintTextColor">@color/red_700</item>
-        <item name="helperTextTextColor">?startIconTint</item>
+        <item name="helperTextTextColor">@color/red_500</item>
     </style>
 
     <style name="text_layout_green" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="startIconTint">@color/green_500</item>
-        <item name="endIconTint">?startIconTint</item>
+        <item name="endIconTint">@color/green_500</item>
         <item name="android:textColorHint">@color/dark_green</item>
-        <item name="android:textColor">?android:textColorHint</item>
-        <item name="boxStrokeColor">?android:textColorHint</item>
+        <item name="android:textColor">@color/dark_green</item>
+        <item name="boxStrokeColor">@color/dark_green</item>
         <item name="hintTextColor">@color/green_700</item>
-        <item name="helperTextTextColor">?startIconTint</item>
+        <item name="helperTextTextColor">@color/green_500</item>
     </style>
 
     <style name="text_layout_blue" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="startIconTint">@color/blue_500</item>
-        <item name="endIconTint">?startIconTint</item>
+        <item name="endIconTint">@color/blue_500</item>
         <item name="android:textColorHint">@color/dark_blue</item>
-        <item name="android:textColor">?android:textColorHint</item>
-        <item name="boxStrokeColor">?android:textColorHint</item>
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="boxStrokeColor">@color/dark_blue</item>
         <item name="hintTextColor">@color/blue_700</item>
-        <item name="helperTextTextColor">?startIconTint</item>
+        <item name="helperTextTextColor">@color/blue_500</item>
     </style>
 
     <style name="bottom_app_bar_red" parent="@style/Widget.MaterialComponents.BottomAppBar">
         <item name="navigationIconTint">@color/red_200</item>
-        <item name="colorControlNormal">?navigationIconTint</item>
+        <item name="colorControlNormal">@color/red_200</item>
         <item name="backgroundTint">@color/dark_red</item>
     </style>
 
     <style name="bottom_app_bar_green" parent="@style/Widget.MaterialComponents.BottomAppBar">
         <item name="navigationIconTint">@color/green_200</item>
-        <item name="colorControlNormal">?navigationIconTint</item>
+        <item name="colorControlNormal">@color/green_200</item>
         <item name="backgroundTint">@color/dark_green</item>
     </style>
 
     <style name="bottom_app_bar_blue" parent="@style/Widget.MaterialComponents.BottomAppBar">
         <item name="navigationIconTint">@color/blue_200</item>
-        <item name="colorControlNormal">?navigationIconTint</item>
+        <item name="colorControlNormal">@color/blue_200</item>
         <item name="backgroundTint">@color/dark_blue</item>
     </style>
 
     <style name="bottom_app_bar_base" parent="@style/Widget.MaterialComponents.BottomAppBar">
         <item name="navigationIconTint">@color/white</item>
-        <item name="colorControlNormal">?navigationIconTint</item>
+        <item name="colorControlNormal">@color/white</item>
         <item name="backgroundTint">@color/bottom_app_bar_color</item>
     </style>
 
