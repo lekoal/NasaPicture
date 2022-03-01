@@ -1,5 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="chips_red" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/red_200</item>
+        <item name="rippleColor">@color/red_700</item>
+        <item name="android:textColor">@color/dark_red</item>
+    </style>
 
+    <style name="chips_green" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/green_200</item>
+        <item name="rippleColor">@color/green_700</item>
+        <item name="android:textColor">@color/dark_green</item>
+    </style>
+
+    <style name="chips_blue" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/blue_200</item>
+        <item name="rippleColor">@color/blue_700</item>
+        <item name="android:textColor">@color/dark_blue</item>
+    </style>
+
+    <style name="text_layout_red" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="startIconTint">@color/red_500</item>
+        <item name="endIconTint">?startIconTint</item>
+        <item name="android:textColorHint">@color/dark_red</item>
+        <item name="android:textColor">?android:textColorHint</item>
+        <item name="boxStrokeColor">?android:textColorHint</item>
+        <item name="hintTextColor">@color/red_700</item>
+        <item name="helperTextTextColor">?startIconTint</item>
+    </style>
+
+    <style name="text_layout_green" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="startIconTint">@color/green_500</item>
+        <item name="endIconTint">?startIconTint</item>
+        <item name="android:textColorHint">@color/dark_green</item>
+        <item name="android:textColor">?android:textColorHint</item>
+        <item name="boxStrokeColor">?android:textColorHint</item>
+        <item name="hintTextColor">@color/green_700</item>
+        <item name="helperTextTextColor">?startIconTint</item>
+    </style>
+
+    <style name="text_layout_blue" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="startIconTint">@color/blue_500</item>
+        <item name="endIconTint">?startIconTint</item>
+        <item name="android:textColorHint">@color/dark_blue</item>
+        <item name="android:textColor">?android:textColorHint</item>
+        <item name="boxStrokeColor">?android:textColorHint</item>
+        <item name="hintTextColor">@color/blue_700</item>
+        <item name="helperTextTextColor">?startIconTint</item>
+    </style>
+
+    <style name="bottom_app_bar_red" parent="@style/Widget.MaterialComponents.BottomAppBar">
+        <item name="navigationIconTint">@color/red_200</item>
+        <item name="colorControlNormal">?navigationIconTint</item>
+        <item name="backgroundTint">@color/dark_red</item>
+    </style>
+
+    <style name="bottom_app_bar_green" parent="@style/Widget.MaterialComponents.BottomAppBar">
+        <item name="navigationIconTint">@color/green_200</item>
+        <item name="colorControlNormal">?navigationIconTint</item>
+        <item name="backgroundTint">@color/dark_green</item>
+    </style>
+
+    <style name="bottom_app_bar_blue" parent="@style/Widget.MaterialComponents.BottomAppBar">
+        <item name="navigationIconTint">@color/blue_200</item>
+        <item name="colorControlNormal">?navigationIconTint</item>
+        <item name="backgroundTint">@color/dark_blue</item>
+    </style>
+
+    <style name="bottom_app_bar_base" parent="@style/Widget.MaterialComponents.BottomAppBar">
+        <item name="navigationIconTint">@color/white</item>
+        <item name="colorControlNormal">?navigationIconTint</item>
+        <item name="backgroundTint">@color/bottom_app_bar_color</item>
+    </style>
+
+    <style name="fab_base" parent="@style/Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/fab_color</item>
+        <item name="tint">@color/white</item>
+    </style>
+
+    <style name="fab_red" parent="@style/Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/dark_red</item>
+        <item name="tint">@color/red_200</item>
+    </style>
+
+    <style name="fab_green" parent="@style/Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/dark_green</item>
+        <item name="tint">@color/green_200</item>
+    </style>
+
+    <style name="fab_blue" parent="@style/Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/dark_blue</item>
+        <item name="tint">@color/blue_200</item>
+    </style>
 </resources>

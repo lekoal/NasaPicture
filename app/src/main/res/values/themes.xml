@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="BaseTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="BaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/dark_green</item>
         <item name="colorPrimaryVariant">@color/bottom_app_bar_color</item>
@@ -12,17 +12,57 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="chipStyle">@style/Widget.MaterialComponents.Chip.Choice</item>
+        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
+        <item name="bottom_sheet_background">@color/lite_grey</item>
+        <item name="bottom_sheet_line_color">@color/black</item>
+        <item name="bottom_sheet_header_color">@color/black</item>
+        <item name="bottom_sheet_description_color">@color/black</item>
+        <item name="navigationIconTint">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="bottomAppBarStyle">@style/bottom_app_bar_base</item>
+        <item name="floatingActionButtonStyle">@style/fab_base</item>
     </style>
 
-    <style name="RedTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-
+    <style name="RedTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor" tools:targetApi="l">@color/red_700</item>
+        <item name="bottom_sheet_background">@color/red_200</item>
+        <item name="bottom_sheet_line_color">@color/dark_red</item>
+        <item name="bottom_sheet_header_color">@color/dark_red</item>
+        <item name="bottom_sheet_description_color">@color/dark_red</item>
+        <item name="navigationIconTint">@color/red_200</item>
+        <item name="colorControlNormal">@color/red_200</item>
+        <item name="chipStyle">@style/chips_red</item>
+        <item name="textInputStyle">@style/text_layout_red</item>
+        <item name="bottomAppBarStyle">@style/bottom_app_bar_red</item>
+        <item name="floatingActionButtonStyle">@style/fab_red</item>
     </style>
 
-    <style name="GreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-
+    <style name="GreenTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor" tools:targetApi="l">@color/green_700</item>
+        <item name="bottom_sheet_background">@color/green_200</item>
+        <item name="bottom_sheet_line_color">@color/dark_green</item>
+        <item name="bottom_sheet_header_color">@color/dark_green</item>
+        <item name="bottom_sheet_description_color">@color/dark_green</item>
+        <item name="navigationIconTint">@color/green_200</item>
+        <item name="colorControlNormal">@color/green_200</item>
+        <item name="chipStyle">@style/chips_green</item>
+        <item name="textInputStyle">@style/text_layout_green</item>
+        <item name="bottomAppBarStyle">@style/bottom_app_bar_green</item>
+        <item name="floatingActionButtonStyle">@style/fab_green</item>
     </style>
 
-    <style name="BlueTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-
+    <style name="BlueTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor" tools:targetApi="l">@color/blue_700</item>
+        <item name="bottom_sheet_background">@color/blue_200</item>
+        <item name="bottom_sheet_line_color">@color/dark_blue</item>
+        <item name="bottom_sheet_header_color">@color/dark_blue</item>
+        <item name="bottom_sheet_description_color">@color/dark_blue</item>
+        <item name="navigationIconTint">@color/blue_200</item>
+        <item name="colorControlNormal">@color/blue_200</item>
+        <item name="chipStyle">@style/chips_blue</item>
+        <item name="textInputStyle">@style/text_layout_blue</item>
+        <item name="bottomAppBarStyle">@style/bottom_app_bar_blue</item>
+        <item name="floatingActionButtonStyle">@style/fab_blue</item>
     </style>
 </resources>
