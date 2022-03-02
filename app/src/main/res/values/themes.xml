@@ -32,6 +32,7 @@
         <item name="bottom_sheet_description_color">@color/dark_red</item>
         <item name="navigationIconTint">@color/red_200</item>
         <item name="colorControlNormal">@color/red_200</item>
+        <item name="other_app_bar_icon_color">@color/red_200</item>
         <item name="chipStyle">@style/chips_red</item>
         <item name="textInputStyle">@style/text_layout_red</item>
         <item name="bottomAppBarStyle">@style/bottom_app_bar_red</item>
@@ -46,6 +47,7 @@
         <item name="bottom_sheet_description_color">@color/dark_green</item>
         <item name="navigationIconTint">@color/green_200</item>
         <item name="colorControlNormal">@color/green_200</item>
+        <item name="other_app_bar_icon_color">@color/green_200</item>
         <item name="chipStyle">@style/chips_green</item>
         <item name="textInputStyle">@style/text_layout_green</item>
         <item name="bottomAppBarStyle">@style/bottom_app_bar_green</item>
@@ -60,6 +62,7 @@
         <item name="bottom_sheet_description_color">@color/dark_blue</item>
         <item name="navigationIconTint">@color/blue_200</item>
         <item name="colorControlNormal">@color/blue_200</item>
+        <item name="other_app_bar_icon_color">@color/blue_200</item>
         <item name="chipStyle">@style/chips_blue</item>
         <item name="textInputStyle">@style/text_layout_blue</item>
         <item name="bottomAppBarStyle">@style/bottom_app_bar_blue</item>

@@ -15,6 +15,14 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
     private var _binding: NavigationDrawerLayoutBinding? = null
     private val binding get(): NavigationDrawerLayoutBinding = _binding!!
 
+    private lateinit var parentActivity: MainActivity
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        parentActivity = requireActivity() as MainActivity
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,21 +40,28 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
                 R.id.base_theme -> {
                     saveThemeToFile(R.style.BaseTheme)
                     checkNightTheme()
+                    parentActivity.selectTheme()
+                    parentActivity.recreate()
                 }
                 R.id.red_theme -> {
                     saveThemeToFile(R.style.RedTheme)
                     checkNightTheme()
+                    parentActivity.selectTheme()
+                    parentActivity.recreate()
                 }
                 R.id.green_theme -> {
                     saveThemeToFile(R.style.GreenTheme)
                     checkNightTheme()
+                    parentActivity.selectTheme()
+                    parentActivity.recreate()
                 }
                 R.id.blue_theme -> {
                     saveThemeToFile(R.style.BlueTheme)
                     checkNightTheme()
+                    parentActivity.selectTheme()
+                    parentActivity.recreate()
                 }
                 R.id.night_theme -> {
-                    saveThemeToFile(0)
                     checkNightTheme(true)
                 }
             }
@@ -54,9 +69,15 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
         }
     }
     private fun checkNightTheme(isNight: Boolean = false) {
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES && !isNight) {
+        if (isNight && AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            saveThemeToFile(R.style.BaseTheme)
+            parentActivity.recreate()
+        } else if (!isNight && AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        } else if (isNight) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else if (isNight && AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+            saveThemeToFile(0)
+            parentActivity.recreate()
+        }
     }
 
     private fun saveThemeToFile(themeId: Int) {
@@ -64,5 +85,10 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
         val editor = saveTheme.edit()
         editor.putInt(CURRENT_THEME, themeId)
         editor.apply()
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
     }
 }
