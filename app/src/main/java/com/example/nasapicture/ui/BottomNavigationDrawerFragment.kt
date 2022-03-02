@@ -1,6 +1,7 @@
 package com.example.nasapicture.ui
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -65,6 +66,7 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
                     checkNightTheme(true)
                 }
             }
+            this.dismiss()
             true
         }
     }

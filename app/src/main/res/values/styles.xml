@@ -5,18 +5,21 @@
         <item name="chipBackgroundColor">@color/red_200</item>
         <item name="rippleColor">@color/red_700</item>
         <item name="android:textColor">@color/dark_red</item>
+        <item name="android:fontFamily">@font/merriweather_italic</item>
     </style>
 
     <style name="chips_green" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="chipBackgroundColor">@color/green_200</item>
         <item name="rippleColor">@color/green_700</item>
         <item name="android:textColor">@color/dark_green</item>
+        <item name="android:fontFamily">@font/roboto_slab_bold</item>
     </style>
 
     <style name="chips_blue" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="chipBackgroundColor">@color/blue_200</item>
         <item name="rippleColor">@color/blue_700</item>
         <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:fontFamily">@font/oswald</item>
     </style>
 
     <style name="text_layout_red" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">

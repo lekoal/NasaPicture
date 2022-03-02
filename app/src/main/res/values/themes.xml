@@ -13,7 +13,8 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="chipStyle">@style/Widget.MaterialComponents.Chip.Choice</item>
-        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
+        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox
+        </item>
         <item name="bottom_sheet_background">@color/lite_grey</item>
         <item name="bottom_sheet_line_color">@color/black</item>
         <item name="bottom_sheet_header_color">@color/black</item>
@@ -33,6 +34,7 @@
         <item name="navigationIconTint">@color/red_200</item>
         <item name="colorControlNormal">@color/red_200</item>
         <item name="other_app_bar_icon_color">@color/red_200</item>
+        <item name="bottom_sheet_font_family">@font/merriweather</item>
         <item name="chipStyle">@style/chips_red</item>
         <item name="textInputStyle">@style/text_layout_red</item>
         <item name="bottomAppBarStyle">@style/bottom_app_bar_red</item>
@@ -47,6 +49,7 @@
         <item name="bottom_sheet_description_color">@color/dark_green</item>
         <item name="navigationIconTint">@color/green_200</item>
         <item name="colorControlNormal">@color/green_200</item>
+        <item name="bottom_sheet_font_family">@font/montserrat_medium_italic</item>
         <item name="other_app_bar_icon_color">@color/green_200</item>
         <item name="chipStyle">@style/chips_green</item>
         <item name="textInputStyle">@style/text_layout_green</item>
@@ -62,6 +65,7 @@
         <item name="bottom_sheet_description_color">@color/dark_blue</item>
         <item name="navigationIconTint">@color/blue_200</item>
         <item name="colorControlNormal">@color/blue_200</item>
+        <item name="bottom_sheet_font_family">@font/roboto_slab_light</item>
         <item name="other_app_bar_icon_color">@color/blue_200</item>
         <item name="chipStyle">@style/chips_blue</item>
         <item name="textInputStyle">@style/text_layout_blue</item>
