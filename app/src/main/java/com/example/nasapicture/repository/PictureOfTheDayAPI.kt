@@ -13,4 +13,9 @@ interface PictureOfTheDayAPI {
         @Query("date") date: String,
         @Query("api_key") apiKey: String
     ): Call<PictureOfTheDayDTO>
+
+    @GET("asset/")
+    fun getNasaImage(
+        @Query("nasa_id") nasaId: String
+    ): Call<NasaImageDTO>
 }

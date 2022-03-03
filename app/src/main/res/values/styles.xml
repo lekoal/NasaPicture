@@ -95,4 +95,22 @@
         <item name="backgroundTint">@color/dark_blue</item>
         <item name="tint">@color/blue_200</item>
     </style>
+
+    <style name="bottom_navigation_red" parent="@style/Widget.MaterialComponents.BottomNavigationView">
+        <item name="backgroundTint">@color/dark_red</item>
+        <item name="itemIconTint">@color/red_200</item>
+        <item name="itemTextColor">@color/red_200</item>
+    </style>
+
+    <style name="bottom_navigation_green" parent="@style/Widget.MaterialComponents.BottomNavigationView">
+        <item name="backgroundTint">@color/dark_green</item>
+        <item name="itemIconTint">@color/green_200</item>
+        <item name="itemTextColor">@color/green_200</item>
+    </style>
+
+    <style name="bottom_navigation_blue" parent="@style/Widget.MaterialComponents.BottomNavigationView">
+        <item name="backgroundTint">@color/dark_blue</item>
+        <item name="itemIconTint">@color/blue_200</item>
+        <item name="itemTextColor">@color/blue_200</item>
+    </style>
 </resources>
