@@ -2,6 +2,7 @@ package com.example.nasapicture.repository
 
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface PictureOfTheDayAPI {
@@ -14,8 +15,8 @@ interface PictureOfTheDayAPI {
         @Query("api_key") apiKey: String
     ): Call<PictureOfTheDayDTO>
 
-    @GET("asset/")
+    @GET("asset/{nasaId}")
     fun getNasaImage(
-        @Query("nasa_id") nasaId: String
+        @Path("nasaId") nasaId: String
     ): Call<NasaImageDTO>
 }

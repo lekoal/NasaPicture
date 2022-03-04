@@ -1,6 +1,7 @@
 package com.example.nasapicture.ui.navigation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -57,12 +58,14 @@ class EarthFragment : Fragment() {
             is PictureOfTheDayState.SuccessImage -> {
                 loadingLayout.visibility = View.GONE
                 binding.earthImage.load(
-                    pictureOfTheDayState.serverResponseImageData.collection?.items?.get(0)?.toString())
+                    pictureOfTheDayState.serverResponseImageData.collection?.items?.get(0)?.href
+                )
             }
             is PictureOfTheDayState.Error -> {
                 loadingLayout.visibility = View.GONE
                 with(loadingLayout) {
-                    Toast.makeText(context, getString(R.string.live_data_error), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, getString(R.string.live_data_error), Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
             else -> {}
