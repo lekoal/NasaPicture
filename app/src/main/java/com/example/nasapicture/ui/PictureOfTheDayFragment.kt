@@ -7,6 +7,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
@@ -88,7 +89,7 @@ class PictureOfTheDayFragment : Fragment() {
                 } else if (pictureOfTheDayState.serverResponseData.mediaType == "video") {
                     binding.videoView.visibility = View.VISIBLE
                     binding.imageView.visibility = View.GONE
-
+                    binding.videoView.setVideoURI(pictureOfTheDayState.serverResponseData.hdurl.toUri())
                 }
                 binding.included.bottomSheetDescriptionHeader.text =
                     pictureOfTheDayState.serverResponseData.title
