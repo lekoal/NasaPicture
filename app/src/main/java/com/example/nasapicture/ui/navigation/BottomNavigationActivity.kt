@@ -5,16 +5,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.example.nasapicture.R
 import com.example.nasapicture.databinding.ActivityBottomNavigationBinding
 import com.example.nasapicture.repository.ZoomOutPageTransformer
 import com.example.nasapicture.ui.*
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class BottomNavigationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBottomNavigationBinding
 
-    private lateinit var pager: ViewPager
+    private lateinit var pager: ViewPager2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,13 +27,20 @@ class BottomNavigationActivity : AppCompatActivity() {
 
         pager = binding.viewPager
 
-        pager.adapter = ViewPagerAdapter(supportFragmentManager)
+        pager.adapter = ViewPagerAdapter(this)
 
-        pager.setPageTransformer(true, ZoomOutPageTransformer())
+        pager.setPageTransformer(ZoomOutPageTransformer())
 
         initBottomNavigationView()
 
-        binding.tabLayout.setupWithViewPager(pager)
+        TabLayoutMediator(binding.tabLayout, pager
+        ) { tab, position ->
+            when (position) {
+                0 -> tab.text = "Earth"
+                1 -> tab.text = "Mars"
+                2 -> tab.text = "System"
+            }
+        }.attach()
 
         checkPagerState()
     }
@@ -86,23 +96,11 @@ class BottomNavigationActivity : AppCompatActivity() {
     }
 
     private fun checkPagerState() {
-        pager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-
-            }
-
+        pager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
                 binding.bottomNavigationView.menu.getItem(position).isChecked = true
             }
-
-            override fun onPageScrollStateChanged(state: Int) {
-
-            }
-
         })
     }
 }

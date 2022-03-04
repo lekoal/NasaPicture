@@ -1,7 +1,6 @@
 package com.example.nasapicture.ui.navigation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,6 @@ import com.example.nasapicture.R
 import com.example.nasapicture.databinding.FragmentEarthBinding
 import com.example.nasapicture.viewmodel.PictureOfTheDayState
 import com.example.nasapicture.viewmodel.PictureOfTheDayViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class EarthFragment : Fragment() {
 
