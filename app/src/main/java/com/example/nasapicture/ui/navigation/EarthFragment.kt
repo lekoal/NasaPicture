@@ -14,6 +14,7 @@ import com.example.nasapicture.R
 import com.example.nasapicture.databinding.FragmentEarthBinding
 import com.example.nasapicture.viewmodel.PictureOfTheDayState
 import com.example.nasapicture.viewmodel.PictureOfTheDayViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class EarthFragment : Fragment() {
 

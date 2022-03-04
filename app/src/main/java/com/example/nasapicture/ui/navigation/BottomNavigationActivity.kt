@@ -3,19 +3,24 @@ package com.example.nasapicture.ui.navigation
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import com.example.nasapicture.R
 import com.example.nasapicture.databinding.ActivityBottomNavigationBinding
-import com.example.nasapicture.ui.CURRENT_THEME
-import com.example.nasapicture.ui.SAVED_THEME_FILE
+import com.example.nasapicture.ui.*
 import com.example.nasapicture.viewmodel.PictureOfTheDayState
+import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayout
 
 class BottomNavigationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBottomNavigationBinding
+
+    private lateinit var pager: ViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,28 +28,35 @@ class BottomNavigationActivity : AppCompatActivity() {
         binding = ActivityBottomNavigationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        pager = binding.viewPager
+
+        pager.adapter = ViewPagerAdapter(supportFragmentManager)
+
         initBottomNavigationView()
+
+        binding.tabLayout.setupWithViewPager(pager)
+
+        checkPagerState()
     }
 
     private fun initBottomNavigationView() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nasa_earth_image -> {
-                    navigationTo(EarthFragment())
+                    binding.viewPager.currentItem = EARTH_KEY
                     true
                 }
                 R.id.nasa_mars_image -> {
-                    navigationTo(MarsFragment())
+                    binding.viewPager.currentItem = MARS_KEY
                     true
                 }
                 R.id.nasa_solar_system_image -> {
-                    navigationTo(SolarSystemFragment())
+                    binding.viewPager.currentItem = SOLAR_SYSTEM_KEY
                     true
                 }
                 else -> true
             }
         }
-        binding.bottomNavigationView.selectedItemId = R.id.nasa_earth_image
     }
 
     private fun selectTheme() {
@@ -77,7 +89,24 @@ class BottomNavigationActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigationTo(f: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.container, f).commit()
+    private fun checkPagerState() {
+        pager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+
+            }
+
+            override fun onPageSelected(position: Int) {
+                binding.bottomNavigationView.menu.getItem(position).isChecked = true
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+
+        })
     }
 }

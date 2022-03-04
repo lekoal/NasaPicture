@@ -113,4 +113,28 @@
         <item name="itemIconTint">@color/blue_200</item>
         <item name="itemTextColor">@color/blue_200</item>
     </style>
+    
+    <style name="tabs_red" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:background">@color/dark_red</item>
+        <item name="tabIconTint">@color/red_200</item>
+        <item name="tabTextColor">@color/red_200</item>
+        <item name="tabIndicatorColor">@color/red_200</item>
+        <item name="tabIndicatorHeight">4dp</item>
+    </style>
+
+    <style name="tabs_green" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:background">@color/dark_green</item>
+        <item name="tabIconTint">@color/green_200</item>
+        <item name="tabTextColor">@color/green_200</item>
+        <item name="tabIndicatorColor">@color/green_200</item>
+        <item name="tabIndicatorHeight">4dp</item>
+    </style>
+
+    <style name="tabs_blue" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:background">@color/dark_blue</item>
+        <item name="tabIconTint">@color/blue_200</item>
+        <item name="tabTextColor">@color/blue_200</item>
+        <item name="tabIndicatorColor">@color/blue_200</item>
+        <item name="tabIndicatorHeight">4dp</item>
+    </style>
 </resources>

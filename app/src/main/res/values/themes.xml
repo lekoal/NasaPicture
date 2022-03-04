@@ -41,6 +41,7 @@
         <item name="bottomAppBarStyle">@style/bottom_app_bar_red</item>
         <item name="floatingActionButtonStyle">@style/fab_red</item>
         <item name="bottomNavigationStyle">@style/bottom_navigation_red</item>
+        <item name="tabStyle">@style/tabs_red</item>
     </style>
 
     <style name="GreenTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -58,6 +59,7 @@
         <item name="bottomAppBarStyle">@style/bottom_app_bar_green</item>
         <item name="floatingActionButtonStyle">@style/fab_green</item>
         <item name="bottomNavigationStyle">@style/bottom_navigation_green</item>
+        <item name="tabStyle">@style/tabs_green</item>
     </style>
 
     <style name="BlueTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -75,5 +77,6 @@
         <item name="bottomAppBarStyle">@style/bottom_app_bar_blue</item>
         <item name="floatingActionButtonStyle">@style/fab_blue</item>
         <item name="bottomNavigationStyle">@style/bottom_navigation_blue</item>
+        <item name="tabStyle">@style/tabs_blue</item>
     </style>
 </resources>
