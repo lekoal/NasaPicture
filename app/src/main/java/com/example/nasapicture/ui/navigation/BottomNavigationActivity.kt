@@ -3,18 +3,12 @@ package com.example.nasapicture.ui.navigation
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.example.nasapicture.R
 import com.example.nasapicture.databinding.ActivityBottomNavigationBinding
+import com.example.nasapicture.repository.ZoomOutPageTransformer
 import com.example.nasapicture.ui.*
-import com.example.nasapicture.viewmodel.PictureOfTheDayState
-import com.google.android.material.navigation.NavigationBarView
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
 
 class BottomNavigationActivity : AppCompatActivity() {
 
@@ -31,6 +25,8 @@ class BottomNavigationActivity : AppCompatActivity() {
         pager = binding.viewPager
 
         pager.adapter = ViewPagerAdapter(supportFragmentManager)
+
+        pager.setPageTransformer(true, ZoomOutPageTransformer())
 
         initBottomNavigationView()
 
