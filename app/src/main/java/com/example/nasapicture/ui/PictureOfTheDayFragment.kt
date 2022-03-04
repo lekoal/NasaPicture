@@ -81,7 +81,15 @@ class PictureOfTheDayFragment : Fragment() {
             }
             is PictureOfTheDayState.Success -> {
                 binding.loadingLayout.visibility = View.GONE
-                binding.imageView.load(pictureOfTheDayState.serverResponseData.hdurl)
+                if (pictureOfTheDayState.serverResponseData.mediaType == "image") {
+                    binding.videoView.visibility = View.GONE
+                    binding.imageView.visibility = View.VISIBLE
+                    binding.imageView.load(pictureOfTheDayState.serverResponseData.hdurl)
+                } else if (pictureOfTheDayState.serverResponseData.mediaType == "video") {
+                    binding.videoView.visibility = View.VISIBLE
+                    binding.imageView.visibility = View.GONE
+
+                }
                 binding.included.bottomSheetDescriptionHeader.text =
                     pictureOfTheDayState.serverResponseData.title
                 binding.included.bottomSheetDescription.text =

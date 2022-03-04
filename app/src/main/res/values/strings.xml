@@ -26,5 +26,6 @@
     <string name="earth_title">Земля</string>
     <string name="mars_title">Марс</string>
     <string name="solar_system_title">Солнечная система</string>
+    <string name="video_of_the_day_stub">Video of the day</string>
 
 </resources>

@@ -40,6 +40,7 @@
         <item name="textInputStyle">@style/text_layout_red</item>
         <item name="bottomAppBarStyle">@style/bottom_app_bar_red</item>
         <item name="floatingActionButtonStyle">@style/fab_red</item>
+        <item name="android:colorEdgeEffect">@color/red_700</item>
         <item name="bottomNavigationStyle">@style/bottom_navigation_red</item>
         <item name="tabStyle">@style/tabs_red</item>
     </style>
@@ -58,6 +59,7 @@
         <item name="textInputStyle">@style/text_layout_green</item>
         <item name="bottomAppBarStyle">@style/bottom_app_bar_green</item>
         <item name="floatingActionButtonStyle">@style/fab_green</item>
+        <item name="android:colorEdgeEffect">@color/green_700</item>
         <item name="bottomNavigationStyle">@style/bottom_navigation_green</item>
         <item name="tabStyle">@style/tabs_green</item>
     </style>
@@ -76,6 +78,7 @@
         <item name="textInputStyle">@style/text_layout_blue</item>
         <item name="bottomAppBarStyle">@style/bottom_app_bar_blue</item>
         <item name="floatingActionButtonStyle">@style/fab_blue</item>
+        <item name="android:colorEdgeEffect">@color/blue_700</item>
         <item name="bottomNavigationStyle">@style/bottom_navigation_blue</item>
         <item name="tabStyle">@style/tabs_blue</item>
     </style>
