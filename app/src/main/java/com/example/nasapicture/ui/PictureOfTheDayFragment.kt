@@ -102,7 +102,8 @@ class PictureOfTheDayFragment : Fragment() {
                         AbstractYouTubePlayerListener() {
                         override fun onReady(youTubePlayer: YouTubePlayer) {
                             super.onReady(youTubePlayer)
-                            val videoId = youTUbeIdCutter(pictureOfTheDayState.serverResponseData.hdurl)
+                            val videoId =
+                                youTUbeIdCutter(pictureOfTheDayState.serverResponseData.hdurl)
                             youTubePlayer.loadVideo(videoId, 0F)
                         }
                     })
@@ -222,8 +223,10 @@ class PictureOfTheDayFragment : Fragment() {
             videoId = url.split(".be/")[1]
         } else if (url.contains("://youtube.com/watch?")) {
             videoId = url.split("\\?v=")[1]
-        } else if (url.contains("/embed/")) {
+        } else if (url.contains("/embed/") && url.contains("?rel")) {
             videoId = url.split("embed/", "?rel")[1]
+        } else if (url.contains("/embed/") && !url.contains("?rel")) {
+            videoId = url.split("embed/")[1]
         }
         return videoId
     }
