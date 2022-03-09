@@ -27,6 +27,17 @@
     </style>
 
     <style name="RedTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+<!--        Common colors-->
+        <item name="color_200">@color/red_200</item>
+        <item name="color_500">@color/red_500</item>
+        <item name="color_700">@color/red_700</item>
+        <item name="dark_color">@color/dark_red</item>
+<!--        Chips colors-->
+        <item name="chip_text_color">@color/dark_red</item>
+        <item name="chip_text_checked_color">@color/red_200</item>
+        <item name="chip_background_color">@color/red_200</item>
+        <item name="chip_background_checked_color">@color/red_700</item>
+
         <item name="android:statusBarColor" tools:targetApi="l">@color/dark_red</item>
         <item name="bottom_sheet_background">@color/red_200</item>
         <item name="bottom_sheet_line_color">@color/dark_red</item>
@@ -36,16 +47,27 @@
         <item name="colorControlNormal">@color/red_200</item>
         <item name="other_app_bar_icon_color">@color/red_200</item>
         <item name="bottom_sheet_font_family">@font/merriweather</item>
-        <item name="chipStyle">@style/chips_red</item>
-        <item name="textInputStyle">@style/text_layout_red</item>
-        <item name="bottomAppBarStyle">@style/bottom_app_bar_red</item>
-        <item name="floatingActionButtonStyle">@style/fab_red</item>
+        <item name="chipStyle">@style/chips_color</item>
+        <item name="textInputStyle">@style/text_layout_color</item>
+        <item name="bottomAppBarStyle">@style/bottom_app_bar_color</item>
+        <item name="floatingActionButtonStyle">@style/fab_color</item>
         <item name="android:colorEdgeEffect">@color/red_700</item>
-        <item name="bottomNavigationStyle">@style/bottom_navigation_red</item>
-        <item name="tabStyle">@style/tabs_red</item>
+        <item name="bottomNavigationStyle">@style/bottom_navigation_color</item>
+        <item name="tabStyle">@style/tabs_color</item>
     </style>
 
     <style name="GreenTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+<!--        Common colors-->
+        <item name="color_200">@color/green_200</item>
+        <item name="color_500">@color/green_500</item>
+        <item name="color_700">@color/green_700</item>
+        <item name="dark_color">@color/dark_green</item>
+<!--        Chips colors-->
+        <item name="chip_text_color">@color/dark_green</item>
+        <item name="chip_text_checked_color">@color/green_200</item>
+        <item name="chip_background_color">@color/green_200</item>
+        <item name="chip_background_checked_color">@color/green_700</item>
+
         <item name="android:statusBarColor" tools:targetApi="l">@color/dark_green</item>
         <item name="bottom_sheet_background">@color/green_200</item>
         <item name="bottom_sheet_line_color">@color/dark_green</item>
@@ -55,16 +77,27 @@
         <item name="colorControlNormal">@color/green_200</item>
         <item name="bottom_sheet_font_family">@font/montserrat_medium_italic</item>
         <item name="other_app_bar_icon_color">@color/green_200</item>
-        <item name="chipStyle">@style/chips_green</item>
-        <item name="textInputStyle">@style/text_layout_green</item>
-        <item name="bottomAppBarStyle">@style/bottom_app_bar_green</item>
-        <item name="floatingActionButtonStyle">@style/fab_green</item>
+        <item name="chipStyle">@style/chips_color</item>
+        <item name="textInputStyle">@style/text_layout_color</item>
+        <item name="bottomAppBarStyle">@style/bottom_app_bar_color</item>
+        <item name="floatingActionButtonStyle">@style/fab_color</item>
         <item name="android:colorEdgeEffect">@color/green_700</item>
-        <item name="bottomNavigationStyle">@style/bottom_navigation_green</item>
-        <item name="tabStyle">@style/tabs_green</item>
+        <item name="bottomNavigationStyle">@style/bottom_navigation_color</item>
+        <item name="tabStyle">@style/tabs_color</item>
     </style>
 
     <style name="BlueTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+<!--        Common colors-->
+        <item name="color_200">@color/blue_200</item>
+        <item name="color_500">@color/blue_500</item>
+        <item name="color_700">@color/blue_700</item>
+        <item name="dark_color">@color/dark_blue</item>
+<!--        Chips colors-->
+        <item name="chip_text_color">@color/dark_blue</item>
+        <item name="chip_text_checked_color">@color/blue_200</item>
+        <item name="chip_background_color">@color/blue_200</item>
+        <item name="chip_background_checked_color">@color/blue_700</item>
+
         <item name="android:statusBarColor" tools:targetApi="l">@color/dark_blue</item>
         <item name="bottom_sheet_background">@color/blue_200</item>
         <item name="bottom_sheet_line_color">@color/dark_blue</item>
@@ -74,12 +107,12 @@
         <item name="colorControlNormal">@color/blue_200</item>
         <item name="bottom_sheet_font_family">@font/roboto_slab_light</item>
         <item name="other_app_bar_icon_color">@color/blue_200</item>
-        <item name="chipStyle">@style/chips_blue</item>
-        <item name="textInputStyle">@style/text_layout_blue</item>
-        <item name="bottomAppBarStyle">@style/bottom_app_bar_blue</item>
-        <item name="floatingActionButtonStyle">@style/fab_blue</item>
+        <item name="chipStyle">@style/chips_color</item>
+        <item name="textInputStyle">@style/text_layout_color</item>
+        <item name="bottomAppBarStyle">@style/bottom_app_bar_color</item>
+        <item name="floatingActionButtonStyle">@style/fab_color</item>
         <item name="android:colorEdgeEffect">@color/blue_700</item>
-        <item name="bottomNavigationStyle">@style/bottom_navigation_blue</item>
-        <item name="tabStyle">@style/tabs_blue</item>
+        <item name="bottomNavigationStyle">@style/bottom_navigation_color</item>
+        <item name="tabStyle">@style/tabs_color</item>
     </style>
 </resources>

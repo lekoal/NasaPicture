@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    Bottom Sheet-->
+    <!--    Bottom Sheet-->
     <attr name="bottom_sheet_background" format="reference" />
     <attr name="bottom_sheet_line_color" format="reference" />
     <attr name="bottom_sheet_header_color" format="reference" />
     <attr name="bottom_sheet_description_color" format="reference" />
     <attr name="bottom_sheet_font_family" format="reference" />
     <attr name="other_app_bar_icon_color" format="reference" />
+    <!--    Chips-->
+    <attr name="chip_text_checked_color" format="reference" />
+    <attr name="chip_text_color" format="reference" />
+    <attr name="chip_background_checked_color" format="reference" />
+    <attr name="chip_background_color" format="reference" />
+<!--    Colors-->
+    <attr name="color_200" format="reference" />
+    <attr name="color_500" format="reference" />
+    <attr name="color_700" format="reference" />
+    <attr name="dark_color" format="reference" />
 </resources>

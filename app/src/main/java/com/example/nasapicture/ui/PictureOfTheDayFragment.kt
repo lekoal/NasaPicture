@@ -3,6 +3,7 @@ package com.example.nasapicture.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -192,12 +193,8 @@ class PictureOfTheDayFragment : Fragment() {
     private fun chipsChanged() {
         binding.chipGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                R.id.chip_01 -> {
-                    viewModel.sendServerRequestForDate(yesterdayDate)
-                }
-                R.id.chip_02 -> {
-                    viewModel.sendServerRequestForDate(beforeYesterdayDate)
-                }
+                R.id.chip_01 -> viewModel.sendServerRequestForDate(yesterdayDate)
+                R.id.chip_02 -> viewModel.sendServerRequestForDate(beforeYesterdayDate)
                 R.id.chip_03 -> viewModel.sendServerRequest()
             }
         }

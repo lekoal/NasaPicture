@@ -1,73 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="chips_red" parent="Widget.MaterialComponents.Chip.Choice">
-        <item name="chipBackgroundColor">@color/red_200</item>
-        <item name="rippleColor">@color/red_700</item>
-        <item name="android:textColor">@color/dark_red</item>
+    <style name="chips_color" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/background_color_chip_state_list</item>
+        <item name="rippleColor">?color_700</item>
+        <item name="android:textColor">@color/text_color_chip_state_list</item>
         <item name="android:fontFamily">@font/merriweather_italic</item>
     </style>
 
-    <style name="chips_green" parent="Widget.MaterialComponents.Chip.Choice">
-        <item name="chipBackgroundColor">@color/green_200</item>
-        <item name="rippleColor">@color/green_700</item>
-        <item name="android:textColor">@color/dark_green</item>
-        <item name="android:fontFamily">@font/roboto_slab_bold</item>
+    <style name="text_layout_color" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="startIconTint">?color_500</item>
+        <item name="endIconTint">?color_500</item>
+        <item name="android:textColorHint">?dark_color</item>
+        <item name="android:textColor">?dark_color</item>
+        <item name="boxStrokeColor">?dark_color</item>
+        <item name="hintTextColor">?color_700</item>
+        <item name="helperTextTextColor">?color_500</item>
     </style>
 
-    <style name="chips_blue" parent="Widget.MaterialComponents.Chip.Choice">
-        <item name="chipBackgroundColor">@color/blue_200</item>
-        <item name="rippleColor">@color/blue_700</item>
-        <item name="android:textColor">@color/dark_blue</item>
-        <item name="android:fontFamily">@font/oswald</item>
-    </style>
-
-    <style name="text_layout_red" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="startIconTint">@color/red_500</item>
-        <item name="endIconTint">@color/red_500</item>
-        <item name="android:textColorHint">@color/dark_red</item>
-        <item name="android:textColor">@color/dark_red</item>
-        <item name="boxStrokeColor">@color/dark_red</item>
-        <item name="hintTextColor">@color/red_700</item>
-        <item name="helperTextTextColor">@color/red_500</item>
-    </style>
-
-    <style name="text_layout_green" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="startIconTint">@color/green_500</item>
-        <item name="endIconTint">@color/green_500</item>
-        <item name="android:textColorHint">@color/dark_green</item>
-        <item name="android:textColor">@color/dark_green</item>
-        <item name="boxStrokeColor">@color/dark_green</item>
-        <item name="hintTextColor">@color/green_700</item>
-        <item name="helperTextTextColor">@color/green_500</item>
-    </style>
-
-    <style name="text_layout_blue" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="startIconTint">@color/blue_500</item>
-        <item name="endIconTint">@color/blue_500</item>
-        <item name="android:textColorHint">@color/dark_blue</item>
-        <item name="android:textColor">@color/dark_blue</item>
-        <item name="boxStrokeColor">@color/dark_blue</item>
-        <item name="hintTextColor">@color/blue_700</item>
-        <item name="helperTextTextColor">@color/blue_500</item>
-    </style>
-
-    <style name="bottom_app_bar_red" parent="@style/Widget.MaterialComponents.BottomAppBar">
-        <item name="navigationIconTint">@color/red_200</item>
-        <item name="colorControlNormal">@color/red_200</item>
-        <item name="backgroundTint">@color/dark_red</item>
-    </style>
-
-    <style name="bottom_app_bar_green" parent="@style/Widget.MaterialComponents.BottomAppBar">
-        <item name="navigationIconTint">@color/green_200</item>
-        <item name="colorControlNormal">@color/green_200</item>
-        <item name="backgroundTint">@color/dark_green</item>
-    </style>
-
-    <style name="bottom_app_bar_blue" parent="@style/Widget.MaterialComponents.BottomAppBar">
-        <item name="navigationIconTint">@color/blue_200</item>
-        <item name="colorControlNormal">@color/blue_200</item>
-        <item name="backgroundTint">@color/dark_blue</item>
+    <style name="bottom_app_bar_color" parent="@style/Widget.MaterialComponents.BottomAppBar">
+        <item name="navigationIconTint">?color_200</item>
+        <item name="colorControlNormal">?color_200</item>
+        <item name="backgroundTint">?dark_color</item>
     </style>
 
     <style name="bottom_app_bar_base" parent="@style/Widget.MaterialComponents.BottomAppBar">
@@ -81,60 +35,23 @@
         <item name="tint">@color/white</item>
     </style>
 
-    <style name="fab_red" parent="@style/Widget.MaterialComponents.FloatingActionButton">
-        <item name="backgroundTint">@color/dark_red</item>
-        <item name="tint">@color/red_200</item>
+    <style name="fab_color" parent="@style/Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">?dark_color</item>
+        <item name="tint">?color_200</item>
     </style>
 
-    <style name="fab_green" parent="@style/Widget.MaterialComponents.FloatingActionButton">
-        <item name="backgroundTint">@color/dark_green</item>
-        <item name="tint">@color/green_200</item>
-    </style>
-
-    <style name="fab_blue" parent="@style/Widget.MaterialComponents.FloatingActionButton">
-        <item name="backgroundTint">@color/dark_blue</item>
-        <item name="tint">@color/blue_200</item>
-    </style>
-
-    <style name="bottom_navigation_red" parent="@style/Widget.MaterialComponents.BottomNavigationView">
-        <item name="backgroundTint">@color/dark_red</item>
-        <item name="itemIconTint">@color/red_200</item>
-        <item name="itemTextColor">@color/red_200</item>
-    </style>
-
-    <style name="bottom_navigation_green" parent="@style/Widget.MaterialComponents.BottomNavigationView">
-        <item name="backgroundTint">@color/dark_green</item>
-        <item name="itemIconTint">@color/green_200</item>
-        <item name="itemTextColor">@color/green_200</item>
-    </style>
-
-    <style name="bottom_navigation_blue" parent="@style/Widget.MaterialComponents.BottomNavigationView">
-        <item name="backgroundTint">@color/dark_blue</item>
-        <item name="itemIconTint">@color/blue_200</item>
-        <item name="itemTextColor">@color/blue_200</item>
+    <style name="bottom_navigation_color" parent="@style/Widget.MaterialComponents.BottomNavigationView">
+        <item name="backgroundTint">?dark_color</item>
+        <item name="itemIconTint">?color_200</item>
+        <item name="itemTextColor">?color_200</item>
     </style>
     
-    <style name="tabs_red" parent="Widget.MaterialComponents.TabLayout">
-        <item name="android:background">@color/dark_red</item>
-        <item name="tabIconTint">@color/red_200</item>
-        <item name="tabTextColor">@color/red_200</item>
-        <item name="tabIndicatorColor">@color/red_200</item>
+    <style name="tabs_color" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:background">?dark_color</item>
+        <item name="tabIconTint">?color_200</item>
+        <item name="tabTextColor">?color_200</item>
+        <item name="tabIndicatorColor">?color_200</item>
         <item name="tabIndicatorHeight">4dp</item>
     </style>
 
-    <style name="tabs_green" parent="Widget.MaterialComponents.TabLayout">
-        <item name="android:background">@color/dark_green</item>
-        <item name="tabIconTint">@color/green_200</item>
-        <item name="tabTextColor">@color/green_200</item>
-        <item name="tabIndicatorColor">@color/green_200</item>
-        <item name="tabIndicatorHeight">4dp</item>
-    </style>
-
-    <style name="tabs_blue" parent="Widget.MaterialComponents.TabLayout">
-        <item name="android:background">@color/dark_blue</item>
-        <item name="tabIconTint">@color/blue_200</item>
-        <item name="tabTextColor">@color/blue_200</item>
-        <item name="tabIndicatorColor">@color/blue_200</item>
-        <item name="tabIndicatorHeight">4dp</item>
-    </style>
 </resources>
