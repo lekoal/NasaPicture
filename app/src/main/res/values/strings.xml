@@ -22,5 +22,10 @@
     <string name="green_theme_text">Зелёная тема</string>
     <string name="blue_theme_text">Синяя тема</string>
     <string name="night_theme_text">Ночная тема</string>
+    <string name="another_screen">Изображения</string>
+    <string name="earth_title">Земля</string>
+    <string name="mars_title">Марс</string>
+    <string name="solar_system_title">Солнечная система</string>
+    <string name="video_of_the_day_stub">Video of the day</string>
 
 </resources>

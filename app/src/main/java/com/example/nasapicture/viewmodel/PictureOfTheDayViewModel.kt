@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.nasapicture.BuildConfig
 import com.example.nasapicture.R
+import com.example.nasapicture.repository.NasaImageDTO
 import com.example.nasapicture.repository.PictureOfTheDayDTO
 import com.example.nasapicture.repository.PictureOfTheDayRetrofitImpl
 import retrofit2.Call
@@ -79,6 +80,38 @@ class PictureOfTheDayViewModel(
                     }
 
                     override fun onFailure(call: Call<PictureOfTheDayDTO>, t: Throwable) {
+                        liveData.postValue(PictureOfTheDayState.Error(t))
+                    }
+
+                }
+            )
+    }
+
+    fun sendServerRequestForImage(nasaId: String) {
+        liveData.postValue(PictureOfTheDayState.Loading(null))
+        pictureOfTheDayRetrofitImpl.getImageRetrofitImpl().getNasaImage(nasaId)
+            .enqueue(
+                object : Callback<NasaImageDTO> {
+                    override fun onResponse(
+                        call: Call<NasaImageDTO>,
+                        response: Response<NasaImageDTO>
+                    ) {
+                        if (response.isSuccessful && response.body() != null) {
+                            response.body()?.let {
+                                liveData.postValue(PictureOfTheDayState.SuccessImage(it))
+                            }
+                        } else {
+                            liveData.postValue(
+                                PictureOfTheDayState.Error(
+                                    Exception(
+                                        R.string.live_data_error.toString()
+                                    )
+                                )
+                            )
+                        }
+                    }
+
+                    override fun onFailure(call: Call<NasaImageDTO>, t: Throwable) {
                         liveData.postValue(PictureOfTheDayState.Error(t))
                     }
 
