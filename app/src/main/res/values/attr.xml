@@ -17,4 +17,6 @@
     <attr name="color_500" format="reference" />
     <attr name="color_700" format="reference" />
     <attr name="dark_color" format="reference" />
+<!--    Fonts-->
+    <attr name="font_family" format="reference" />
 </resources>

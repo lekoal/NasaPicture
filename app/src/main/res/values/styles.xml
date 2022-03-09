@@ -5,7 +5,7 @@
         <item name="chipBackgroundColor">@color/background_color_chip_state_list</item>
         <item name="rippleColor">?color_700</item>
         <item name="android:textColor">@color/text_color_chip_state_list</item>
-        <item name="android:fontFamily">@font/merriweather_italic</item>
+        <item name="android:fontFamily">?font_family</item>
     </style>
 
     <style name="text_layout_color" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">

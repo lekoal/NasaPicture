@@ -1,16 +1,13 @@
 package com.example.nasapicture.ui.navigation
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.viewpager.widget.ViewPager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.nasapicture.R
 import com.example.nasapicture.databinding.ActivityBottomNavigationBinding
 import com.example.nasapicture.repository.ZoomOutPageTransformer
 import com.example.nasapicture.ui.*
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class BottomNavigationActivity : AppCompatActivity() {

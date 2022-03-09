@@ -37,6 +37,8 @@
         <item name="chip_text_checked_color">@color/red_200</item>
         <item name="chip_background_color">@color/red_200</item>
         <item name="chip_background_checked_color">@color/red_700</item>
+<!--        Fonts-->
+        <item name="font_family">@font/montserrat_medium_italic</item>
 
         <item name="android:statusBarColor" tools:targetApi="l">@color/dark_red</item>
         <item name="bottom_sheet_background">@color/red_200</item>
@@ -46,7 +48,7 @@
         <item name="navigationIconTint">@color/red_200</item>
         <item name="colorControlNormal">@color/red_200</item>
         <item name="other_app_bar_icon_color">@color/red_200</item>
-        <item name="bottom_sheet_font_family">@font/merriweather</item>
+        <item name="bottom_sheet_font_family">?font_family</item>
         <item name="chipStyle">@style/chips_color</item>
         <item name="textInputStyle">@style/text_layout_color</item>
         <item name="bottomAppBarStyle">@style/bottom_app_bar_color</item>
@@ -67,6 +69,8 @@
         <item name="chip_text_checked_color">@color/green_200</item>
         <item name="chip_background_color">@color/green_200</item>
         <item name="chip_background_checked_color">@color/green_700</item>
+<!--        Fonts-->
+        <item name="font_family">@font/roboto_slab_light</item>
 
         <item name="android:statusBarColor" tools:targetApi="l">@color/dark_green</item>
         <item name="bottom_sheet_background">@color/green_200</item>
@@ -75,7 +79,7 @@
         <item name="bottom_sheet_description_color">@color/dark_green</item>
         <item name="navigationIconTint">@color/green_200</item>
         <item name="colorControlNormal">@color/green_200</item>
-        <item name="bottom_sheet_font_family">@font/montserrat_medium_italic</item>
+        <item name="bottom_sheet_font_family">?font_family</item>
         <item name="other_app_bar_icon_color">@color/green_200</item>
         <item name="chipStyle">@style/chips_color</item>
         <item name="textInputStyle">@style/text_layout_color</item>
@@ -97,6 +101,8 @@
         <item name="chip_text_checked_color">@color/blue_200</item>
         <item name="chip_background_color">@color/blue_200</item>
         <item name="chip_background_checked_color">@color/blue_700</item>
+<!--        Fonts-->
+        <item name="font_family">@font/merriweather</item>
 
         <item name="android:statusBarColor" tools:targetApi="l">@color/dark_blue</item>
         <item name="bottom_sheet_background">@color/blue_200</item>
@@ -105,7 +111,7 @@
         <item name="bottom_sheet_description_color">@color/dark_blue</item>
         <item name="navigationIconTint">@color/blue_200</item>
         <item name="colorControlNormal">@color/blue_200</item>
-        <item name="bottom_sheet_font_family">@font/roboto_slab_light</item>
+        <item name="bottom_sheet_font_family">?font_family</item>
         <item name="other_app_bar_icon_color">@color/blue_200</item>
         <item name="chipStyle">@style/chips_color</item>
         <item name="textInputStyle">@style/text_layout_color</item>
