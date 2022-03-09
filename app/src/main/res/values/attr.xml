@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    Bottom Sheet-->
+    <attr name="bottom_sheet_background" format="reference" />
+    <attr name="bottom_sheet_line_color" format="reference" />
+    <attr name="bottom_sheet_header_color" format="reference" />
+    <attr name="bottom_sheet_description_color" format="reference" />
+    <attr name="bottom_sheet_font_family" format="reference" />
+    <attr name="other_app_bar_icon_color" format="reference" />
+</resources>
