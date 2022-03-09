@@ -162,6 +162,7 @@ class PictureOfTheDayFragment : Fragment() {
     private fun fabClicker() {
         binding.fab.setOnClickListener {
             if (isMain) {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
                 binding.bottomAppBar.navigationIcon = null
                 binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
                 binding.fab.setImageDrawable(
@@ -172,6 +173,7 @@ class PictureOfTheDayFragment : Fragment() {
                 )
                 binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
             } else {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 binding.bottomAppBar.navigationIcon =
                     ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_menu_24)
                 binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
