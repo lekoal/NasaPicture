@@ -27,5 +27,8 @@
     <string name="mars_title">Марс</string>
     <string name="solar_system_title">Солнечная система</string>
     <string name="video_of_the_day_stub">Video of the day</string>
+    <string name="fab_back">Back</string>
+    <string name="fab_home">Home</string>
+    <string name="fab_next">Next</string>
 
 </resources>

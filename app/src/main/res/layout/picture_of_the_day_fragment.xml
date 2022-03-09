@@ -15,6 +15,62 @@
             android:layout_marginBottom="@dimen/main_margin_bottom"
             android:padding="10dp">
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.01" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.50" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.99" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.08" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.20" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.25" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.50" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.75" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout"
                 android:layout_width="0dp"
@@ -26,9 +82,10 @@
                 app:endIconDrawable="@drawable/ic_wikipedia"
                 app:endIconMode="custom"
                 app:helperText="@string/wiki_helper_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/guideline_4"
+                app:layout_constraintEnd_toStartOf="@id/guideline_3"
+                app:layout_constraintStart_toEndOf="@id/guideline_1"
+                app:layout_constraintTop_toTopOf="@id/guideline_4"
                 app:startIconContentDescription="@string/image_desc"
                 app:startIconDrawable="@drawable/ic_search">
 
@@ -46,19 +103,21 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/inputLayout">
+                app:layout_constraintBottom_toBottomOf="@id/guideline_5"
+                app:layout_constraintEnd_toStartOf="@id/guideline_3"
+                app:layout_constraintStart_toEndOf="@id/guideline_1"
+                app:layout_constraintTop_toTopOf="@id/guideline_5">
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chip_group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:singleLine="true"
                     app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_01"
-                        android:layout_width="@dimen/chip_width"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/chips_horizontal_margin"
                         android:text="@string/day_before_yesterday_text"
@@ -66,7 +125,7 @@
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_02"
-                        android:layout_width="@dimen/chip_width"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/chips_horizontal_margin"
                         android:text="@string/yesterday_text"
@@ -74,7 +133,7 @@
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_03"
-                        android:layout_width="@dimen/chip_width"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/chips_horizontal_margin"
                         android:text="@string/today_text"
@@ -90,10 +149,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:contentDescription="@string/video_of_the_day_stub"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/chip_container" />
+                app:layout_constraintBottom_toTopOf="@id/guideline_8"
+                app:layout_constraintEnd_toStartOf="@id/guideline_3"
+                app:layout_constraintStart_toEndOf="@id/guideline_1"
+                app:layout_constraintTop_toBottomOf="@id/guideline_6" />
 
             <com.example.nasapicture.tools.EquilateralImageView
                 android:id="@+id/image_view"
@@ -101,11 +160,54 @@
                 android:layout_height="0dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/photo_of_the_day_stub"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/chip_container"
+                app:layout_constraintBottom_toTopOf="@id/guideline_8"
+                app:layout_constraintEnd_toStartOf="@id/guideline_3"
+                app:layout_constraintStart_toEndOf="@id/guideline_1"
+                app:layout_constraintTop_toBottomOf="@id/guideline_6"
                 app:srcCompat="@drawable/ic_baseline_no_photography_24" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="image_view" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/fab_back"
+                app:fabSize="mini"
+                app:layout_constraintCircle="@id/fab_home"
+                app:layout_constraintCircleAngle="290"
+                app:layout_constraintCircleRadius="70dp"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:contentDescription="@string/fab_home"
+                app:fabSize="normal"
+                app:layout_constraintEnd_toStartOf="@id/guideline_2"
+                app:layout_constraintStart_toEndOf="@id/guideline_2"
+                app:layout_constraintTop_toBottomOf="@id/barrier_1"
+                app:srcCompat="@drawable/ic_baseline_home_24" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/fab_next"
+                app:fabSize="mini"
+                app:layout_constraintCircle="@id/fab_home"
+                app:layout_constraintCircleAngle="70"
+                app:layout_constraintCircleRadius="70dp"
+                app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <include

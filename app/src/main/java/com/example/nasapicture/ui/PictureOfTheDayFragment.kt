@@ -200,7 +200,7 @@ class PictureOfTheDayFragment : Fragment() {
                         R.drawable.ic_plus_fab
                     )
                 )
-                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_navigation)
+                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_app_bar)
             }
             isMain = !isMain
         }
