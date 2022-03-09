@@ -70,27 +70,21 @@ class BottomNavigationActivity : AppCompatActivity() {
         when (saveTheme.getInt(CURRENT_THEME, -1)) {
             R.style.BaseTheme -> {
                 setTheme(R.style.BaseTheme)
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
             R.style.RedTheme -> {
                 setTheme(R.style.RedTheme)
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
             R.style.GreenTheme -> {
                 setTheme(R.style.GreenTheme)
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
             R.style.BlueTheme -> {
                 setTheme(R.style.BlueTheme)
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
             0 -> {
                 setTheme(R.style.BaseTheme)
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }
             else -> {
                 setTheme(R.style.BaseTheme)
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
     }
