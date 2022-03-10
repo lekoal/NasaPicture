@@ -8,7 +8,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.appbar.AppBarLayout
 import kotlin.math.abs
 
-class ButtonDownBehavior(context: Context, attr: AttributeSet) :
+class ButtonDownBehavior(context: Context, attr: AttributeSet? = null) :
     CoordinatorLayout.Behavior<View>(context, attr) {
     override fun layoutDependsOn(
         parent: CoordinatorLayout,

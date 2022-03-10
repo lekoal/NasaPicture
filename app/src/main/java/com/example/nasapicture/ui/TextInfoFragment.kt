@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.view.children
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.example.nasapicture.databinding.FragmentTextInfoBinding
+import com.example.nasapicture.ui.behaviors.ButtonDownBehavior
 
 class TextInfoFragment : Fragment() {
 
@@ -30,6 +30,9 @@ class TextInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val behavior = ButtonDownBehavior(requireContext())
+        (binding.tfButtonDown.layoutParams as CoordinatorLayout.LayoutParams).behavior = behavior
 
         binding.tfButtonUp.setOnClickListener {
             binding.tfAppBar.setExpanded(false)
