@@ -157,6 +157,12 @@ class PictureOfTheDayFragment : Fragment() {
             android.R.id.home -> {
                 BottomNavigationDrawerFragment().show(requireActivity().supportFragmentManager, "")
             }
+            R.id.app_bar_text -> {
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(R.id.container, TextInfoFragment())
+                    ?.addToBackStack("")
+                    ?.commit()
+            }
         }
         return super.onOptionsItemSelected(item)
     }

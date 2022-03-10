@@ -8,10 +8,10 @@
         android:title="@string/another_screen"
         app:showAsAction="ifRoom" />
 
-    <!-- <item
-        android:id="@+id/app_bar_search"
-        android:icon="@drawable/ic_settings_menu"
-        android:title="@string/settings"
-        app:showAsAction="ifRoom" /> -->
+    <item
+        android:id="@+id/app_bar_text"
+        android:icon="@drawable/ic_baseline_text_snippet_24"
+        android:title="@string/text_screen"
+        app:showAsAction="ifRoom" />
 
 </menu>

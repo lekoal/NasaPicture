@@ -56,6 +56,8 @@
         <item name="android:colorEdgeEffect">@color/red_700</item>
         <item name="bottomNavigationStyle">@style/bottom_navigation_color</item>
         <item name="tabStyle">@style/tabs_color</item>
+        <item name="materialButtonStyle">@style/buttons</item>
+        <item name="collapsingToolbarLayoutStyle">@style/tf_toolbar</item>
     </style>
 
     <style name="GreenTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -88,6 +90,8 @@
         <item name="android:colorEdgeEffect">@color/green_700</item>
         <item name="bottomNavigationStyle">@style/bottom_navigation_color</item>
         <item name="tabStyle">@style/tabs_color</item>
+        <item name="materialButtonStyle">@style/buttons</item>
+        <item name="collapsingToolbarLayoutStyle">@style/tf_toolbar</item>
     </style>
 
     <style name="BlueTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -120,5 +124,7 @@
         <item name="android:colorEdgeEffect">@color/blue_700</item>
         <item name="bottomNavigationStyle">@style/bottom_navigation_color</item>
         <item name="tabStyle">@style/tabs_color</item>
+        <item name="materialButtonStyle">@style/buttons</item>
+        <item name="collapsingToolbarLayoutStyle">@style/tf_toolbar</item>
     </style>
 </resources>

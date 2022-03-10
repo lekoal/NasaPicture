@@ -54,4 +54,14 @@
         <item name="tabIndicatorHeight">4dp</item>
     </style>
 
+    <style name="tf_toolbar" parent="Widget.Design.CollapsingToolbar">
+        <item name="android:backgroundTint">?color_700</item>
+        <item name="contentScrim">?dark_color</item>
+    </style>
+
+    <style name="buttons" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">?dark_color</item>
+        <item name="iconTint">?color_200</item>
+    </style>
+
 </resources>
