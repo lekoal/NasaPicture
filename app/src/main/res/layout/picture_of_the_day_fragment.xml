@@ -173,40 +173,52 @@
                 app:barrierDirection="bottom"
                 app:constraint_referenced_ids="image_view" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_back"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.motion.widget.MotionLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/fab_back"
-                app:fabSize="mini"
-                app:layout_constraintCircle="@id/fab_home"
-                app:layout_constraintCircleAngle="290"
-                app:layout_constraintCircleRadius="70dp"
-                app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+                app:layoutDescription="@xml/motion_scene"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/barrier_1">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_home"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:contentDescription="@string/fab_home"
-                app:fabSize="normal"
-                app:layout_constraintEnd_toStartOf="@id/guideline_2"
-                app:layout_constraintStart_toEndOf="@id/guideline_2"
-                app:layout_constraintTop_toBottomOf="@id/barrier_1"
-                app:srcCompat="@drawable/ic_baseline_home_24" />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/fab_back"
+                    app:layout_constraintCircle="@+id/fab_home"
+                    app:layout_constraintCircleAngle="290"
+                    app:layout_constraintCircleRadius="80dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/fab_next"
-                app:fabSize="mini"
-                app:layout_constraintCircle="@id/fab_home"
-                app:layout_constraintCircleAngle="70"
-                app:layout_constraintCircleRadius="70dp"
-                app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:contentDescription="@string/fab_home"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_baseline_home_24" />
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/fab_next"
+                    app:layout_constraintCircle="@+id/fab_home"
+                    app:layout_constraintCircleAngle="70"
+                    app:layout_constraintCircleRadius="80dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
+
+            </androidx.constraintlayout.motion.widget.MotionLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
