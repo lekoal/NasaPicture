@@ -164,9 +164,6 @@
         motion:constraintSetStart="@+id/start_back"
         motion:duration="1000">
 
-        <OnSwipe
-            />
-
         <OnClick
             motion:clickAction="transitionToEnd"
             motion:targetId="@+id/fab_back" />
