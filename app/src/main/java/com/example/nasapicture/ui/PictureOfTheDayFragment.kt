@@ -11,6 +11,9 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.transition.Fade
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import coil.load
 import com.example.nasapicture.R
 import com.example.nasapicture.databinding.PictureOfTheDayFragmentBinding
@@ -85,6 +88,12 @@ class PictureOfTheDayFragment : Fragment() {
     }
 
     private fun renderData(pictureOfTheDayState: PictureOfTheDayState?) {
+
+        val transition = TransitionSet()
+        val fade = Fade()
+        fade.duration = 1000
+        transition.addTransition(fade)
+
         when (pictureOfTheDayState) {
             is PictureOfTheDayState.Loading -> {
                 binding.loadingLayout.visibility = View.VISIBLE
@@ -93,8 +102,11 @@ class PictureOfTheDayFragment : Fragment() {
                 binding.loadingLayout.visibility = View.GONE
                 if (pictureOfTheDayState.serverResponseData.mediaType == "image") {
                     binding.videoView.visibility = View.GONE
-                    binding.imageView.visibility = View.VISIBLE
+                    binding.imageView.visibility = View.GONE
+
+                    TransitionManager.beginDelayedTransition(binding.transitionContainer, transition)
                     binding.imageView.load(pictureOfTheDayState.serverResponseData.hdurl)
+                    binding.imageView.visibility = View.VISIBLE
 
                 } else if (pictureOfTheDayState.serverResponseData.mediaType == "video") {
                     binding.videoView.visibility = View.VISIBLE
