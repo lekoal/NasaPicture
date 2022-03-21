@@ -35,5 +35,6 @@
     <string name="tf_toolbar_description">Toolbar</string>
     <string name="fab_size">Fab size</string>
     <string name="loading_error_custom_text">loading / error image</string>
+    <string name="animation_page_text">Страница анимации</string>
 
 </resources>
