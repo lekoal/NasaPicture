@@ -42,8 +42,8 @@ class MarsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
-        viewModel.sendServerRequestForImage(nasaId)
+//        viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
+//        viewModel.sendServerRequestForImage(nasaId)
     }
 
     private fun renderData(pictureOfTheDayState: PictureOfTheDayState?) {

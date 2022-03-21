@@ -36,8 +36,8 @@ class SolarSystemFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
-        viewModel.sendServerRequestForImage(nasaId)
+//        viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
+//        viewModel.sendServerRequestForImage(nasaId)
     }
 
     companion object {
