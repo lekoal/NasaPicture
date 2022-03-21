@@ -96,9 +96,12 @@ class PictureOfTheDayFragment : Fragment() {
 
         when (pictureOfTheDayState) {
             is PictureOfTheDayState.Loading -> {
+                TransitionManager.beginDelayedTransition(binding.loadingLayout, transition)
+                binding.loadingErrorImage.load(R.drawable.loading_text)
                 binding.loadingLayout.visibility = View.VISIBLE
             }
             is PictureOfTheDayState.Success -> {
+                TransitionManager.endTransitions(binding.loadingLayout)
                 binding.loadingLayout.visibility = View.GONE
                 if (pictureOfTheDayState.serverResponseData.mediaType == "image") {
                     binding.videoView.visibility = View.GONE
@@ -128,7 +131,10 @@ class PictureOfTheDayFragment : Fragment() {
                     pictureOfTheDayState.serverResponseData.explanation
             }
             is PictureOfTheDayState.Error -> {
+                binding.progressBar.visibility = View.GONE
                 binding.loadingLayout.visibility = View.GONE
+                binding.loadingErrorImage.load(R.drawable.error_text)
+                binding.loadingLayout.visibility = View.VISIBLE
                 with(binding.loadingLayout) {
                     showActionSnackBar(
                         R.string.snack_bar_error_text,

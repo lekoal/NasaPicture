@@ -4,4 +4,5 @@
     <dimen name="chip_width">100dp</dimen>
     <dimen name="main_margin_bottom">60dp</dimen>
     <dimen name="tf_app_bar_height">200dp</dimen>
+    <dimen name="loading_error_image_size">200dp</dimen>
 </resources>

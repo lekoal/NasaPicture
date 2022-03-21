@@ -189,9 +189,9 @@
                 app:layout_constraintTop_toBottomOf="@id/guideline_6" />
 
             <LinearLayout
+                android:id="@+id/transition_container"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:id="@+id/transition_container"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@id/guideline_8"
                 app:layout_constraintEnd_toStartOf="@id/guideline_3"
@@ -296,9 +296,17 @@
 
         <ProgressBar
             style="?android:attr/progressBarStyle"
+            android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
+
+        <ImageView
+            android:id="@+id/loading_error_image"
+            android:layout_width="@dimen/loading_error_image_size"
+            android:layout_height="@dimen/loading_error_image_size"
+            android:layout_gravity="center"
+            android:contentDescription="@string/loading_error_custom_text" />
 
     </FrameLayout>
 
