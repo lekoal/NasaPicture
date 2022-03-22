@@ -5,15 +5,14 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.transition.Fade
-import androidx.transition.TransitionManager
-import androidx.transition.TransitionSet
+import androidx.transition.*
 import coil.load
 import com.example.nasapicture.R
 import com.example.nasapicture.databinding.PictureOfTheDayFragmentBinding
@@ -37,6 +36,8 @@ class PictureOfTheDayFragment : Fragment() {
     private val viewModel: PictureOfTheDayViewModel by lazy {
         ViewModelProvider(this)[PictureOfTheDayViewModel::class.java]
     }
+
+    private var flag = false
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
@@ -91,12 +92,16 @@ class PictureOfTheDayFragment : Fragment() {
 
         val transition = TransitionSet()
         val fade = Fade()
+        val changeImageTransform = ChangeImageTransform()
+        changeImageTransform.duration = 500
         fade.duration = 1000
         transition.addTransition(fade)
 
         when (pictureOfTheDayState) {
             is PictureOfTheDayState.Loading -> {
-                TransitionManager.beginDelayedTransition(binding.loadingLayout, transition)
+                TransitionManager.beginDelayedTransition(binding.loadingLayout, TransitionSet()
+                    .addTransition(transition)
+                    .addTransition(changeImageTransform))
                 binding.loadingErrorImage.load(R.drawable.loading_text)
                 binding.loadingLayout.visibility = View.VISIBLE
             }
@@ -107,9 +112,14 @@ class PictureOfTheDayFragment : Fragment() {
                     binding.videoView.visibility = View.GONE
                     binding.imageView.visibility = View.GONE
 
-                    TransitionManager.beginDelayedTransition(binding.transitionContainer, transition)
                     binding.imageView.load(pictureOfTheDayState.serverResponseData.hdurl)
                     binding.imageView.visibility = View.VISIBLE
+
+                    binding.imageView.setOnClickListener {
+                        flag = !flag
+                        TransitionManager.beginDelayedTransition(binding.transitionContainer, changeImageTransform)
+                        binding.imageView.scaleType = if (flag) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.CENTER_INSIDE
+                    }
 
                 } else if (pictureOfTheDayState.serverResponseData.mediaType == "video") {
                     binding.videoView.visibility = View.VISIBLE
