@@ -36,5 +36,9 @@
     <string name="fab_size">Fab size</string>
     <string name="loading_error_custom_text">loading / error image</string>
     <string name="animation_page_text">Страница анимации</string>
+    <string name="animation_image">Изображение Земли</string>
+    <string name="animation_fab">Вращать кнопку</string>
+    <string name="option_1">Option 1</string>
+    <string name="option_2">Option 2</string>
 
 </resources>

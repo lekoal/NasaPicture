@@ -1,11 +1,11 @@
 package com.example.nasapicture.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.fragment.app.Fragment
 import com.example.nasapicture.databinding.FragmentTextInfoBinding
 import com.example.nasapicture.ui.behaviors.ButtonDownBehavior
 
