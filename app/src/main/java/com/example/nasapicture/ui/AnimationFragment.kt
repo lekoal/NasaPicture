@@ -39,30 +39,10 @@ class AnimationFragment : Fragment() {
                 objectAnimatorStart(binding.optionTwoContainer, View.TRANSLATION_Y, 0f, -160f)
                 objectAnimatorStart(binding.optionTwoContainer, View.SCALE_X, 0f, 1f)
 
-                binding.transparentScreen.animate()
-                    .alpha(0.6f)
-                    .setDuration(duration)
-                    .start()
+                viewAnimate(binding.transparentScreen, 0.6f, false)
+                viewAnimate(binding.optionOneContainer, 1f, true)
+                viewAnimate(binding.optionTwoContainer, 1f, true)
 
-                binding.optionOneContainer.animate()
-                    .alpha(1f)
-                    .setDuration(duration)
-                    .setListener(object : AnimatorListenerAdapter() {
-                        override fun onAnimationEnd(animation: Animator?) {
-                            super.onAnimationEnd(animation)
-                            binding.optionOneContainer.isClickable = true
-                        }
-                    })
-
-                binding.optionTwoContainer.animate()
-                    .alpha(1f)
-                    .setDuration(duration)
-                    .setListener(object : AnimatorListenerAdapter() {
-                        override fun onAnimationEnd(animation: Animator?) {
-                            super.onAnimationEnd(animation)
-                            binding.optionTwoContainer.isClickable = true
-                        }
-                    })
             } else {
                 objectAnimatorStart(binding.fab, View.ROTATION, 405f, 0f)
                 objectAnimatorStart(binding.optionOneContainer, View.TRANSLATION_Y, -250f, 0f)
@@ -70,36 +50,33 @@ class AnimationFragment : Fragment() {
                 objectAnimatorStart(binding.optionTwoContainer, View.TRANSLATION_Y, -160f, 0f)
                 objectAnimatorStart(binding.optionTwoContainer, View.SCALE_X, 1f, 0f)
 
-                binding.transparentScreen.animate()
-                    .alpha(0f)
-                    .setDuration(duration)
-                    .start()
-
-                binding.optionOneContainer.animate()
-                    .alpha(0f)
-                    .setDuration(duration)
-                    .setListener(object : AnimatorListenerAdapter() {
-                        override fun onAnimationEnd(animation: Animator?) {
-                            super.onAnimationEnd(animation)
-                            binding.optionOneContainer.isClickable = false
-                        }
-                    })
-
-                binding.optionTwoContainer.animate()
-                    .alpha(0f)
-                    .setDuration(duration)
-                    .setListener(object : AnimatorListenerAdapter() {
-                        override fun onAnimationEnd(animation: Animator?) {
-                            super.onAnimationEnd(animation)
-                            binding.optionTwoContainer.isClickable = false
-                        }
-                    })
+                viewAnimate(binding.transparentScreen, 0f, false)
+                viewAnimate(binding.optionOneContainer, 0f, true)
+                viewAnimate(binding.optionTwoContainer, 0f, true)
             }
         }
     }
 
-    private fun objectAnimatorStart(view: View, property: Property<View, Float>, start: Float, end: Float) {
+    private fun objectAnimatorStart(
+        view: View,
+        property: Property<View, Float>,
+        start: Float,
+        end: Float
+    ) {
         ObjectAnimator.ofFloat(view, property, start, end).setDuration(duration).start()
+    }
+
+    private fun viewAnimate(view: View, alpha: Float, needClickable: Boolean) {
+        view.animate()
+            .alpha(alpha)
+            .setDuration(duration)
+            .setListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    view.isClickable = needClickable && flag
+                }
+            })
+            .start()
     }
 
     override fun onDestroy() {
