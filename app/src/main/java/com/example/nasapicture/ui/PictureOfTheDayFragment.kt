@@ -1,5 +1,6 @@
 package com.example.nasapicture.ui
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -104,6 +105,7 @@ class PictureOfTheDayFragment : Fragment() {
                     .addTransition(transition)
                     .addTransition(changeImageTransform))
                 binding.loadingErrorImage.load(R.drawable.loading_text)
+                ObjectAnimator.ofFloat(binding.loadingErrorImage, View.ROTATION, 0f, 720f).setDuration(2000).start()
                 binding.loadingLayout.visibility = View.VISIBLE
             }
             is PictureOfTheDayState.Success -> {
