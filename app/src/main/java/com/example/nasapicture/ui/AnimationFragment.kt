@@ -30,6 +30,11 @@ class AnimationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.scrollView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            binding.header.isSelected = binding.scrollView.canScrollVertically(-1)
+        }
+
         binding.fab.setOnClickListener {
             flag = !flag
             if (flag) {
