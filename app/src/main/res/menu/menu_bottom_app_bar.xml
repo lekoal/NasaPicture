@@ -20,4 +20,10 @@
         android:title="@string/animation_page_text"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/animation_bonus_page"
+        android:icon="@drawable/ic_baseline_app_shortcut_24"
+        android:title="@string/constraint_set_animation_page"
+        app:showAsAction="ifRoom" />
+
 </menu>

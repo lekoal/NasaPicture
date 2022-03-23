@@ -40,5 +40,10 @@
     <string name="animation_fab">Вращать кнопку</string>
     <string name="option_1">Option 1</string>
     <string name="option_2">Option 2</string>
+    <string name="mars_photo_date">5 июня 2018 г.</string>
+    <string name="mars_photo_title">Кратер Даниэлсона</string>
+    <string name="mars_photo_description">На фото видно камни и песок в кратере Даниэлсона (диаметр кратера около 67 км), расположенного на юго-востоке области Arabia Terra.</string>
+    <string name="show_description">Показать описание</string>
+    <string name="constraint_set_animation_page">Анимация ConstraintSet</string>
 
 </resources>

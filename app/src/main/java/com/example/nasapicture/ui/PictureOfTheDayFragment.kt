@@ -202,6 +202,12 @@ class PictureOfTheDayFragment : Fragment() {
                     ?.addToBackStack("")
                     ?.commit()
             }
+            R.id.animation_bonus_page -> {
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(R.id.container, AnimationBonusStartFragment())
+                    ?.addToBackStack("")
+                    ?.commit()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
