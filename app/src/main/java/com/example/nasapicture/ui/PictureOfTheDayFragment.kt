@@ -191,22 +191,13 @@ class PictureOfTheDayFragment : Fragment() {
                 BottomNavigationDrawerFragment().show(requireActivity().supportFragmentManager, "")
             }
             R.id.app_bar_text -> {
-                activity?.supportFragmentManager?.beginTransaction()
-                    ?.replace(R.id.container, TextInfoFragment())
-                    ?.addToBackStack("")
-                    ?.commit()
+                fragmentNavigation(TextInfoFragment())
             }
             R.id.animation_page -> {
-                activity?.supportFragmentManager?.beginTransaction()
-                    ?.replace(R.id.container, AnimationFragment())
-                    ?.addToBackStack("")
-                    ?.commit()
+                fragmentNavigation(AnimationFragment())
             }
             R.id.animation_bonus_page -> {
-                activity?.supportFragmentManager?.beginTransaction()
-                    ?.replace(R.id.container, AnimationBonusStartFragment())
-                    ?.addToBackStack("")
-                    ?.commit()
+                fragmentNavigation(AnimationBonusStartFragment())
             }
         }
         return super.onOptionsItemSelected(item)
@@ -225,6 +216,19 @@ class PictureOfTheDayFragment : Fragment() {
                     Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
             })
         }
+    }
+
+    private fun fragmentNavigation(fragment: Fragment) {
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.setCustomAnimations(
+                R.anim.slide_in,
+                R.anim.fade_out,
+                R.anim.fade_in,
+                R.anim.slide_out
+            )
+            ?.replace(R.id.container, fragment)
+            ?.addToBackStack("")
+            ?.commit()
     }
 
     private fun fabClicker() {
