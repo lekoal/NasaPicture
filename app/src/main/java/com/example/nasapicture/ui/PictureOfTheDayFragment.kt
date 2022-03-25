@@ -3,11 +3,12 @@ package com.example.nasapicture.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.*
-import androidx.fragment.app.Fragment
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
@@ -19,6 +20,9 @@ import com.example.nasapicture.viewmodel.PictureOfTheDayViewModel
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -38,6 +42,8 @@ class PictureOfTheDayFragment : Fragment() {
     private lateinit var yesterdayDate: String
     private lateinit var beforeYesterdayDate: String
 
+    private lateinit var youTubePlayerView: YouTubePlayerView
+
     companion object {
         fun newInstance() = PictureOfTheDayFragment()
         var isMain: Boolean = true
@@ -53,6 +59,9 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        youTubePlayerView = view.findViewById(R.id.video_view)
+        lifecycle.addObserver(youTubePlayerView)
 
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
         viewModel.sendServerRequest()
@@ -86,10 +95,20 @@ class PictureOfTheDayFragment : Fragment() {
                     binding.videoView.visibility = View.GONE
                     binding.imageView.visibility = View.VISIBLE
                     binding.imageView.load(pictureOfTheDayState.serverResponseData.hdurl)
+
                 } else if (pictureOfTheDayState.serverResponseData.mediaType == "video") {
                     binding.videoView.visibility = View.VISIBLE
                     binding.imageView.visibility = View.GONE
-                    binding.videoView.setVideoURI(pictureOfTheDayState.serverResponseData.hdurl.toUri())
+
+                    youTubePlayerView.addYouTubePlayerListener(object :
+                        AbstractYouTubePlayerListener() {
+                        override fun onReady(youTubePlayer: YouTubePlayer) {
+                            super.onReady(youTubePlayer)
+                            val videoId =
+                                youTUbeIdCutter(pictureOfTheDayState.serverResponseData.hdurl)
+                            youTubePlayer.loadVideo(videoId, 0F)
+                        }
+                    })
                 }
                 binding.included.bottomSheetDescriptionHeader.text =
                     pictureOfTheDayState.serverResponseData.title
@@ -140,6 +159,12 @@ class PictureOfTheDayFragment : Fragment() {
             android.R.id.home -> {
                 BottomNavigationDrawerFragment().show(requireActivity().supportFragmentManager, "")
             }
+            R.id.app_bar_text -> {
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(R.id.container, TextInfoFragment())
+                    ?.addToBackStack("")
+                    ?.commit()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -162,6 +187,7 @@ class PictureOfTheDayFragment : Fragment() {
     private fun fabClicker() {
         binding.fab.setOnClickListener {
             if (isMain) {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
                 binding.bottomAppBar.navigationIcon = null
                 binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
                 binding.fab.setImageDrawable(
@@ -172,6 +198,7 @@ class PictureOfTheDayFragment : Fragment() {
                 )
                 binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
             } else {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 binding.bottomAppBar.navigationIcon =
                     ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_menu_24)
                 binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
@@ -181,7 +208,7 @@ class PictureOfTheDayFragment : Fragment() {
                         R.drawable.ic_plus_fab
                     )
                 )
-                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_navigation)
+                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_app_bar)
             }
             isMain = !isMain
         }
@@ -190,15 +217,26 @@ class PictureOfTheDayFragment : Fragment() {
     private fun chipsChanged() {
         binding.chipGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                R.id.chip_01 -> {
-                    viewModel.sendServerRequestForDate(yesterdayDate)
-                }
-                R.id.chip_02 -> {
-                    viewModel.sendServerRequestForDate(beforeYesterdayDate)
-                }
+                R.id.chip_01 -> viewModel.sendServerRequestForDate(yesterdayDate)
+                R.id.chip_02 -> viewModel.sendServerRequestForDate(beforeYesterdayDate)
                 R.id.chip_03 -> viewModel.sendServerRequest()
             }
         }
+    }
+
+    private fun youTUbeIdCutter(url: String): String {
+
+        var videoId: String = ""
+        if (url.contains("://youtu.be/")) {
+            videoId = url.split(".be/")[1]
+        } else if (url.contains("://youtube.com/watch?")) {
+            videoId = url.split("\\?v=")[1]
+        } else if (url.contains("/embed/") && url.contains("?rel")) {
+            videoId = url.split("embed/", "?rel")[1]
+        } else if (url.contains("/embed/") && !url.contains("?rel")) {
+            videoId = url.split("embed/")[1]
+        }
+        return videoId
     }
 
     override fun onDestroy() {

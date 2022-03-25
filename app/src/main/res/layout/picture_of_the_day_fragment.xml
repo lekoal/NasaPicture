@@ -15,29 +15,120 @@
             android:layout_marginBottom="@dimen/main_margin_bottom"
             android:padding="10dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputLayout"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.01" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.50" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.99" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.08" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.20" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.25" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.50" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.75" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.03" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.15" />
+
+            <androidx.constraintlayout.motion.widget.MotionLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:hint="@string/search_wiki"
-                app:counterEnabled="true"
-                app:counterMaxLength="20"
-                app:endIconDrawable="@drawable/ic_wikipedia"
-                app:endIconMode="custom"
-                app:helperText="@string/wiki_helper_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:startIconContentDescription="@string/image_desc"
-                app:startIconDrawable="@drawable/ic_search">
+                app:layoutDescription="@xml/motion_scene_wiki"
+                app:layout_constraintBottom_toTopOf="@id/guideline_10"
+                app:layout_constraintEnd_toStartOf="@id/guideline_3"
+                app:layout_constraintStart_toEndOf="@id/guideline_1"
+                app:layout_constraintTop_toBottomOf="@id/guideline_9">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/swipe_wiki_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:src="@drawable/ic_wikipedia"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/inputLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/search_wiki"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="20"
+                    app:endIconDrawable="@drawable/ic_wikipedia"
+                    app:endIconMode="custom"
+                    app:helperText="@string/wiki_helper_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/swipe_wiki_image"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.91"
+                    app:startIconContentDescription="@string/image_desc"
+                    app:startIconDrawable="@drawable/ic_search">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.motion.widget.MotionLayout>
 
             <LinearLayout
                 android:id="@+id/chip_container"
@@ -46,19 +137,21 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/inputLayout">
+                app:layout_constraintBottom_toBottomOf="@id/guideline_5"
+                app:layout_constraintEnd_toStartOf="@id/guideline_3"
+                app:layout_constraintStart_toEndOf="@id/guideline_1"
+                app:layout_constraintTop_toTopOf="@id/guideline_5">
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chip_group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:singleLine="true"
                     app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_01"
-                        android:layout_width="@dimen/chip_width"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/chips_horizontal_margin"
                         android:text="@string/day_before_yesterday_text"
@@ -66,7 +159,7 @@
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_02"
-                        android:layout_width="@dimen/chip_width"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/chips_horizontal_margin"
                         android:text="@string/yesterday_text"
@@ -74,7 +167,7 @@
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_03"
-                        android:layout_width="@dimen/chip_width"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/chips_horizontal_margin"
                         android:text="@string/today_text"
@@ -84,16 +177,16 @@
 
             </LinearLayout>
 
-            <VideoView
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
                 android:id="@+id/video_view"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:contentDescription="@string/video_of_the_day_stub"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/chip_container" />
+                app:layout_constraintBottom_toTopOf="@id/guideline_8"
+                app:layout_constraintEnd_toStartOf="@id/guideline_3"
+                app:layout_constraintStart_toEndOf="@id/guideline_1"
+                app:layout_constraintTop_toBottomOf="@id/guideline_6" />
 
             <com.example.nasapicture.tools.EquilateralImageView
                 android:id="@+id/image_view"
@@ -101,11 +194,66 @@
                 android:layout_height="0dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/photo_of_the_day_stub"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/guideline_8"
+                app:layout_constraintEnd_toStartOf="@id/guideline_3"
+                app:layout_constraintStart_toEndOf="@id/guideline_1"
+                app:layout_constraintTop_toBottomOf="@id/guideline_6"
+                app:srcCompat="@drawable/ic_baseline_no_photography_24" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="image_view" />
+
+            <androidx.constraintlayout.motion.widget.MotionLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layoutDescription="@xml/motion_scene"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/chip_container"
-                app:srcCompat="@drawable/ic_baseline_no_photography_24" />
+                app:layout_constraintTop_toBottomOf="@id/barrier_1">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/fab_back"
+                    app:layout_constraintCircle="@+id/fab_home"
+                    app:layout_constraintCircleAngle="290"
+                    app:layout_constraintCircleRadius="80dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:contentDescription="@string/fab_home"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_baseline_home_24" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/fab_next"
+                    app:layout_constraintCircle="@+id/fab_home"
+                    app:layout_constraintCircleAngle="70"
+                    app:layout_constraintCircleRadius="80dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
+
+            </androidx.constraintlayout.motion.widget.MotionLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <include

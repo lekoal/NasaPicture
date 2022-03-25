@@ -22,7 +22,7 @@
 
     <TextView
         android:id="@+id/bottom_sheet_description_header"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:fontFamily="?bottom_sheet_font_family"
@@ -38,7 +38,7 @@
 
     <TextView
         android:id="@+id/bottom_sheet_description"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="?bottom_sheet_font_family"
         android:paddingStart="10dp"
