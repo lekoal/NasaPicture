@@ -10,7 +10,7 @@ import com.example.nasapicture.databinding.FragmentRecyclerMarsItemBinding
 
 class RecyclerListFragmentAdapter(
     private val onListItemClickListener: OnListItemClickListener
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : RecyclerView.Adapter<RecyclerListFragmentAdapter.BaseViewHolder>() {
 
     private var planetListData: MutableList<PlanetData> = mutableListOf()
 
@@ -18,7 +18,7 @@ class RecyclerListFragmentAdapter(
         this.planetListData = listData
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return when (viewType) {
             TYPE_EARTH -> {
                 EarthViewHolder(
@@ -50,29 +50,20 @@ class RecyclerListFragmentAdapter(
         }
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (getItemViewType(position)) {
-            TYPE_EARTH -> {
-                holder as EarthViewHolder
-                holder.bind(planetListData[position])
-            }
-            TYPE_MARS -> {
-                holder as MarsViewHolder
-                holder.bind(planetListData[position])
-            }
-            TYPE_HEADER -> {
-                holder as HeaderViewHolder
-                holder.bind(planetListData[position])
-            }
-        }
+    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
+        holder.bind(planetListData[position])
     }
 
     override fun getItemViewType(position: Int) = planetListData[position].type
 
     override fun getItemCount() = planetListData.size
 
-    inner class EarthViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(data: PlanetData) {
+    abstract class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        abstract fun bind(data: PlanetData)
+    }
+
+    inner class EarthViewHolder(view: View) : BaseViewHolder(view) {
+        override fun bind(data: PlanetData) {
             FragmentRecyclerEarthItemBinding.bind(itemView).apply {
                 earthName.text = data.planetName
                 earthDescription.text = data.planetDescription
@@ -83,8 +74,8 @@ class RecyclerListFragmentAdapter(
         }
     }
 
-    inner class MarsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(data: PlanetData) {
+    inner class MarsViewHolder(view: View) : BaseViewHolder(view) {
+        override fun bind(data: PlanetData) {
             FragmentRecyclerMarsItemBinding.bind(itemView).apply {
                 marsName.text = data.planetName
                 marsImageView.setOnClickListener {
@@ -94,8 +85,8 @@ class RecyclerListFragmentAdapter(
         }
     }
 
-    inner class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(data: PlanetData) {
+    inner class HeaderViewHolder(view: View) : BaseViewHolder(view) {
+        override fun bind(data: PlanetData) {
             FragmentRecyclerHeaderItemBinding.bind(itemView).apply {
                 header.text = data.planetName
                 header.setOnClickListener {
