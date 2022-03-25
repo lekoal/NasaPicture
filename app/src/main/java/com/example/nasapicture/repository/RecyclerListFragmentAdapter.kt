@@ -82,6 +82,10 @@ class RecyclerListFragmentAdapter(
             FragmentRecyclerEarthItemBinding.bind(itemView).apply {
                 earthName.text = data.planetName
                 earthDescription.text = data.planetDescription
+                if (layoutPosition == 1) moveItemUp.visibility = View.GONE
+                else moveItemUp.visibility = View.VISIBLE
+                if (layoutPosition == planetListData.size - 1) moveItemDown.visibility = View.GONE
+                else moveItemDown.visibility = View.VISIBLE
                 wikiImageView.setOnClickListener {
                     onListItemClickListener.onItemClick(data)
                 }
@@ -101,6 +105,10 @@ class RecyclerListFragmentAdapter(
         override fun bind(data: PlanetData) {
             FragmentRecyclerMarsItemBinding.bind(itemView).apply {
                 marsName.text = data.planetName
+                if (layoutPosition == 1) moveItemUp.visibility = View.GONE
+                else moveItemUp.visibility = View.VISIBLE
+                if (layoutPosition == planetListData.size - 1) moveItemDown.visibility = View.GONE
+                else moveItemDown.visibility = View.VISIBLE
                 marsImageView.setOnClickListener {
                     onListItemClickListener.onItemClick(data)
                 }

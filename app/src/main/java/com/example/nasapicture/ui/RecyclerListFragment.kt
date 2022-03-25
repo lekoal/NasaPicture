@@ -110,7 +110,7 @@ class RecyclerListFragment : Fragment() {
         binding.optionMarsContainer.setOnClickListener {
             adapter.appendItem(TYPE_MARS)
             binding.fabNewPlanetItem.callOnClick()
-            binding.rvPlanets.smoothScrollToPosition(planetListData.size - 1)
+            binding.rvPlanets.smoothScrollToPosition(adapter.itemCount)
         }
 
     }
