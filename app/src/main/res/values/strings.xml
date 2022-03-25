@@ -48,5 +48,8 @@
     <string name="recycler_list_page">Страница Recycler списка</string>
     <string name="earth_additional_text">Дополнительный текст</string>
     <string name="planets_header">Заголовок</string>
+    <string name="fragment_recycler_fab">Add new item</string>
+    <string name="option_mars">Марс</string>
+    <string name="option_earth">Земля</string>
 
 </resources>
