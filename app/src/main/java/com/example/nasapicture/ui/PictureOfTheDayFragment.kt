@@ -1,16 +1,20 @@
 package com.example.nasapicture.ui
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.Toast
+import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.transition.ChangeImageTransform
+import androidx.transition.Fade
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import coil.load
 import com.example.nasapicture.R
 import com.example.nasapicture.databinding.PictureOfTheDayFragmentBinding
@@ -34,6 +38,8 @@ class PictureOfTheDayFragment : Fragment() {
     private val viewModel: PictureOfTheDayViewModel by lazy {
         ViewModelProvider(this)[PictureOfTheDayViewModel::class.java]
     }
+
+    private var flag = false
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
@@ -85,16 +91,38 @@ class PictureOfTheDayFragment : Fragment() {
     }
 
     private fun renderData(pictureOfTheDayState: PictureOfTheDayState?) {
+
+        val transition = TransitionSet()
+        val fade = Fade()
+        val changeImageTransform = ChangeImageTransform()
+        changeImageTransform.duration = 500
+        fade.duration = 1000
+        transition.addTransition(fade)
+
         when (pictureOfTheDayState) {
             is PictureOfTheDayState.Loading -> {
+                TransitionManager.beginDelayedTransition(binding.loadingLayout, TransitionSet()
+                    .addTransition(transition)
+                    .addTransition(changeImageTransform))
+                binding.loadingErrorImage.load(R.drawable.loading_text)
+                ObjectAnimator.ofFloat(binding.loadingErrorImage, View.ROTATION, 0f, 720f).setDuration(2000).start()
                 binding.loadingLayout.visibility = View.VISIBLE
             }
             is PictureOfTheDayState.Success -> {
+                TransitionManager.endTransitions(binding.loadingLayout)
                 binding.loadingLayout.visibility = View.GONE
                 if (pictureOfTheDayState.serverResponseData.mediaType == "image") {
                     binding.videoView.visibility = View.GONE
-                    binding.imageView.visibility = View.VISIBLE
+                    binding.imageView.visibility = View.GONE
+
                     binding.imageView.load(pictureOfTheDayState.serverResponseData.hdurl)
+                    binding.imageView.visibility = View.VISIBLE
+
+                    binding.imageView.setOnClickListener {
+                        flag = !flag
+                        TransitionManager.beginDelayedTransition(binding.transitionContainer, changeImageTransform)
+                        binding.imageView.scaleType = if (flag) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.CENTER_INSIDE
+                    }
 
                 } else if (pictureOfTheDayState.serverResponseData.mediaType == "video") {
                     binding.videoView.visibility = View.VISIBLE
@@ -116,7 +144,10 @@ class PictureOfTheDayFragment : Fragment() {
                     pictureOfTheDayState.serverResponseData.explanation
             }
             is PictureOfTheDayState.Error -> {
+                binding.progressBar.visibility = View.GONE
                 binding.loadingLayout.visibility = View.GONE
+                binding.loadingErrorImage.load(R.drawable.error_text)
+                binding.loadingLayout.visibility = View.VISIBLE
                 with(binding.loadingLayout) {
                     showActionSnackBar(
                         R.string.snack_bar_error_text,
@@ -160,10 +191,13 @@ class PictureOfTheDayFragment : Fragment() {
                 BottomNavigationDrawerFragment().show(requireActivity().supportFragmentManager, "")
             }
             R.id.app_bar_text -> {
-                activity?.supportFragmentManager?.beginTransaction()
-                    ?.replace(R.id.container, TextInfoFragment())
-                    ?.addToBackStack("")
-                    ?.commit()
+                fragmentNavigation(TextInfoFragment())
+            }
+            R.id.animation_page -> {
+                fragmentNavigation(AnimationFragment())
+            }
+            R.id.animation_bonus_page -> {
+                fragmentNavigation(AnimationBonusStartFragment())
             }
         }
         return super.onOptionsItemSelected(item)
@@ -182,6 +216,19 @@ class PictureOfTheDayFragment : Fragment() {
                     Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
             })
         }
+    }
+
+    private fun fragmentNavigation(fragment: Fragment) {
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.setCustomAnimations(
+                R.anim.slide_in,
+                R.anim.fade_out,
+                R.anim.fade_in,
+                R.anim.slide_out
+            )
+            ?.replace(R.id.container, fragment)
+            ?.addToBackStack("")
+            ?.commit()
     }
 
     private fun fabClicker() {

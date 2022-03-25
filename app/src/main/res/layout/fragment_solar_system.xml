@@ -8,7 +8,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_baseline_no_photography_24"
+        android:src="@drawable/bg_system"
         android:id="@+id/solar_system_image"
         android:layout_gravity="center"
         android:contentDescription="@string/solar_system_title" />

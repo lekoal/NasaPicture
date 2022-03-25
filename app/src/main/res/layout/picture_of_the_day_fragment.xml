@@ -188,24 +188,33 @@
                 app:layout_constraintStart_toEndOf="@id/guideline_1"
                 app:layout_constraintTop_toBottomOf="@id/guideline_6" />
 
-            <com.example.nasapicture.tools.EquilateralImageView
-                android:id="@+id/image_view"
+            <LinearLayout
+                android:id="@+id/transition_container"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_gravity="center"
-                android:contentDescription="@string/photo_of_the_day_stub"
+                android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@id/guideline_8"
                 app:layout_constraintEnd_toStartOf="@id/guideline_3"
                 app:layout_constraintStart_toEndOf="@id/guideline_1"
-                app:layout_constraintTop_toBottomOf="@id/guideline_6"
-                app:srcCompat="@drawable/ic_baseline_no_photography_24" />
+                app:layout_constraintTop_toBottomOf="@id/guideline_6">
+
+                <com.example.nasapicture.tools.EquilateralImageView
+                    android:id="@+id/image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:scaleType="centerInside"
+                    android:contentDescription="@string/photo_of_the_day_stub"
+                    app:srcCompat="@drawable/ic_baseline_no_photography_24" />
+
+            </LinearLayout>
 
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="bottom"
-                app:constraint_referenced_ids="image_view" />
+                app:constraint_referenced_ids="transition_container" />
 
             <androidx.constraintlayout.motion.widget.MotionLayout
                 android:layout_width="0dp"
@@ -288,9 +297,17 @@
 
         <ProgressBar
             style="?android:attr/progressBarStyle"
+            android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
+
+        <ImageView
+            android:id="@+id/loading_error_image"
+            android:layout_width="@dimen/loading_error_image_size"
+            android:layout_height="@dimen/loading_error_image_size"
+            android:layout_gravity="center"
+            android:contentDescription="@string/loading_error_custom_text" />
 
     </FrameLayout>
 
