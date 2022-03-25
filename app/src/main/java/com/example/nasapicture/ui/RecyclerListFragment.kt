@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.nasapicture.R
 import com.example.nasapicture.databinding.FragmentRecyclerListBinding
 import com.example.nasapicture.repository.*
 
@@ -26,22 +27,24 @@ class RecyclerListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val data = arrayListOf(
-            PlanetData("Earth", "Some description", TYPE_EARTH),
-            PlanetData("Earth", "Some description", TYPE_EARTH),
-            PlanetData("Earth", "Some description", TYPE_EARTH),
-            PlanetData("Earth", "Some description", TYPE_EARTH),
-            PlanetData("Mars", type = TYPE_MARS),
-            PlanetData("Mars", type = TYPE_MARS),
-            PlanetData("Mars", type = TYPE_MARS)
+        val planetListData = arrayListOf(
+            PlanetData(getString(R.string.earth_title), "Some description", TYPE_EARTH),
+            PlanetData(getString(R.string.earth_title), "Some description", TYPE_EARTH),
+            PlanetData(getString(R.string.earth_title), "Some description", TYPE_EARTH),
+            PlanetData(getString(R.string.earth_title), "Some description", TYPE_EARTH),
+            PlanetData(getString(R.string.mars_title), type = TYPE_MARS),
+            PlanetData(getString(R.string.mars_title), type = TYPE_MARS),
+            PlanetData(getString(R.string.mars_title), type = TYPE_MARS)
         )
 
-//        data.shuffle()
+        planetListData.shuffle()
+
+        planetListData.add(0, PlanetData(getString(R.string.planets_header), type = TYPE_HEADER))
 
         val adapter = RecyclerListFragmentAdapter {
             Toast.makeText(requireContext(), "Clicked on ${it.planetName}", Toast.LENGTH_SHORT).show()
         }
-        adapter.setPlanetListData(data)
+        adapter.setPlanetListData(planetListData)
         binding.rvPlanets.adapter = adapter
     }
 

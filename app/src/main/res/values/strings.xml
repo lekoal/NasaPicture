@@ -47,5 +47,6 @@
     <string name="constraint_set_animation_page">Анимация ConstraintSet</string>
     <string name="recycler_list_page">Страница Recycler списка</string>
     <string name="earth_additional_text">Дополнительный текст</string>
+    <string name="planets_header">Заголовок</string>
 
 </resources>

@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nasapicture.databinding.FragmentRecyclerEarthItemBinding
+import com.example.nasapicture.databinding.FragmentRecyclerHeaderItemBinding
 import com.example.nasapicture.databinding.FragmentRecyclerMarsItemBinding
 
 class RecyclerListFragmentAdapter(
@@ -28,9 +29,18 @@ class RecyclerListFragmentAdapter(
                     ).root
                 )
             }
-            else -> {
+            TYPE_MARS -> {
                 MarsViewHolder(
                     FragmentRecyclerMarsItemBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    ).root
+                )
+            }
+            else -> {
+                HeaderViewHolder(
+                    FragmentRecyclerHeaderItemBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
@@ -46,8 +56,12 @@ class RecyclerListFragmentAdapter(
                 holder as EarthViewHolder
                 holder.bind(planetListData[position])
             }
-            else -> {
+            TYPE_MARS -> {
                 holder as MarsViewHolder
+                holder.bind(planetListData[position])
+            }
+            TYPE_HEADER -> {
+                holder as HeaderViewHolder
                 holder.bind(planetListData[position])
             }
         }
@@ -74,6 +88,17 @@ class RecyclerListFragmentAdapter(
             FragmentRecyclerMarsItemBinding.bind(itemView).apply {
                 marsName.text = data.planetName
                 marsImageView.setOnClickListener {
+                    onListItemClickListener.onItemClick(data)
+                }
+            }
+        }
+    }
+
+    inner class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        fun bind(data: PlanetData) {
+            FragmentRecyclerHeaderItemBinding.bind(itemView).apply {
+                header.text = data.planetName
+                header.setOnClickListener {
                     onListItemClickListener.onItemClick(data)
                 }
             }
