@@ -45,5 +45,7 @@
     <string name="mars_photo_description">На фото видно камни и песок в кратере Даниэлсона (диаметр кратера около 67 км), расположенного на юго-востоке области Arabia Terra.</string>
     <string name="show_description">Показать описание</string>
     <string name="constraint_set_animation_page">Анимация ConstraintSet</string>
+    <string name="recycler_list_page">Страница Recycler списка</string>
+    <string name="earth_additional_text">Дополнительный текст</string>
 
 </resources>
