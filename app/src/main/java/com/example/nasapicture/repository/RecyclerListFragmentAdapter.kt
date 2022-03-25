@@ -9,6 +9,7 @@ import com.example.nasapicture.R
 import com.example.nasapicture.databinding.FragmentRecyclerEarthItemBinding
 import com.example.nasapicture.databinding.FragmentRecyclerHeaderItemBinding
 import com.example.nasapicture.databinding.FragmentRecyclerMarsItemBinding
+import com.example.nasapicture.ui.EARTH_KEY
 
 class RecyclerListFragmentAdapter(
     private val onListItemClickListener: OnListItemClickListener
@@ -84,6 +85,14 @@ class RecyclerListFragmentAdapter(
                 wikiImageView.setOnClickListener {
                     onListItemClickListener.onItemClick(data)
                 }
+                addItemImageView.setOnClickListener {
+                    planetListData.add(layoutPosition + 1, generatePlanetData(TYPE_EARTH))
+                    notifyItemInserted(layoutPosition + 1)
+                }
+                removeItemImageView.setOnClickListener {
+                    planetListData.removeAt(layoutPosition)
+                    notifyItemRemoved(layoutPosition)
+                }
             }
         }
     }
@@ -94,6 +103,14 @@ class RecyclerListFragmentAdapter(
                 marsName.text = data.planetName
                 marsImageView.setOnClickListener {
                     onListItemClickListener.onItemClick(data)
+                }
+                addItemImageView.setOnClickListener {
+                    planetListData.add(layoutPosition + 1, generatePlanetData(TYPE_MARS))
+                    notifyItemInserted(layoutPosition + 1)
+                }
+                removeItemImageView.setOnClickListener {
+                    planetListData.removeAt(layoutPosition)
+                    notifyItemRemoved(layoutPosition)
                 }
             }
         }

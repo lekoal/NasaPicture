@@ -112,6 +112,7 @@ class RecyclerListFragment : Fragment() {
             binding.fabNewPlanetItem.callOnClick()
             binding.rvPlanets.smoothScrollToPosition(planetListData.size - 1)
         }
+
     }
 
     companion object {
