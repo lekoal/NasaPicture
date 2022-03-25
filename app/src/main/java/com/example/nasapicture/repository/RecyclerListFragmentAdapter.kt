@@ -1,15 +1,14 @@
 package com.example.nasapicture.repository
 
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nasapicture.R
 import com.example.nasapicture.databinding.FragmentRecyclerEarthItemBinding
 import com.example.nasapicture.databinding.FragmentRecyclerHeaderItemBinding
 import com.example.nasapicture.databinding.FragmentRecyclerMarsItemBinding
-import com.example.nasapicture.ui.EARTH_KEY
 
 class RecyclerListFragmentAdapter(
     private val onListItemClickListener: OnListItemClickListener
@@ -82,10 +81,7 @@ class RecyclerListFragmentAdapter(
             FragmentRecyclerEarthItemBinding.bind(itemView).apply {
                 earthName.text = data.planetName
                 earthDescription.text = data.planetDescription
-                if (layoutPosition == 1) moveItemUp.visibility = View.GONE
-                else moveItemUp.visibility = View.VISIBLE
-                if (layoutPosition == planetListData.size - 1) moveItemDown.visibility = View.GONE
-                else moveItemDown.visibility = View.VISIBLE
+
                 wikiImageView.setOnClickListener {
                     onListItemClickListener.onItemClick(data)
                 }
@@ -97,6 +93,22 @@ class RecyclerListFragmentAdapter(
                     planetListData.removeAt(layoutPosition)
                     notifyItemRemoved(layoutPosition)
                 }
+                moveItemUp.setOnClickListener {
+                    if (layoutPosition != 1) {
+                        planetListData.removeAt(layoutPosition).apply {
+                            planetListData.add(layoutPosition - 1, this)
+                            notifyItemMoved(layoutPosition, layoutPosition - 1)
+                        }
+                    }
+                }
+                moveItemDown.setOnClickListener {
+                    if (layoutPosition != planetListData.size - 1) {
+                        planetListData.removeAt(layoutPosition).apply {
+                            planetListData.add(layoutPosition + 1, this)
+                            notifyItemMoved(layoutPosition, layoutPosition + 1)
+                        }
+                    }
+                }
             }
         }
     }
@@ -105,10 +117,7 @@ class RecyclerListFragmentAdapter(
         override fun bind(data: PlanetData) {
             FragmentRecyclerMarsItemBinding.bind(itemView).apply {
                 marsName.text = data.planetName
-                if (layoutPosition == 1) moveItemUp.visibility = View.GONE
-                else moveItemUp.visibility = View.VISIBLE
-                if (layoutPosition == planetListData.size - 1) moveItemDown.visibility = View.GONE
-                else moveItemDown.visibility = View.VISIBLE
+
                 marsImageView.setOnClickListener {
                     onListItemClickListener.onItemClick(data)
                 }
@@ -119,6 +128,22 @@ class RecyclerListFragmentAdapter(
                 removeItemImageView.setOnClickListener {
                     planetListData.removeAt(layoutPosition)
                     notifyItemRemoved(layoutPosition)
+                }
+                moveItemUp.setOnClickListener {
+                    if (layoutPosition != 1) {
+                        planetListData.removeAt(layoutPosition).apply {
+                            planetListData.add(layoutPosition - 1, this)
+                            notifyItemMoved(layoutPosition, layoutPosition - 1)
+                        }
+                    }
+                }
+                moveItemDown.setOnClickListener {
+                    if (layoutPosition != planetListData.size - 1) {
+                        planetListData.removeAt(layoutPosition).apply {
+                            planetListData.add(layoutPosition + 1, this)
+                            notifyItemMoved(layoutPosition, layoutPosition + 1)
+                        }
+                    }
                 }
             }
         }
