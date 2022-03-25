@@ -8,7 +8,6 @@ import android.util.Property
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.nasapicture.R
@@ -36,13 +35,33 @@ class RecyclerListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val planetListData = arrayListOf(
-            PlanetData(getString(R.string.earth_title), "Some description", TYPE_EARTH),
-            PlanetData(getString(R.string.earth_title), "Some description", TYPE_EARTH),
-            PlanetData(getString(R.string.earth_title), "Some description", TYPE_EARTH),
-            PlanetData(getString(R.string.earth_title), "Some description", TYPE_EARTH),
-            PlanetData(getString(R.string.mars_title), type = TYPE_MARS),
-            PlanetData(getString(R.string.mars_title), type = TYPE_MARS),
-            PlanetData(getString(R.string.mars_title), type = TYPE_MARS)
+            PlanetData(
+                getString(R.string.earth_title),
+                R.drawable.bg_earth,
+                "Some description",
+                TYPE_EARTH
+            ),
+            PlanetData(
+                getString(R.string.earth_title),
+                R.drawable.bg_earth,
+                "Some description",
+                TYPE_EARTH
+            ),
+            PlanetData(
+                getString(R.string.earth_title),
+                R.drawable.bg_earth,
+                "Some description",
+                TYPE_EARTH
+            ),
+            PlanetData(
+                getString(R.string.earth_title),
+                R.drawable.bg_earth,
+                "Some description",
+                TYPE_EARTH
+            ),
+            PlanetData(getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS),
+            PlanetData(getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS),
+            PlanetData(getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS)
         )
 
         planetListData.shuffle()
@@ -50,7 +69,8 @@ class RecyclerListFragment : Fragment() {
         planetListData.add(0, PlanetData(getString(R.string.planets_header), type = TYPE_HEADER))
 
         val adapter = RecyclerListFragmentAdapter {
-            Toast.makeText(requireContext(), "Clicked on ${it.planetName}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Clicked on ${it.planetName}", Toast.LENGTH_SHORT)
+                .show()
         }
         adapter.setPlanetListData(planetListData)
         binding.rvPlanets.adapter = adapter
@@ -79,6 +99,18 @@ class RecyclerListFragment : Fragment() {
                 viewAnimate(binding.optionEarthContainer, 0f, true)
                 viewAnimate(binding.optionMarsContainer, 0f, true)
             }
+        }
+
+        binding.optionEarthContainer.setOnClickListener {
+            adapter.appendItem(TYPE_EARTH)
+            binding.fabNewPlanetItem.callOnClick()
+            binding.rvPlanets.smoothScrollToPosition(planetListData.size - 1)
+        }
+
+        binding.optionMarsContainer.setOnClickListener {
+            adapter.appendItem(TYPE_MARS)
+            binding.fabNewPlanetItem.callOnClick()
+            binding.rvPlanets.smoothScrollToPosition(planetListData.size - 1)
         }
     }
 

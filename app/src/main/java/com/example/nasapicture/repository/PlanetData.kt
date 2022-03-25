@@ -6,6 +6,7 @@ const val TYPE_HEADER = 3
 
 data class PlanetData(
     val planetName: String = "Name",
+    val planetImage: Int? = null,
     var planetDescription: String? = null,
     val type: Int = 0
 )

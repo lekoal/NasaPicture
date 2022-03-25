@@ -1,9 +1,11 @@
 package com.example.nasapicture.repository
 
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.nasapicture.R
 import com.example.nasapicture.databinding.FragmentRecyclerEarthItemBinding
 import com.example.nasapicture.databinding.FragmentRecyclerHeaderItemBinding
 import com.example.nasapicture.databinding.FragmentRecyclerMarsItemBinding
@@ -57,6 +59,18 @@ class RecyclerListFragmentAdapter(
     override fun getItemViewType(position: Int) = planetListData[position].type
 
     override fun getItemCount() = planetListData.size
+
+    fun appendItem(type: Int) {
+        planetListData.add(generatePlanetData(type))
+        notifyItemInserted(planetListData.size - 1)
+    }
+
+    private fun generatePlanetData(type: Int): PlanetData {
+        return when (type) {
+            TYPE_EARTH -> PlanetData("Земля", R.drawable.bg_earth, "Some description", TYPE_EARTH)
+            else -> PlanetData("Марс", R.drawable.bg_mars, type = TYPE_MARS)
+        }
+    }
 
     abstract class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         abstract fun bind(data: PlanetData)
