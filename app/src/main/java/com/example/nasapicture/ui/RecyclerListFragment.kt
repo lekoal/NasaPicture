@@ -3,6 +3,7 @@ package com.example.nasapicture.ui
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.os.Bundle
 import android.util.Property
 import android.view.LayoutInflater
@@ -77,12 +78,22 @@ class RecyclerListFragment : Fragment() {
 
         binding.fabNewPlanetItem.setOnClickListener {
             flag = !flag
+            val t1 = PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, 0f, -250f)
+            val t2 = PropertyValuesHolder.ofFloat(View.SCALE_X, 0f, 1f)
+            val t3 = PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, 0f, -160f)
+            val t4 = PropertyValuesHolder.ofFloat(View.SCALE_X, 0f, 1f)
+
+            val animatorEarth = ObjectAnimator.ofPropertyValuesHolder(binding.optionEarthContainer, t1, t2)
+            val animatorMars = ObjectAnimator.ofPropertyValuesHolder(binding.optionMarsContainer, t3, t4)
+
+            animatorEarth.duration = duration
+            animatorMars.duration = duration
+
             if (flag) {
                 objectAnimatorStart(binding.fabNewPlanetItem, View.ROTATION, 0f, 405f)
-                objectAnimatorStart(binding.optionEarthContainer, View.TRANSLATION_Y, 0f, -250f)
-                objectAnimatorStart(binding.optionEarthContainer, View.SCALE_X, 0f, 1f)
-                objectAnimatorStart(binding.optionMarsContainer, View.TRANSLATION_Y, 0f, -160f)
-                objectAnimatorStart(binding.optionMarsContainer, View.SCALE_X, 0f, 1f)
+
+                animatorEarth.start()
+                animatorMars.start()
 
                 viewAnimate(binding.transparentScreen, 0.6f, false)
                 viewAnimate(binding.optionEarthContainer, 1f, true)
@@ -90,10 +101,9 @@ class RecyclerListFragment : Fragment() {
 
             } else {
                 objectAnimatorStart(binding.fabNewPlanetItem, View.ROTATION, 405f, 0f)
-                objectAnimatorStart(binding.optionEarthContainer, View.TRANSLATION_Y, -250f, 0f)
-                objectAnimatorStart(binding.optionEarthContainer, View.SCALE_X, 1f, 0f)
-                objectAnimatorStart(binding.optionMarsContainer, View.TRANSLATION_Y, -160f, 0f)
-                objectAnimatorStart(binding.optionMarsContainer, View.SCALE_X, 1f, 0f)
+
+                animatorEarth.reverse()
+                animatorMars.reverse()
 
                 viewAnimate(binding.transparentScreen, 0f, false)
                 viewAnimate(binding.optionEarthContainer, 0f, true)
