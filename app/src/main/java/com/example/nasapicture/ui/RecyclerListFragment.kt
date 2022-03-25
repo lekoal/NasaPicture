@@ -78,20 +78,22 @@ class RecyclerListFragment : Fragment() {
 
         binding.fabNewPlanetItem.setOnClickListener {
             flag = !flag
-            val t1 = PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, 0f, -250f)
+            val t1 = PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, 0f, -300f)
             val t2 = PropertyValuesHolder.ofFloat(View.SCALE_X, 0f, 1f)
-            val t3 = PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, 0f, -160f)
+            val t3 = PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, 0f, -180f)
             val t4 = PropertyValuesHolder.ofFloat(View.SCALE_X, 0f, 1f)
+            val t5 = PropertyValuesHolder.ofFloat(View.ROTATION, 0f, 405f)
 
             val animatorEarth = ObjectAnimator.ofPropertyValuesHolder(binding.optionEarthContainer, t1, t2)
             val animatorMars = ObjectAnimator.ofPropertyValuesHolder(binding.optionMarsContainer, t3, t4)
+            val animatorFab = ObjectAnimator.ofPropertyValuesHolder(binding.fabNewPlanetItem, t5)
 
             animatorEarth.duration = duration
             animatorMars.duration = duration
+            animatorFab.duration = duration
 
             if (flag) {
-                objectAnimatorStart(binding.fabNewPlanetItem, View.ROTATION, 0f, 405f)
-
+                animatorFab.start()
                 animatorEarth.start()
                 animatorMars.start()
 
@@ -100,8 +102,7 @@ class RecyclerListFragment : Fragment() {
                 viewAnimate(binding.optionMarsContainer, 1f, true)
 
             } else {
-                objectAnimatorStart(binding.fabNewPlanetItem, View.ROTATION, 405f, 0f)
-
+                animatorFab.reverse()
                 animatorEarth.reverse()
                 animatorMars.reverse()
 
@@ -128,15 +129,6 @@ class RecyclerListFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance() = RecyclerListFragment()
-    }
-
-    private fun objectAnimatorStart(
-        view: View,
-        property: Property<View, Float>,
-        start: Float,
-        end: Float
-    ) {
-        ObjectAnimator.ofFloat(view, property, start, end).setDuration(duration).start()
     }
 
     private fun viewAnimate(view: View, alpha: Float, needClickable: Boolean) {
