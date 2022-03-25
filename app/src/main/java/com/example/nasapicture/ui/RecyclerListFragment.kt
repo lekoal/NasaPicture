@@ -35,39 +35,39 @@ class RecyclerListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val planetListData = arrayListOf(
-            PlanetData(
+        val planetListData = mutableListOf<Pair<PlanetData, Boolean>>(
+            Pair(PlanetData(
                 getString(R.string.earth_title),
                 R.drawable.bg_earth,
                 "Some description",
                 TYPE_EARTH
-            ),
-            PlanetData(
+            ), false),
+            Pair(PlanetData(
                 getString(R.string.earth_title),
                 R.drawable.bg_earth,
                 "Some description",
                 TYPE_EARTH
-            ),
-            PlanetData(
+            ), false),
+            Pair(PlanetData(
                 getString(R.string.earth_title),
                 R.drawable.bg_earth,
                 "Some description",
                 TYPE_EARTH
-            ),
-            PlanetData(
+            ), false),
+            Pair(PlanetData(
                 getString(R.string.earth_title),
                 R.drawable.bg_earth,
                 "Some description",
                 TYPE_EARTH
-            ),
-            PlanetData(getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS),
-            PlanetData(getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS),
-            PlanetData(getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS)
+            ), false),
+            Pair(PlanetData(getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS), false),
+            Pair(PlanetData(getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS), false),
+            Pair(PlanetData(getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS), false)
         )
 
         planetListData.shuffle()
 
-        planetListData.add(0, PlanetData(getString(R.string.planets_header), type = TYPE_HEADER))
+        planetListData.add(0, Pair(PlanetData(getString(R.string.planets_header), type = TYPE_HEADER), false))
 
         val adapter = RecyclerListFragmentAdapter {
             Toast.makeText(requireContext(), "Clicked on ${it.planetName}", Toast.LENGTH_SHORT)

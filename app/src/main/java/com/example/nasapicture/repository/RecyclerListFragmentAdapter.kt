@@ -14,9 +14,9 @@ class RecyclerListFragmentAdapter(
     private val onListItemClickListener: OnListItemClickListener
 ) : RecyclerView.Adapter<RecyclerListFragmentAdapter.BaseViewHolder>() {
 
-    private var planetListData: MutableList<PlanetData> = mutableListOf()
+    private var planetListData: MutableList<Pair<PlanetData, Boolean>> = mutableListOf()
 
-    fun setPlanetListData(listData: MutableList<PlanetData>) {
+    fun setPlanetListData(listData: MutableList<Pair<PlanetData, Boolean>>) {
         this.planetListData = listData
     }
 
@@ -56,12 +56,12 @@ class RecyclerListFragmentAdapter(
         holder.bind(planetListData[position])
     }
 
-    override fun getItemViewType(position: Int) = planetListData[position].type
+    override fun getItemViewType(position: Int) = planetListData[position].first.type
 
     override fun getItemCount() = planetListData.size
 
     fun appendItem(type: Int) {
-        planetListData.add(generatePlanetData(type))
+        planetListData.add(Pair(generatePlanetData(type), false))
         notifyItemInserted(planetListData.size - 1)
     }
 
@@ -73,20 +73,20 @@ class RecyclerListFragmentAdapter(
     }
 
     abstract class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        abstract fun bind(data: PlanetData)
+        abstract fun bind(data: Pair<PlanetData, Boolean>)
     }
 
     inner class EarthViewHolder(view: View) : BaseViewHolder(view) {
-        override fun bind(data: PlanetData) {
+        override fun bind(data: Pair<PlanetData, Boolean>) {
             FragmentRecyclerEarthItemBinding.bind(itemView).apply {
-                earthName.text = data.planetName
-                earthDescription.text = data.planetDescription
+                earthName.text = data.first.planetName
+                earthDescription.text = data.first.planetDescription
 
                 wikiImageView.setOnClickListener {
-                    onListItemClickListener.onItemClick(data)
+                    onListItemClickListener.onItemClick(data.first)
                 }
                 addItemImageView.setOnClickListener {
-                    planetListData.add(layoutPosition + 1, generatePlanetData(TYPE_EARTH))
+                    planetListData.add(layoutPosition + 1, Pair(generatePlanetData(TYPE_EARTH), false))
                     notifyItemInserted(layoutPosition + 1)
                 }
                 removeItemImageView.setOnClickListener {
@@ -108,21 +108,28 @@ class RecyclerListFragmentAdapter(
                             notifyItemMoved(layoutPosition, layoutPosition + 1)
                         }
                     }
+                }
+                tvEarthDescription.visibility = if (planetListData[layoutPosition].second) View.VISIBLE else View.GONE
+                openDescription.setOnClickListener {
+                    planetListData[layoutPosition] = planetListData[layoutPosition].let {
+                        it.first to !it.second
+                    }
+                    notifyItemChanged(layoutPosition)
                 }
             }
         }
     }
 
     inner class MarsViewHolder(view: View) : BaseViewHolder(view) {
-        override fun bind(data: PlanetData) {
+        override fun bind(data: Pair<PlanetData, Boolean>) {
             FragmentRecyclerMarsItemBinding.bind(itemView).apply {
-                marsName.text = data.planetName
+                marsName.text = data.first.planetName
 
                 marsImageView.setOnClickListener {
-                    onListItemClickListener.onItemClick(data)
+                    onListItemClickListener.onItemClick(data.first)
                 }
                 addItemImageView.setOnClickListener {
-                    planetListData.add(layoutPosition + 1, generatePlanetData(TYPE_MARS))
+                    planetListData.add(layoutPosition + 1, Pair(generatePlanetData(TYPE_MARS), false))
                     notifyItemInserted(layoutPosition + 1)
                 }
                 removeItemImageView.setOnClickListener {
@@ -145,16 +152,23 @@ class RecyclerListFragmentAdapter(
                         }
                     }
                 }
+                tvMarsDescription.visibility = if (planetListData[layoutPosition].second) View.VISIBLE else View.GONE
+                openDescription.setOnClickListener {
+                    planetListData[layoutPosition] = planetListData[layoutPosition].let {
+                        it.first to !it.second
+                    }
+                    notifyItemChanged(layoutPosition)
+                }
             }
         }
     }
 
     inner class HeaderViewHolder(view: View) : BaseViewHolder(view) {
-        override fun bind(data: PlanetData) {
+        override fun bind(data: Pair<PlanetData, Boolean>) {
             FragmentRecyclerHeaderItemBinding.bind(itemView).apply {
-                header.text = data.planetName
+                header.text = data.first.planetName
                 header.setOnClickListener {
-                    onListItemClickListener.onItemClick(data)
+                    onListItemClickListener.onItemClick(data.first)
                 }
             }
         }

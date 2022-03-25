@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/mars_image_view"
@@ -42,6 +43,14 @@
         app:layout_constraintTop_toBottomOf="@id/mars_image_view">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/open_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/animation_fab_margin"
+            android:tint="@color/blue_700"
+            app:srcCompat="@drawable/ic_baseline_assignment_24" />
+
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/move_item_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,10 +84,33 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/separator"
         android:layout_width="0dp"
         android:layout_height="1px"
         android:background="#000"
         app:layout_constraintBottom_toBottomOf="@+id/content_control"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.8" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_mars_description"
+        tools:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/mars_long_description"
+        android:textColor="#000"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/separator" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:background="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_mars_description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
