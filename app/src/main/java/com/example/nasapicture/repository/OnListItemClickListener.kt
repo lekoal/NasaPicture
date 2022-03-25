@@ -1,5 +1,5 @@
 package com.example.nasapicture.repository
 
-interface OnListItemClickListener {
+fun interface OnListItemClickListener {
     fun onItemClick(data: PlanetData)
 }

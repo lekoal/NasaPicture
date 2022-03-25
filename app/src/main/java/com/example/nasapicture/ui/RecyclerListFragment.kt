@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.nasapicture.databinding.FragmentRecyclerListBinding
-import com.example.nasapicture.repository.PlanetData
-import com.example.nasapicture.repository.TYPE_EARTH
-import com.example.nasapicture.repository.TYPE_MARS
+import com.example.nasapicture.repository.*
 
 class RecyclerListFragment : Fragment() {
 
@@ -34,15 +34,21 @@ class RecyclerListFragment : Fragment() {
             PlanetData("Mars", type = TYPE_MARS),
             PlanetData("Mars", type = TYPE_MARS),
             PlanetData("Mars", type = TYPE_MARS)
-
         )
+
+//        data.shuffle()
+
+        val adapter = RecyclerListFragmentAdapter {
+            Toast.makeText(requireContext(), "Clicked on ${it.planetName}", Toast.LENGTH_SHORT).show()
+        }
+        adapter.setPlanetListData(data)
+        binding.rvPlanets.adapter = adapter
     }
 
     companion object {
         @JvmStatic
         fun newInstance() = RecyclerListFragment()
     }
-
 
 
     override fun onDestroy() {
