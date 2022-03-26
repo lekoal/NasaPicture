@@ -50,6 +50,7 @@
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_earth.xml" value="0.55" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_mars.xml" value="0.55" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_recycler_earth_item.xml" value="0.55" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_recycler_header_item.xml" value="0.55" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_recycler_list.xml" value="0.55" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_recycler_mars_item.xml" value="0.55" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_solar_system.xml" value="0.55" />

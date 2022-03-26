@@ -1,5 +1,6 @@
 package com.example.nasapicture.repository
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,7 @@ import com.example.nasapicture.databinding.FragmentRecyclerMarsItemBinding
 
 class RecyclerListFragmentAdapter(
     private val onListItemClickListener: OnListItemClickListener
-) : RecyclerView.Adapter<RecyclerListFragmentAdapter.BaseViewHolder>() {
+) : RecyclerView.Adapter<RecyclerListFragmentAdapter.BaseViewHolder>(), ItemTouchHelperAdapter {
 
     private var planetListData: MutableList<Pair<PlanetData, Boolean>> = mutableListOf()
 
@@ -76,7 +77,7 @@ class RecyclerListFragmentAdapter(
         abstract fun bind(data: Pair<PlanetData, Boolean>)
     }
 
-    inner class EarthViewHolder(view: View) : BaseViewHolder(view) {
+    inner class EarthViewHolder(view: View) : BaseViewHolder(view), ItemTouchHelperViewHolder {
         override fun bind(data: Pair<PlanetData, Boolean>) {
             FragmentRecyclerEarthItemBinding.bind(itemView).apply {
                 earthName.text = data.first.planetName
@@ -118,9 +119,17 @@ class RecyclerListFragmentAdapter(
                 }
             }
         }
+
+        override fun onItemSelected() {
+            itemView.setBackgroundColor(Color.LTGRAY)
+        }
+
+        override fun onItemClear() {
+            itemView.setBackgroundColor(Color.WHITE)
+        }
     }
 
-    inner class MarsViewHolder(view: View) : BaseViewHolder(view) {
+    inner class MarsViewHolder(view: View) : BaseViewHolder(view), ItemTouchHelperViewHolder {
         override fun bind(data: Pair<PlanetData, Boolean>) {
             FragmentRecyclerMarsItemBinding.bind(itemView).apply {
                 marsName.text = data.first.planetName
@@ -161,6 +170,14 @@ class RecyclerListFragmentAdapter(
                 }
             }
         }
+
+        override fun onItemSelected() {
+            itemView.setBackgroundColor(Color.LTGRAY)
+        }
+
+        override fun onItemClear() {
+            itemView.setBackgroundColor(Color.WHITE)
+        }
     }
 
     inner class HeaderViewHolder(view: View) : BaseViewHolder(view) {
@@ -172,5 +189,17 @@ class RecyclerListFragmentAdapter(
                 }
             }
         }
+    }
+
+    override fun onItemMove(fromPosition: Int, toPosition: Int) {
+        planetListData.removeAt(fromPosition).apply {
+            planetListData.add(toPosition, this)
+        }
+        notifyItemMoved(fromPosition, toPosition)
+    }
+
+    override fun onItemRemove(position: Int) {
+        planetListData.removeAt(position)
+        notifyItemRemoved(position)
     }
 }

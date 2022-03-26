@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.nasapicture.R
 import com.example.nasapicture.databinding.FragmentRecyclerListBinding
 import com.example.nasapicture.repository.*
@@ -35,81 +37,26 @@ class RecyclerListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val planetListData = mutableListOf<Pair<PlanetData, Boolean>>(
-            Pair(PlanetData(
-                getString(R.string.earth_title),
-                R.drawable.bg_earth,
-                "Some description",
-                TYPE_EARTH
-            ), false),
-            Pair(PlanetData(
-                getString(R.string.earth_title),
-                R.drawable.bg_earth,
-                "Some description",
-                TYPE_EARTH
-            ), false),
-            Pair(PlanetData(
-                getString(R.string.earth_title),
-                R.drawable.bg_earth,
-                "Some description",
-                TYPE_EARTH
-            ), false),
-            Pair(PlanetData(
-                getString(R.string.earth_title),
-                R.drawable.bg_earth,
-                "Some description",
-                TYPE_EARTH
-            ), false),
-            Pair(PlanetData(getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS), false),
-            Pair(PlanetData(getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS), false),
-            Pair(PlanetData(getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS), false)
-        )
+        val planetListData = initialData()
 
         planetListData.shuffle()
 
-        planetListData.add(0, Pair(PlanetData(getString(R.string.planets_header), type = TYPE_HEADER), false))
+        planetListData.add(
+            0,
+            Pair(PlanetData(getString(R.string.planets_header), type = TYPE_HEADER), false)
+        )
 
         val adapter = RecyclerListFragmentAdapter {
             Toast.makeText(requireContext(), "Clicked on ${it.planetName}", Toast.LENGTH_SHORT)
                 .show()
         }
+
         adapter.setPlanetListData(planetListData)
         binding.rvPlanets.adapter = adapter
 
         binding.fabNewPlanetItem.setOnClickListener {
             flag = !flag
-            val t1 = PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, 0f, -300f)
-            val t2 = PropertyValuesHolder.ofFloat(View.SCALE_X, 0f, 1f)
-            val t3 = PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, 0f, -180f)
-            val t4 = PropertyValuesHolder.ofFloat(View.SCALE_X, 0f, 1f)
-            val t5 = PropertyValuesHolder.ofFloat(View.ROTATION, 0f, 405f)
-
-            val animatorEarth = ObjectAnimator.ofPropertyValuesHolder(binding.optionEarthContainer, t1, t2)
-            val animatorMars = ObjectAnimator.ofPropertyValuesHolder(binding.optionMarsContainer, t3, t4)
-            val animatorFab = ObjectAnimator.ofPropertyValuesHolder(binding.fabNewPlanetItem, t5)
-
-            animatorEarth.duration = duration
-            animatorMars.duration = duration
-            animatorFab.duration = duration
-
-            if (flag) {
-                animatorFab.start()
-                animatorEarth.start()
-                animatorMars.start()
-
-                viewAnimate(binding.transparentScreen, 0.6f, false)
-                viewAnimate(binding.optionEarthContainer, 1f, true)
-                viewAnimate(binding.optionMarsContainer, 1f, true)
-
-            } else {
-                animatorFab.reverse()
-                animatorEarth.reverse()
-                animatorMars.reverse()
-
-                viewAnimate(binding.transparentScreen, 0f, false)
-                viewAnimate(binding.optionEarthContainer, 0f, true)
-                viewAnimate(binding.optionMarsContainer, 0f, true)
-            }
+            fabAnimation()
         }
 
         binding.optionEarthContainer.setOnClickListener {
@@ -122,6 +69,53 @@ class RecyclerListFragment : Fragment() {
             adapter.appendItem(TYPE_MARS)
             binding.fabNewPlanetItem.callOnClick()
             binding.rvPlanets.smoothScrollToPosition(adapter.itemCount)
+        }
+
+        ItemTouchHelper(ItemTouchHelperCallback(adapter)).attachToRecyclerView(binding.rvPlanets)
+    }
+
+    class ItemTouchHelperCallback(private val recyclerListFragmentAdapter: RecyclerListFragmentAdapter) :
+        ItemTouchHelper.Callback() {
+        override fun getMovementFlags(
+            recyclerView: RecyclerView,
+            viewHolder: RecyclerView.ViewHolder
+        ): Int {
+            val dragFlag = ItemTouchHelper.UP or ItemTouchHelper.DOWN
+            val swipeFlag = ItemTouchHelper.START or ItemTouchHelper.END
+            return makeMovementFlags(dragFlag, swipeFlag)
+        }
+
+        override fun onMove(
+            recyclerView: RecyclerView,
+            from: RecyclerView.ViewHolder,
+            to: RecyclerView.ViewHolder
+        ): Boolean {
+            if (to.absoluteAdapterPosition > 0) {
+            recyclerListFragmentAdapter.onItemMove(
+                from.absoluteAdapterPosition,
+                to.absoluteAdapterPosition
+            ) }
+            return true
+        }
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            recyclerListFragmentAdapter.onItemRemove(viewHolder.absoluteAdapterPosition)
+        }
+
+        override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
+            if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
+                when(viewHolder) {
+                    is RecyclerListFragmentAdapter.EarthViewHolder -> (viewHolder as RecyclerListFragmentAdapter.EarthViewHolder).onItemSelected()
+                    is RecyclerListFragmentAdapter.MarsViewHolder -> (viewHolder as RecyclerListFragmentAdapter.MarsViewHolder).onItemSelected()
+                }
+            }
+        }
+
+        override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+            when(viewHolder) {
+                is RecyclerListFragmentAdapter.EarthViewHolder -> (viewHolder as RecyclerListFragmentAdapter.EarthViewHolder).onItemClear()
+                is RecyclerListFragmentAdapter.MarsViewHolder -> (viewHolder as RecyclerListFragmentAdapter.MarsViewHolder).onItemClear()
+            }
         }
 
     }
@@ -142,6 +136,92 @@ class RecyclerListFragment : Fragment() {
                 }
             })
             .start()
+    }
+
+    private fun initialData(): MutableList<Pair<PlanetData, Boolean>> {
+        return mutableListOf(
+            Pair(
+                PlanetData(
+                    getString(R.string.earth_title),
+                    R.drawable.bg_earth,
+                    "Some description",
+                    TYPE_EARTH
+                ), false
+            ),
+            Pair(
+                PlanetData(
+                    getString(R.string.earth_title),
+                    R.drawable.bg_earth,
+                    "Some description",
+                    TYPE_EARTH
+                ), false
+            ),
+            Pair(
+                PlanetData(
+                    getString(R.string.earth_title),
+                    R.drawable.bg_earth,
+                    "Some description",
+                    TYPE_EARTH
+                ), false
+            ),
+            Pair(
+                PlanetData(
+                    getString(R.string.earth_title),
+                    R.drawable.bg_earth,
+                    "Some description",
+                    TYPE_EARTH
+                ), false
+            ),
+            Pair(
+                PlanetData(getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS),
+                false
+            ),
+            Pair(
+                PlanetData(getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS),
+                false
+            ),
+            Pair(
+                PlanetData(getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS),
+                false
+            )
+        )
+    }
+
+    private fun fabAnimation() {
+        val t1 = PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, 0f, -300f)
+        val t2 = PropertyValuesHolder.ofFloat(View.SCALE_X, 0f, 1f)
+        val t3 = PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, 0f, -180f)
+        val t4 = PropertyValuesHolder.ofFloat(View.SCALE_X, 0f, 1f)
+        val t5 = PropertyValuesHolder.ofFloat(View.ROTATION, 0f, 405f)
+
+        val animatorEarth =
+            ObjectAnimator.ofPropertyValuesHolder(binding.optionEarthContainer, t1, t2)
+        val animatorMars =
+            ObjectAnimator.ofPropertyValuesHolder(binding.optionMarsContainer, t3, t4)
+        val animatorFab = ObjectAnimator.ofPropertyValuesHolder(binding.fabNewPlanetItem, t5)
+
+        animatorEarth.duration = duration
+        animatorMars.duration = duration
+        animatorFab.duration = duration
+
+        if (flag) {
+            animatorFab.start()
+            animatorEarth.start()
+            animatorMars.start()
+
+            viewAnimate(binding.transparentScreen, 0.6f, false)
+            viewAnimate(binding.optionEarthContainer, 1f, true)
+            viewAnimate(binding.optionMarsContainer, 1f, true)
+
+        } else {
+            animatorFab.reverse()
+            animatorEarth.reverse()
+            animatorMars.reverse()
+
+            viewAnimate(binding.transparentScreen, 0f, false)
+            viewAnimate(binding.optionEarthContainer, 0f, true)
+            viewAnimate(binding.optionMarsContainer, 0f, true)
+        }
     }
 
     override fun onDestroy() {
