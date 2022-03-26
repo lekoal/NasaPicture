@@ -2,9 +2,10 @@ package com.example.nasapicture.repository
 
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.core.view.MotionEventCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nasapicture.R
 import com.example.nasapicture.databinding.FragmentRecyclerEarthItemBinding
@@ -12,7 +13,7 @@ import com.example.nasapicture.databinding.FragmentRecyclerHeaderItemBinding
 import com.example.nasapicture.databinding.FragmentRecyclerMarsItemBinding
 
 class RecyclerListFragmentAdapter(
-    private val onListItemClickListener: OnListItemClickListener
+    private val onListItemClickListener: OnListItemClickListener, private val onStartDragListener: OnStartDragListener
 ) : RecyclerView.Adapter<RecyclerListFragmentAdapter.BaseViewHolder>(), ItemTouchHelperAdapter {
 
     private var planetListData: MutableList<Pair<PlanetData, Boolean>> = mutableListOf()
@@ -117,6 +118,12 @@ class RecyclerListFragmentAdapter(
                     }
                     notifyItemChanged(layoutPosition)
                 }
+                dragHandleImageView.setOnTouchListener { v, event ->
+                    if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                        onStartDragListener.onStartDrag(this@EarthViewHolder)
+                    }
+                    false
+                }
             }
         }
 
@@ -167,6 +174,13 @@ class RecyclerListFragmentAdapter(
                         it.first to !it.second
                     }
                     notifyItemChanged(layoutPosition)
+                }
+
+                dragHandleImageView.setOnTouchListener { v, event ->
+                    if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                        onStartDragListener.onStartDrag(this@MarsViewHolder)
+                    }
+                    false
                 }
             }
         }

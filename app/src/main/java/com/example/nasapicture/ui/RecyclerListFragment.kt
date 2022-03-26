@@ -5,10 +5,10 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.os.Bundle
-import android.util.Property
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -23,6 +23,8 @@ class RecyclerListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var flag = false
+
+    lateinit var itemTouchHelper: ItemTouchHelper
 
     private val duration = 1000L
 
@@ -46,10 +48,21 @@ class RecyclerListFragment : Fragment() {
             Pair(PlanetData(getString(R.string.planets_header), type = TYPE_HEADER), false)
         )
 
-        val adapter = RecyclerListFragmentAdapter {
-            Toast.makeText(requireContext(), "Clicked on ${it.planetName}", Toast.LENGTH_SHORT)
-                .show()
-        }
+        val adapter = RecyclerListFragmentAdapter(object : OnListItemClickListener {
+            override fun onItemClick(data: PlanetData) {
+                Toast.makeText(
+                    requireContext(),
+                    "Clicked on ${data.planetName}",
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+            }
+
+        }, object : OnStartDragListener {
+            override fun onStartDrag(view: RecyclerView.ViewHolder) {
+                itemTouchHelper.startDrag(view)
+            }
+        })
 
         adapter.setPlanetListData(planetListData)
         binding.rvPlanets.adapter = adapter
@@ -58,6 +71,8 @@ class RecyclerListFragment : Fragment() {
             flag = !flag
             fabAnimation()
         }
+        itemTouchHelper = ItemTouchHelper(ItemTouchHelperCallback(adapter))
+        itemTouchHelper.attachToRecyclerView(binding.rvPlanets)
 
         binding.optionEarthContainer.setOnClickListener {
             adapter.appendItem(TYPE_EARTH)
@@ -71,7 +86,6 @@ class RecyclerListFragment : Fragment() {
             binding.rvPlanets.smoothScrollToPosition(adapter.itemCount)
         }
 
-        ItemTouchHelper(ItemTouchHelperCallback(adapter)).attachToRecyclerView(binding.rvPlanets)
     }
 
     class ItemTouchHelperCallback(private val recyclerListFragmentAdapter: RecyclerListFragmentAdapter) :
@@ -91,10 +105,11 @@ class RecyclerListFragment : Fragment() {
             to: RecyclerView.ViewHolder
         ): Boolean {
             if (to.absoluteAdapterPosition > 0) {
-            recyclerListFragmentAdapter.onItemMove(
-                from.absoluteAdapterPosition,
-                to.absoluteAdapterPosition
-            ) }
+                recyclerListFragmentAdapter.onItemMove(
+                    from.absoluteAdapterPosition,
+                    to.absoluteAdapterPosition
+                )
+            }
             return true
         }
 
@@ -104,7 +119,7 @@ class RecyclerListFragment : Fragment() {
 
         override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
             if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
-                when(viewHolder) {
+                when (viewHolder) {
                     is RecyclerListFragmentAdapter.EarthViewHolder -> (viewHolder as RecyclerListFragmentAdapter.EarthViewHolder).onItemSelected()
                     is RecyclerListFragmentAdapter.MarsViewHolder -> (viewHolder as RecyclerListFragmentAdapter.MarsViewHolder).onItemSelected()
                 }
@@ -112,7 +127,7 @@ class RecyclerListFragment : Fragment() {
         }
 
         override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
-            when(viewHolder) {
+            when (viewHolder) {
                 is RecyclerListFragmentAdapter.EarthViewHolder -> (viewHolder as RecyclerListFragmentAdapter.EarthViewHolder).onItemClear()
                 is RecyclerListFragmentAdapter.MarsViewHolder -> (viewHolder as RecyclerListFragmentAdapter.MarsViewHolder).onItemClear()
             }
