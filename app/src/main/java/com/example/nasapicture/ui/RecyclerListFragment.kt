@@ -67,6 +67,8 @@ class RecyclerListFragment : Fragment() {
             }
         })
 
+        searchItem(planetListData, adapter)
+
         adapter.setPlanetListData(planetListData)
         binding.rvPlanets.adapter = adapter
 
@@ -95,6 +97,8 @@ class RecyclerListFragment : Fragment() {
             binding.fabNewPlanetItem.callOnClick()
             binding.rvPlanets.smoothScrollToPosition(adapter.itemCount)
         }
+
+
 
     }
 
@@ -271,6 +275,31 @@ class RecyclerListFragment : Fragment() {
 
             viewAnimate(binding.transparentScreen, 0f, false)
             viewAnimate(binding.searchContainer, 0f, false)
+        }
+    }
+
+    private fun searchItem(planetListData: MutableList<Pair<PlanetData, Boolean>>, adapter: RecyclerListFragmentAdapter) {
+        binding.inputLayout.setEndIconOnClickListener {
+
+            val searchText = binding.inputEditText.text.toString()
+            val resultList: MutableList<Pair<PlanetData, Boolean>> = mutableListOf()
+
+            resultList.add(
+                0,
+                Pair(
+                    PlanetData(getString(R.string.planets_header), type = TYPE_HEADER, weight = 2),
+                    false
+                )
+            )
+
+            planetListData.forEach {
+                if (it.first.planetName.contains(searchText)) {
+                    resultList.add(it)
+                }
+            }
+            if (resultList.size > 1) adapter.setPlanetListData(resultList)
+            adapter.notifyItemChanged(1)
+            binding.fabSearchItem.callOnClick()
         }
     }
 
