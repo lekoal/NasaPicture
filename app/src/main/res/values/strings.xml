@@ -53,5 +53,7 @@
     <string name="option_earth">Earth</string>
     <string name="mars_long_description">Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System, being larger than only Mercury. In English, Mars carries the name of the Roman god of war and is often referred to as the \"Red Planet\". The latter refers to the effect of the iron oxide prevalent on Mars\'s surface, which gives it a striking reddish appearance in the sky. Mars is a terrestrial planet with a thin atmosphere, with surface features such as impact craters, valleys, dunes, and polar ice caps.</string>
     <string name="earth_long_description">Earth is the third planet from the Sun and the only astronomical object known to harbor life. While large amounts of water can be found throughout the Solar System, only Earth sustains liquid surface water. About 71% of Earth\'s surface is made up of the ocean, dwarfing Earth\'s polar ice, lakes and rivers. The remaining 29% of Earth\'s surface is land, consisting of continents and islands. Earth\'s surface layer is formed of several slowly moving tectonic plates, interacting to produce mountain ranges, volcanoes and earthquakes. Earth\'s liquid outer core generates the magnetic field that shapes Earth\'s magnetosphere, deflecting destructive solar winds.</string>
+    <string name="fragment_recycler_search_fab">Search item</string>
+    <string name="search_item">Find item on page</string>
 
 </resources>

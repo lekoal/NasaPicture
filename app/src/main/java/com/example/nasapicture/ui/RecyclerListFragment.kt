@@ -45,7 +45,10 @@ class RecyclerListFragment : Fragment() {
 
         planetListData.add(
             0,
-            Pair(PlanetData(getString(R.string.planets_header), type = TYPE_HEADER, weight = 2), false)
+            Pair(
+                PlanetData(getString(R.string.planets_header), type = TYPE_HEADER, weight = 2),
+                false
+            )
         )
 
         val adapter = RecyclerListFragmentAdapter(object : OnListItemClickListener {
@@ -69,10 +72,17 @@ class RecyclerListFragment : Fragment() {
 
         binding.fabNewPlanetItem.setOnClickListener {
             flag = !flag
+            binding.fabSearchItem.isEnabled = !flag
             fabAnimation()
         }
         itemTouchHelper = ItemTouchHelper(ItemTouchHelperCallback(adapter))
         itemTouchHelper.attachToRecyclerView(binding.rvPlanets)
+
+        binding.fabSearchItem.setOnClickListener {
+            flag = !flag
+            binding.fabNewPlanetItem.isEnabled = !flag
+            searchFabAnimation()
+        }
 
         binding.optionEarthContainer.setOnClickListener {
             adapter.appendItem(TYPE_EARTH)
@@ -236,6 +246,31 @@ class RecyclerListFragment : Fragment() {
             viewAnimate(binding.transparentScreen, 0f, false)
             viewAnimate(binding.optionEarthContainer, 0f, true)
             viewAnimate(binding.optionMarsContainer, 0f, true)
+        }
+    }
+
+    private fun searchFabAnimation() {
+
+        val t1 = PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, 0f, 500f)
+        val t2 = PropertyValuesHolder.ofFloat(View.SCALE_X, 0f, 1f)
+        val t3 = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0f, 1f)
+
+        val animatorSearch =
+            ObjectAnimator.ofPropertyValuesHolder(binding.searchContainer, t1, t2, t3)
+
+        animatorSearch.duration = duration
+
+        if (flag) {
+            animatorSearch.start()
+
+            viewAnimate(binding.transparentScreen, 0.6f, false)
+            viewAnimate(binding.searchContainer, 1f, false)
+
+        } else {
+            animatorSearch.reverse()
+
+            viewAnimate(binding.transparentScreen, 0f, false)
+            viewAnimate(binding.searchContainer, 0f, false)
         }
     }
 
