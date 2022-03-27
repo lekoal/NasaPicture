@@ -8,12 +8,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.MotionEventCompat
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.nasapicture.R
 import com.example.nasapicture.databinding.FragmentRecyclerEarthItemBinding
 import com.example.nasapicture.databinding.FragmentRecyclerHeaderItemBinding
 import com.example.nasapicture.databinding.FragmentRecyclerMarsItemBinding
+import com.example.nasapicture.ui.diffutils.Change
+import com.example.nasapicture.ui.diffutils.DiffUtilsCallback
+import com.example.nasapicture.ui.diffutils.createCombinePayloads
 
 class RecyclerListFragmentAdapter(
     private val onListItemClickListener: OnListItemClickListener,
@@ -23,7 +27,10 @@ class RecyclerListFragmentAdapter(
     private var planetListData: MutableList<Pair<PlanetData, Boolean>> = mutableListOf()
 
     fun setPlanetListData(listData: MutableList<Pair<PlanetData, Boolean>>) {
-        this.planetListData = listData
+        val res = DiffUtil.calculateDiff(DiffUtilsCallback(planetListData, listData))
+        res.dispatchUpdatesTo(this)
+        planetListData.clear()
+        planetListData.addAll(listData)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
@@ -62,6 +69,44 @@ class RecyclerListFragmentAdapter(
         holder.bind(planetListData[position])
     }
 
+    override fun onBindViewHolder(
+        holder: BaseViewHolder,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+        if (payloads.isNotEmpty()) {
+
+            val oldData =
+                createCombinePayloads(payloads as MutableList<Change<Pair<PlanetData, Boolean>>>).oldData
+            val newData =
+                createCombinePayloads(payloads as MutableList<Change<Pair<PlanetData, Boolean>>>).newData
+
+            if (payloads[position].oldData.first.type == TYPE_EARTH) {
+                if (newData.first.planetName != oldData.first.planetName) {
+                    FragmentRecyclerEarthItemBinding.bind(holder.itemView).earthName.text =
+                        newData.first.planetName
+                }
+                if (newData.first.planetDescription != oldData.first.planetDescription) {
+                    FragmentRecyclerEarthItemBinding.bind(holder.itemView).tvEarthDescription.text =
+                        newData.first.planetDescription
+                }
+            }
+            if (payloads[position].oldData.first.type == TYPE_MARS) {
+                if (newData.first.planetName != oldData.first.planetName) {
+                    FragmentRecyclerMarsItemBinding.bind(holder.itemView).marsName.text =
+                        newData.first.planetName
+                }
+                if (newData.first.planetDescription != oldData.first.planetDescription) {
+                    FragmentRecyclerMarsItemBinding.bind(holder.itemView).tvMarsDescription.text =
+                        newData.first.planetDescription
+                }
+            }
+
+        } else {
+            super.onBindViewHolder(holder, position, payloads)
+        }
+    }
+
     override fun getItemViewType(position: Int) = planetListData[position].first.type
 
     override fun getItemCount() = planetListData.size
@@ -72,9 +117,19 @@ class RecyclerListFragmentAdapter(
     }
 
     private fun generatePlanetData(type: Int): PlanetData {
+        var temp = 0
+        planetListData.forEach {
+            if (it.first.id > temp) temp = it.first.id
+        }
         return when (type) {
-            TYPE_EARTH -> PlanetData("Земля", R.drawable.bg_earth, "Some description", TYPE_EARTH)
-            else -> PlanetData("Марс", R.drawable.bg_mars, type = TYPE_MARS)
+            TYPE_EARTH -> PlanetData(
+                temp + 1,
+                "Земля",
+                R.drawable.bg_earth,
+                "Some description",
+                TYPE_EARTH
+            )
+            else -> PlanetData(temp + 1, "Марс", R.drawable.bg_mars, type = TYPE_MARS)
         }
     }
 
@@ -240,6 +295,7 @@ class RecyclerListFragmentAdapter(
     }
 
     private fun changeWeight(layoutPosition: Int) {
+        val tempId = planetListData[layoutPosition].first.id
         val tempName = planetListData[layoutPosition].first.planetName
         val tempImage = planetListData[layoutPosition].first.planetImage
         val tempDescription = planetListData[layoutPosition].first.planetDescription
@@ -247,6 +303,7 @@ class RecyclerListFragmentAdapter(
         val weight = if (planetListData[layoutPosition].first.weight == 0) 1 else 0
         val tempPlanetData: Pair<PlanetData, Boolean> = Pair(
             PlanetData(
+                tempId,
                 tempName,
                 tempImage,
                 tempDescription,
@@ -258,7 +315,6 @@ class RecyclerListFragmentAdapter(
         planetListData.add(layoutPosition, tempPlanetData)
         planetListData.sortByDescending { it.first.weight }
         notifyItemRangeChanged(1, layoutPosition + 1)
-
     }
 
     private fun starSwitcher(position: Int, view: AppCompatImageView) {

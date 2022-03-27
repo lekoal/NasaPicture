@@ -46,7 +46,7 @@ class RecyclerListFragment : Fragment() {
         planetListData.add(
             0,
             Pair(
-                PlanetData(getString(R.string.planets_header), type = TYPE_HEADER, weight = 2),
+                PlanetData(0, getString(R.string.planets_header), type = TYPE_HEADER, weight = 2),
                 false
             )
         )
@@ -89,7 +89,7 @@ class RecyclerListFragment : Fragment() {
         binding.optionEarthContainer.setOnClickListener {
             adapter.appendItem(TYPE_EARTH)
             binding.fabNewPlanetItem.callOnClick()
-            binding.rvPlanets.smoothScrollToPosition(planetListData.size - 1)
+            binding.rvPlanets.smoothScrollToPosition(adapter.itemCount)
         }
 
         binding.optionMarsContainer.setOnClickListener {
@@ -108,8 +108,8 @@ class RecyclerListFragment : Fragment() {
             recyclerView: RecyclerView,
             viewHolder: RecyclerView.ViewHolder
         ): Int {
-            val dragFlag = ItemTouchHelper.UP or ItemTouchHelper.DOWN
             val swipeFlag = ItemTouchHelper.START or ItemTouchHelper.END
+            val dragFlag = ItemTouchHelper.UP or ItemTouchHelper.DOWN
             return makeMovementFlags(dragFlag, swipeFlag)
         }
 
@@ -171,6 +171,7 @@ class RecyclerListFragment : Fragment() {
         return mutableListOf(
             Pair(
                 PlanetData(
+                    1,
                     getString(R.string.earth_title),
                     R.drawable.bg_earth,
                     "Some description",
@@ -179,6 +180,7 @@ class RecyclerListFragment : Fragment() {
             ),
             Pair(
                 PlanetData(
+                    2,
                     getString(R.string.earth_title),
                     R.drawable.bg_earth,
                     "Some description",
@@ -187,6 +189,7 @@ class RecyclerListFragment : Fragment() {
             ),
             Pair(
                 PlanetData(
+                    3,
                     getString(R.string.earth_title),
                     R.drawable.bg_earth,
                     "Some description",
@@ -195,6 +198,7 @@ class RecyclerListFragment : Fragment() {
             ),
             Pair(
                 PlanetData(
+                    4,
                     getString(R.string.earth_title),
                     R.drawable.bg_earth,
                     "Some description",
@@ -202,15 +206,15 @@ class RecyclerListFragment : Fragment() {
                 ), false
             ),
             Pair(
-                PlanetData(getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS),
+                PlanetData(5, getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS),
                 false
             ),
             Pair(
-                PlanetData(getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS),
+                PlanetData(6, getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS),
                 false
             ),
             Pair(
-                PlanetData(getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS),
+                PlanetData(7, getString(R.string.mars_title), R.drawable.bg_mars, type = TYPE_MARS),
                 false
             )
         )
@@ -287,7 +291,7 @@ class RecyclerListFragment : Fragment() {
             resultList.add(
                 0,
                 Pair(
-                    PlanetData(getString(R.string.planets_header), type = TYPE_HEADER, weight = 2),
+                    PlanetData(0, getString(R.string.planets_header), type = TYPE_HEADER, weight = 2),
                     false
                 )
             )

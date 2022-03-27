@@ -5,6 +5,7 @@ const val TYPE_MARS = 2
 const val TYPE_HEADER = 3
 
 data class PlanetData(
+    val id: Int = 0,
     val planetName: String = "Name",
     val planetImage: Int? = null,
     var planetDescription: String? = null,
