@@ -7,5 +7,5 @@ fun interface OnListItemClickListener {
 }
 
 fun interface OnStartDragListener {
-    fun onStartDrag(view: RecyclerView.ViewHolder)
+    fun onStartDrag(rvViewHolder: RecyclerView.ViewHolder)
 }

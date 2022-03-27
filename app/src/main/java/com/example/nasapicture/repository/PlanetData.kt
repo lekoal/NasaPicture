@@ -8,5 +8,6 @@ data class PlanetData(
     val planetName: String = "Name",
     val planetImage: Int? = null,
     var planetDescription: String? = null,
-    val type: Int = 0
+    val type: Int = 0,
+    val weight: Int = 0
 )

@@ -5,15 +5,19 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.MotionEventCompat
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.nasapicture.R
 import com.example.nasapicture.databinding.FragmentRecyclerEarthItemBinding
 import com.example.nasapicture.databinding.FragmentRecyclerHeaderItemBinding
 import com.example.nasapicture.databinding.FragmentRecyclerMarsItemBinding
 
 class RecyclerListFragmentAdapter(
-    private val onListItemClickListener: OnListItemClickListener, private val onStartDragListener: OnStartDragListener
+    private val onListItemClickListener: OnListItemClickListener,
+    private val onStartDragListener: OnStartDragListener
 ) : RecyclerView.Adapter<RecyclerListFragmentAdapter.BaseViewHolder>(), ItemTouchHelperAdapter {
 
     private var planetListData: MutableList<Pair<PlanetData, Boolean>> = mutableListOf()
@@ -81,6 +85,9 @@ class RecyclerListFragmentAdapter(
     inner class EarthViewHolder(view: View) : BaseViewHolder(view), ItemTouchHelperViewHolder {
         override fun bind(data: Pair<PlanetData, Boolean>) {
             FragmentRecyclerEarthItemBinding.bind(itemView).apply {
+
+                starSwitcher(layoutPosition, this.addToFavorite)
+
                 earthName.text = data.first.planetName
                 earthDescription.text = data.first.planetDescription
 
@@ -88,7 +95,10 @@ class RecyclerListFragmentAdapter(
                     onListItemClickListener.onItemClick(data.first)
                 }
                 addItemImageView.setOnClickListener {
-                    planetListData.add(layoutPosition + 1, Pair(generatePlanetData(TYPE_EARTH), false))
+                    planetListData.add(
+                        layoutPosition + 1,
+                        Pair(generatePlanetData(TYPE_EARTH), false)
+                    )
                     notifyItemInserted(layoutPosition + 1)
                 }
                 removeItemImageView.setOnClickListener {
@@ -111,13 +121,19 @@ class RecyclerListFragmentAdapter(
                         }
                     }
                 }
-                tvEarthDescription.visibility = if (planetListData[layoutPosition].second) View.VISIBLE else View.GONE
+                tvEarthDescription.visibility =
+                    if (planetListData[layoutPosition].second) View.VISIBLE else View.GONE
                 openDescription.setOnClickListener {
                     planetListData[layoutPosition] = planetListData[layoutPosition].let {
                         it.first to !it.second
                     }
                     notifyItemChanged(layoutPosition)
                 }
+
+                addToFavorite.setOnClickListener {
+                    changeWeight(layoutPosition)
+                }
+
                 dragHandleImageView.setOnTouchListener { v, event ->
                     if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
                         onStartDragListener.onStartDrag(this@EarthViewHolder)
@@ -139,13 +155,19 @@ class RecyclerListFragmentAdapter(
     inner class MarsViewHolder(view: View) : BaseViewHolder(view), ItemTouchHelperViewHolder {
         override fun bind(data: Pair<PlanetData, Boolean>) {
             FragmentRecyclerMarsItemBinding.bind(itemView).apply {
+
+                starSwitcher(layoutPosition, this.addToFavorite)
+
                 marsName.text = data.first.planetName
 
                 marsImageView.setOnClickListener {
                     onListItemClickListener.onItemClick(data.first)
                 }
                 addItemImageView.setOnClickListener {
-                    planetListData.add(layoutPosition + 1, Pair(generatePlanetData(TYPE_MARS), false))
+                    planetListData.add(
+                        layoutPosition + 1,
+                        Pair(generatePlanetData(TYPE_MARS), false)
+                    )
                     notifyItemInserted(layoutPosition + 1)
                 }
                 removeItemImageView.setOnClickListener {
@@ -168,12 +190,17 @@ class RecyclerListFragmentAdapter(
                         }
                     }
                 }
-                tvMarsDescription.visibility = if (planetListData[layoutPosition].second) View.VISIBLE else View.GONE
+                tvMarsDescription.visibility =
+                    if (planetListData[layoutPosition].second) View.VISIBLE else View.GONE
                 openDescription.setOnClickListener {
                     planetListData[layoutPosition] = planetListData[layoutPosition].let {
                         it.first to !it.second
                     }
                     notifyItemChanged(layoutPosition)
+                }
+
+                addToFavorite.setOnClickListener {
+                    changeWeight(layoutPosition)
                 }
 
                 dragHandleImageView.setOnTouchListener { v, event ->
@@ -210,6 +237,33 @@ class RecyclerListFragmentAdapter(
             planetListData.add(toPosition, this)
         }
         notifyItemMoved(fromPosition, toPosition)
+    }
+
+    private fun changeWeight(layoutPosition: Int) {
+        val tempName = planetListData[layoutPosition].first.planetName
+        val tempImage = planetListData[layoutPosition].first.planetImage
+        val tempDescription = planetListData[layoutPosition].first.planetDescription
+        val tempType = planetListData[layoutPosition].first.type
+        val weight = if (planetListData[layoutPosition].first.weight == 0) 1 else 0
+        val tempPlanetData: Pair<PlanetData, Boolean> = Pair(
+            PlanetData(
+                tempName,
+                tempImage,
+                tempDescription,
+                tempType,
+                weight
+            ), false
+        )
+        planetListData.removeAt(layoutPosition)
+        planetListData.add(layoutPosition, tempPlanetData)
+        planetListData.sortByDescending { it.first.weight }
+        notifyItemRangeChanged(1, layoutPosition + 1)
+
+    }
+
+    private fun starSwitcher(position: Int, view: AppCompatImageView) {
+        if (planetListData[position].first.weight == 1) view.load(R.drawable.ic_baseline_star_24)
+        else view.load(R.drawable.ic_baseline_star_border_24)
     }
 
     override fun onItemRemove(position: Int) {

@@ -45,7 +45,7 @@ class RecyclerListFragment : Fragment() {
 
         planetListData.add(
             0,
-            Pair(PlanetData(getString(R.string.planets_header), type = TYPE_HEADER), false)
+            Pair(PlanetData(getString(R.string.planets_header), type = TYPE_HEADER, weight = 2), false)
         )
 
         val adapter = RecyclerListFragmentAdapter(object : OnListItemClickListener {
@@ -59,8 +59,8 @@ class RecyclerListFragment : Fragment() {
             }
 
         }, object : OnStartDragListener {
-            override fun onStartDrag(view: RecyclerView.ViewHolder) {
-                itemTouchHelper.startDrag(view)
+            override fun onStartDrag(rvViewHolder: RecyclerView.ViewHolder) {
+                itemTouchHelper.startDrag(rvViewHolder)
             }
         })
 
