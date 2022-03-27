@@ -8,4 +8,5 @@
     <dimen name="animation_fab_margin">15dp</dimen>
     <dimen name="animation_menu_margin">20dp</dimen>
     <dimen name="menu_min_size">40dp</dimen>
+    <dimen name="favorite_height">24dp</dimen>
 </resources>

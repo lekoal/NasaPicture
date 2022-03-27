@@ -22,8 +22,6 @@
         <entry key="..\:/Users/coreg/Documents/Android projects/NasaPicture/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.25" />
         <entry key="..\:/Users/coreg/Documents/Android projects/NasaPicture/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/coreg/Documents/Android projects/NasaPicture/app/src/main/res/layout/bottom_sheet_layout.xml" value="0.25" />
-        <entry key="..\:/Users/coreg/Documents/Android projects/NasaPicture/app/src/main/res/layout/fragment_animation.xml" value="0.25" />
-        <entry key="..\:/Users/coreg/Documents/Android projects/NasaPicture/app/src/main/res/layout/fragment_animation_bonus_start.xml" value="0.25" />
         <entry key="..\:/Users/coreg/Documents/Android projects/NasaPicture/app/src/main/res/layout/fragment_chips.xml" value="0.25" />
         <entry key="..\:/Users/coreg/Documents/Android projects/NasaPicture/app/src/main/res/layout/fragment_earth.xml" value="0.25" />
         <entry key="..\:/Users/coreg/Documents/Android projects/NasaPicture/app/src/main/res/layout/fragment_mars.xml" value="0.25" />
@@ -39,11 +37,31 @@
         <entry key="..\:/Users/coreg/Documents/Android projects/NasaPicture/app/src/main/res/menu/menu_bottom_navigation_view.xml" value="0.25" />
         <entry key="..\:/Users/coreg/Documents/Android projects/NasaPicture/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.133" />
         <entry key="..\:/Users/coreg/Documents/Android projects/NasaPicture/app/src/main/res/xml/motion_scene.xml" value="0.25" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/drawable/bg_earth.xml" value="0.3005" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/drawable/bg_mars.xml" value="0.3005" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/drawable/bg_system.xml" value="0.3005" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/drawable/error_text.xml" value="0.3005" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.3005" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/drawable/ic_earth.xml" value="0.3005" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/drawable/ic_mars.xml" value="0.3005" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/drawable/loading_text.xml" value="0.3005" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.3625" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_animation.xml" value="0.55" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_animation_bonus_start.xml" value="0.55" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_earth.xml" value="0.55" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_mars.xml" value="0.55" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_recycler_earth_item.xml" value="0.55" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_recycler_header_item.xml" value="0.55" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_recycler_list.xml" value="0.55" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_recycler_mars_item.xml" value="0.55" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_solar_system.xml" value="0.55" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/navigation_drawer_layout.xml" value="0.3625" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/picture_of_the_day_fragment.xml" value="0.33" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/menu/bottom_app_bar_menu.xml" value="0.3625" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/menu/menu_bottom_app_bar.xml" value="0.55" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/menu/menu_bottom_bar_other_screen.xml" value="0.3625" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.3625" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/xml/motion_scene_wiki.xml" value="0.55" />
       </map>
     </option>
   </component>

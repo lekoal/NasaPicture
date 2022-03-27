@@ -199,6 +199,9 @@ class PictureOfTheDayFragment : Fragment() {
             R.id.animation_bonus_page -> {
                 fragmentNavigation(AnimationBonusStartFragment())
             }
+            R.id.recycler_list_page -> {
+                fragmentNavigation(RecyclerListFragment())
+            }
         }
         return super.onOptionsItemSelected(item)
     }
