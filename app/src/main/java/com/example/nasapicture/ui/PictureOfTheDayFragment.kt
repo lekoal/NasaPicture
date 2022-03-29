@@ -5,11 +5,13 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
-import android.text.SpannedString
+import android.text.style.ForegroundColorSpan
 import android.view.*
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -33,6 +35,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.concurrent.schedule
 
 class PictureOfTheDayFragment : Fragment() {
 
@@ -105,11 +108,14 @@ class PictureOfTheDayFragment : Fragment() {
 
         when (pictureOfTheDayState) {
             is PictureOfTheDayState.Loading -> {
-                TransitionManager.beginDelayedTransition(binding.loadingLayout, TransitionSet()
-                    .addTransition(transition)
-                    .addTransition(changeImageTransform))
+                TransitionManager.beginDelayedTransition(
+                    binding.loadingLayout, TransitionSet()
+                        .addTransition(transition)
+                        .addTransition(changeImageTransform)
+                )
                 binding.loadingErrorImage.load(R.drawable.loading_text)
-                ObjectAnimator.ofFloat(binding.loadingErrorImage, View.ROTATION, 0f, 720f).setDuration(2000).start()
+                ObjectAnimator.ofFloat(binding.loadingErrorImage, View.ROTATION, 0f, 720f)
+                    .setDuration(2000).start()
                 binding.loadingLayout.visibility = View.VISIBLE
             }
             is PictureOfTheDayState.Success -> {
@@ -124,8 +130,12 @@ class PictureOfTheDayFragment : Fragment() {
 
                     binding.imageView.setOnClickListener {
                         flag = !flag
-                        TransitionManager.beginDelayedTransition(binding.transitionContainer, changeImageTransform)
-                        binding.imageView.scaleType = if (flag) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.CENTER_INSIDE
+                        TransitionManager.beginDelayedTransition(
+                            binding.transitionContainer,
+                            changeImageTransform
+                        )
+                        binding.imageView.scaleType =
+                            if (flag) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.CENTER_INSIDE
                     }
 
                 } else if (pictureOfTheDayState.serverResponseData.mediaType == "video") {
@@ -145,19 +155,55 @@ class PictureOfTheDayFragment : Fragment() {
                 binding.included.bottomSheetDescriptionHeader.text =
                     pictureOfTheDayState.serverResponseData.title
 
+                binding.included.bottomSheetDescription.typeface = Typeface.createFromAsset(
+                    requireActivity().assets,
+                    "font/Caveat-VariableFont_wght.ttf"
+                )
 
-                binding.included.bottomSheetDescription.typeface = Typeface.createFromAsset(requireActivity().assets,
-                    "font/Caveat-VariableFont_wght.ttf")
+                val description = pictureOfTheDayState.serverResponseData.explanation
 
-                val spannableStringBuilder = SpannableStringBuilder(pictureOfTheDayState.serverResponseData.explanation)
-                val spannableString = SpannableString(pictureOfTheDayState.serverResponseData.explanation)
-                val spannedString = SpannedString(spannableString)
+                binding.included.bottomSheetDescription.text = description
 
+                val spannableStringBuilder = SpannableStringBuilder(description)
+                var spannableString = SpannableString(description)
 
+                val colors = listOf(
+                    R.color.red,
+                    R.color.orange,
+                    R.color.yellow,
+                    R.color.green,
+                    R.color.blue,
+                    R.color.purple
+                )
 
-                binding.included.bottomSheetDescription.text = spannedString
+                binding.included.bottomSheetDescription.setText(
+                    spannableString,
+                    TextView.BufferType.SPANNABLE
+                )
 
+                colors.forEach { color ->
+                    Timer().schedule(1000, 3000) {
+//                        description.forEachIndexed { index, _ ->  //Эмулятор подвисает при проходе по каждому индексу
+                            spannableString.setSpan(
+                                ForegroundColorSpan(
+                                    ContextCompat.getColor(
+                                        requireContext(),
+                                        color
+                                    )
+                                ),
+                                0,
+                                description.length, //index + 1
+                                SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                            )
+                            spannableString =
+                                binding.included.bottomSheetDescription.text as SpannableString
+                        }
+
+//                    }
+
+                }
             }
+
             is PictureOfTheDayState.Error -> {
                 binding.progressBar.visibility = View.GONE
                 binding.loadingLayout.visibility = View.GONE
