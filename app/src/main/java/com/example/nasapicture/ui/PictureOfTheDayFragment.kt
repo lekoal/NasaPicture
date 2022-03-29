@@ -2,8 +2,12 @@ package com.example.nasapicture.ui
 
 import android.animation.ObjectAnimator
 import android.content.Intent
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.SpannedString
 import android.view.*
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -140,8 +144,19 @@ class PictureOfTheDayFragment : Fragment() {
                 }
                 binding.included.bottomSheetDescriptionHeader.text =
                     pictureOfTheDayState.serverResponseData.title
-                binding.included.bottomSheetDescription.text =
-                    pictureOfTheDayState.serverResponseData.explanation
+
+
+                binding.included.bottomSheetDescription.typeface = Typeface.createFromAsset(requireActivity().assets,
+                    "font/Caveat-VariableFont_wght.ttf")
+
+                val spannableStringBuilder = SpannableStringBuilder(pictureOfTheDayState.serverResponseData.explanation)
+                val spannableString = SpannableString(pictureOfTheDayState.serverResponseData.explanation)
+                val spannedString = SpannedString(spannableString)
+
+
+
+                binding.included.bottomSheetDescription.text = spannedString
+
             }
             is PictureOfTheDayState.Error -> {
                 binding.progressBar.visibility = View.GONE
