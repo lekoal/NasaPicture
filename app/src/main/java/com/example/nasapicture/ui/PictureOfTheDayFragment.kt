@@ -2,10 +2,18 @@ package com.example.nasapicture.ui
 
 import android.animation.ObjectAnimator
 import android.content.Intent
+import android.graphics.BlurMaskFilter
+import android.graphics.Typeface
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.style.*
 import android.view.*
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -29,6 +37,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.concurrent.schedule
+import kotlin.concurrent.timerTask
 
 class PictureOfTheDayFragment : Fragment() {
 
@@ -101,11 +111,14 @@ class PictureOfTheDayFragment : Fragment() {
 
         when (pictureOfTheDayState) {
             is PictureOfTheDayState.Loading -> {
-                TransitionManager.beginDelayedTransition(binding.loadingLayout, TransitionSet()
-                    .addTransition(transition)
-                    .addTransition(changeImageTransform))
+                TransitionManager.beginDelayedTransition(
+                    binding.loadingLayout, TransitionSet()
+                        .addTransition(transition)
+                        .addTransition(changeImageTransform)
+                )
                 binding.loadingErrorImage.load(R.drawable.loading_text)
-                ObjectAnimator.ofFloat(binding.loadingErrorImage, View.ROTATION, 0f, 720f).setDuration(2000).start()
+                ObjectAnimator.ofFloat(binding.loadingErrorImage, View.ROTATION, 0f, 720f)
+                    .setDuration(2000).start()
                 binding.loadingLayout.visibility = View.VISIBLE
             }
             is PictureOfTheDayState.Success -> {
@@ -120,8 +133,12 @@ class PictureOfTheDayFragment : Fragment() {
 
                     binding.imageView.setOnClickListener {
                         flag = !flag
-                        TransitionManager.beginDelayedTransition(binding.transitionContainer, changeImageTransform)
-                        binding.imageView.scaleType = if (flag) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.CENTER_INSIDE
+                        TransitionManager.beginDelayedTransition(
+                            binding.transitionContainer,
+                            changeImageTransform
+                        )
+                        binding.imageView.scaleType =
+                            if (flag) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.CENTER_INSIDE
                     }
 
                 } else if (pictureOfTheDayState.serverResponseData.mediaType == "video") {
@@ -140,9 +157,154 @@ class PictureOfTheDayFragment : Fragment() {
                 }
                 binding.included.bottomSheetDescriptionHeader.text =
                     pictureOfTheDayState.serverResponseData.title
-                binding.included.bottomSheetDescription.text =
-                    pictureOfTheDayState.serverResponseData.explanation
+
+                binding.included.bottomSheetDescription.typeface = Typeface.createFromAsset(
+                    requireActivity().assets,
+                    "font/Caveat-VariableFont_wght.ttf"
+                )
+
+                val description = pictureOfTheDayState.serverResponseData.explanation
+
+                binding.included.bottomSheetDescription.text = description
+
+                val spannableStringBuilder = SpannableStringBuilder(description)
+                var spannableString = SpannableString(description)
+
+                val colors = listOf(
+                    R.color.red,
+                    R.color.orange,
+                    R.color.yellow,
+                    R.color.green,
+                    R.color.blue,
+                    R.color.purple
+                )
+
+                binding.included.bottomSheetDescription.setText(
+                    spannableString,
+                    TextView.BufferType.SPANNABLE
+                )
+
+                spannableString =
+                    binding.included.bottomSheetDescription.text as SpannableString
+
+                spannableString.setSpan(
+                    AbsoluteSizeSpan(120),
+                    0,
+                    description.length / 7,
+                    SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                )
+
+                val timer = Timer()
+                colors.forEach { color ->
+                    timer.scheduleAtFixedRate(timerTask {
+                        spannableString.setSpan(
+                            ForegroundColorSpan(
+                                ContextCompat.getColor(
+                                    requireContext(),
+                                    color
+                                )
+                            ),
+                            0,
+                            description.length,
+                            SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                        if (color == colors.lastIndex) timer.cancel()
+                    }, 2000, 500)
+                }
+
+                spannableString.setSpan(
+                    RelativeSizeSpan(0.5f),
+                    description.length / 7,
+                    description.length / 6,
+                    SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                )
+
+                spannableString.setSpan(
+                    ScaleXSpan(2.0f),
+                    description.length / 6,
+                    description.length / 5,
+                    SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+
+                spannableString.setSpan(
+                    BackgroundColorSpan(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.blue_200
+                        )
+                    ),
+                    0,
+                    description.length / 3,
+                    SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                )
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    spannableString.setSpan(
+                        LineBackgroundSpan.Standard(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.gold
+                            )
+                        ),
+                        description.length / 3,
+                        description.length / 2,
+                        SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                    )
+                }
+
+                spannableString.setSpan(
+                    StyleSpan(Typeface.BOLD),
+                    0,
+                    description.length / 4,
+                    SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                )
+
+                spannableString.setSpan(
+                    StyleSpan(Typeface.ITALIC),
+                    description.length / 4,
+                    description.length / 3,
+                    SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                )
+
+                spannableString.setSpan(
+                    StyleSpan(Typeface.BOLD_ITALIC),
+                    description.length / 3,
+                    description.length / 2,
+                    SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                )
+
+                spannableString.setSpan(
+                    StyleSpan(Typeface.NORMAL),
+                    description.length / 2,
+                    description.length,
+                    SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                )
+
+                spannableString.setSpan(
+                    UnderlineSpan(),
+                    0,
+                    description.length / 4,
+                    SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                )
+
+                spannableString.setSpan(
+                    StrikethroughSpan(),
+                    description.length / 4,
+                    description.length / 2,
+                    SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                )
+
+                val blurRadius = 5f
+                val blurMaskFilter = BlurMaskFilter(blurRadius, BlurMaskFilter.Blur.OUTER)
+                spannableString.setSpan(
+                    MaskFilterSpan(blurMaskFilter),
+                    description.length / 2,
+                    description.length,
+                    SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                )
+
             }
+
             is PictureOfTheDayState.Error -> {
                 binding.progressBar.visibility = View.GONE
                 binding.loadingLayout.visibility = View.GONE
