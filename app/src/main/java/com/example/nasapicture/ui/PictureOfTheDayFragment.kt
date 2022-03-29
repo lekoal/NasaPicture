@@ -242,7 +242,7 @@ class PictureOfTheDayFragment : Fragment() {
                     spannableString.setSpan(
                         LineBackgroundSpan.Standard(
                             ContextCompat.getColor(
-                            requireContext(),
+                                requireContext(),
                                 R.color.gold
                             )
                         ),
@@ -252,21 +252,56 @@ class PictureOfTheDayFragment : Fragment() {
                     )
                 }
 
-                spannableString.setSpan(StyleSpan(Typeface.BOLD), 0, description.length / 4, SpannableString.SPAN_INCLUSIVE_INCLUSIVE)
+                spannableString.setSpan(
+                    StyleSpan(Typeface.BOLD),
+                    0,
+                    description.length / 4,
+                    SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                )
 
-                spannableString.setSpan(StyleSpan(Typeface.ITALIC), description.length / 4, description.length / 3, SpannableString.SPAN_INCLUSIVE_INCLUSIVE)
+                spannableString.setSpan(
+                    StyleSpan(Typeface.ITALIC),
+                    description.length / 4,
+                    description.length / 3,
+                    SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                )
 
-                spannableString.setSpan(StyleSpan(Typeface.BOLD_ITALIC), description.length / 3, description.length / 2, SpannableString.SPAN_INCLUSIVE_INCLUSIVE)
+                spannableString.setSpan(
+                    StyleSpan(Typeface.BOLD_ITALIC),
+                    description.length / 3,
+                    description.length / 2,
+                    SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                )
 
-                spannableString.setSpan(StyleSpan(Typeface.NORMAL), description.length / 2, description.length, SpannableString.SPAN_INCLUSIVE_INCLUSIVE)
+                spannableString.setSpan(
+                    StyleSpan(Typeface.NORMAL),
+                    description.length / 2,
+                    description.length,
+                    SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                )
 
-                spannableString.setSpan(UnderlineSpan(), 0, description.length / 4, SpannableString.SPAN_INCLUSIVE_INCLUSIVE)
+                spannableString.setSpan(
+                    UnderlineSpan(),
+                    0,
+                    description.length / 4,
+                    SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                )
 
-                spannableString.setSpan(StrikethroughSpan(), description.length / 4, description.length / 2, SpannableString.SPAN_INCLUSIVE_INCLUSIVE)
+                spannableString.setSpan(
+                    StrikethroughSpan(),
+                    description.length / 4,
+                    description.length / 2,
+                    SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                )
 
                 val blurRadius = 5f
                 val blurMaskFilter = BlurMaskFilter(blurRadius, BlurMaskFilter.Blur.OUTER)
-                spannableString.setSpan(MaskFilterSpan(blurMaskFilter), description.length / 2, description.length, SpannableString.SPAN_INCLUSIVE_INCLUSIVE)
+                spannableString.setSpan(
+                    MaskFilterSpan(blurMaskFilter),
+                    description.length / 2,
+                    description.length,
+                    SpannableString.SPAN_INCLUSIVE_INCLUSIVE
+                )
 
             }
 
