@@ -1,6 +1,5 @@
 package com.example.nasapicture.ui.ux
 
-import com.example.nasapicture.databinding.FragmentUxBinding
 import com.example.nasapicture.databinding.FragmentUxTextBinding
 import com.example.nasapicture.tools.ViewBindingFragment
 

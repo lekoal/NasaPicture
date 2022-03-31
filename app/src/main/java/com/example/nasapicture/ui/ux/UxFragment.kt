@@ -2,6 +2,7 @@ package com.example.nasapicture.ui.ux
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
 import com.example.nasapicture.R
 import com.example.nasapicture.databinding.FragmentUxBinding
 import com.example.nasapicture.tools.ViewBindingFragment
@@ -19,33 +20,26 @@ class UxFragment : ViewBindingFragment<FragmentUxBinding>(FragmentUxBinding::inf
         binding.uxBottomNavigationView.setOnItemSelectedListener {
             when(it.itemId) {
                 R.id.ux_text_fragment -> {
-                    binding.uxMainText.visibility = View.GONE
-                    activity?.supportFragmentManager?.beginTransaction()
-                        ?.setCustomAnimations(
-                            R.anim.slide_in,
-                            R.anim.fade_out,
-                            R.anim.fade_in,
-                            R.anim.slide_out
-                        )
-                        ?.replace(R.id.ux_main, UxTextFragment())
-                        ?.addToBackStack("")
-                        ?.commit()
+                   navigateTo(UxTextFragment())
                 }
                 R.id.ux_button_fragment -> {
-                    binding.uxMainText.visibility = View.GONE
-                    activity?.supportFragmentManager?.beginTransaction()
-                        ?.setCustomAnimations(
-                            R.anim.slide_in,
-                            R.anim.fade_out,
-                            R.anim.fade_in,
-                            R.anim.slide_out
-                        )
-                        ?.replace(R.id.ux_main, UxButtonFragment())
-                        ?.addToBackStack("")
-                        ?.commit()
+                   navigateTo(UxButtonFragment())
                 }
             }
             true
         }
+        binding.uxBottomNavigationView.selectedItemId = R.id.ux_text_fragment
+    }
+
+    private fun navigateTo(fragment: Fragment) {
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.setCustomAnimations(
+                R.anim.slide_in,
+                R.anim.fade_out,
+                R.anim.fade_in,
+                R.anim.slide_out
+            )
+            ?.replace(R.id.ux_main, fragment)
+            ?.commit()
     }
 }

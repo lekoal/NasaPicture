@@ -5,11 +5,12 @@ import android.content.Intent
 import android.graphics.BlurMaskFilter
 import android.graphics.Typeface
 import android.net.Uri
-import android.os.*
+import android.os.Build
+import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.style.*
-import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
@@ -37,8 +38,6 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.concurrent.timer
-import kotlin.concurrent.timerTask
 
 class PictureOfTheDayFragment : Fragment() {
 

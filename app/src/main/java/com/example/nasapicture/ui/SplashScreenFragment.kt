@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.example.nasapicture.R
 import com.example.nasapicture.databinding.FragmentSplashScreenBinding
 import com.example.nasapicture.tools.ViewBindingFragment

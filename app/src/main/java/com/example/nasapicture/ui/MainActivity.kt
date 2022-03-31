@@ -54,9 +54,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    override fun onBackPressed() {
-        findViewById<TextView>(R.id.ux_main_text).visibility = View.VISIBLE
-        super.onBackPressed()
-    }
 }

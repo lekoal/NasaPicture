@@ -15,13 +15,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/ux_main_text"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:text="@string/ux_main_text" />
-
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
