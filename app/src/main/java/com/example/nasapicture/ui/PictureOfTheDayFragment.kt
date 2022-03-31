@@ -5,12 +5,11 @@ import android.content.Intent
 import android.graphics.BlurMaskFilter
 import android.graphics.Typeface
 import android.net.Uri
-import android.os.Build
-import android.os.Bundle
-import android.os.Handler
+import android.os.*
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.style.*
+import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
@@ -37,7 +36,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.concurrent.schedule
+import kotlin.concurrent.timer
 import kotlin.concurrent.timerTask
 
 class PictureOfTheDayFragment : Fragment() {
@@ -194,23 +193,7 @@ class PictureOfTheDayFragment : Fragment() {
                     SpannableString.SPAN_INCLUSIVE_INCLUSIVE
                 )
 
-                val timer = Timer()
-                colors.forEach { color ->
-                    timer.scheduleAtFixedRate(timerTask {
-                        spannableString.setSpan(
-                            ForegroundColorSpan(
-                                ContextCompat.getColor(
-                                    requireContext(),
-                                    color
-                                )
-                            ),
-                            0,
-                            description.length,
-                            SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
-                        )
-                        if (color == colors.lastIndex) timer.cancel()
-                    }, 2000, 500)
-                }
+                coloringTimer(spannableString, colors, description)
 
                 spannableString.setSpan(
                     RelativeSizeSpan(0.5f),
@@ -350,7 +333,10 @@ class PictureOfTheDayFragment : Fragment() {
                 startActivity(Intent(context, BottomNavigationActivity::class.java))
             }
             android.R.id.home -> {
-                BottomNavigationDrawerFragment().show(requireActivity().supportFragmentManager, "")
+                BottomNavigationDrawerFragment().show(
+                    requireActivity().supportFragmentManager,
+                    ""
+                )
             }
             R.id.app_bar_text -> {
                 fragmentNavigation(TextInfoFragment())
@@ -449,6 +435,29 @@ class PictureOfTheDayFragment : Fragment() {
             videoId = url.split("embed/")[1]
         }
         return videoId
+    }
+
+    private fun coloringTimer(spannableString: SpannableString, colors: List<Int>, description: String) {
+        val timer = object : CountDownTimer(5900, 1000) {
+            override fun onTick(p0: Long) {
+                spannableString.setSpan(
+                    ForegroundColorSpan(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            colors[(p0 / 1000).toInt()]
+                        )
+                    ),
+                    0,
+                    description.length,
+                    SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+
+            override fun onFinish() {
+                coloringTimer(spannableString, colors, description)
+            }
+        }
+        timer.start()
     }
 
     override fun onDestroy() {
