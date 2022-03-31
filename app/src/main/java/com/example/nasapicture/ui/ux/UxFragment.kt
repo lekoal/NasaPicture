@@ -25,6 +25,9 @@ class UxFragment : ViewBindingFragment<FragmentUxBinding>(FragmentUxBinding::inf
                 R.id.ux_button_fragment -> {
                    navigateTo(UxButtonFragment())
                 }
+                R.id.ux_tutorial_fragment -> {
+                    navigateTo(UxTutorialFragment())
+                }
             }
             true
         }

@@ -12,4 +12,10 @@
         android:icon="@drawable/ic_baseline_smart_button_24"
         android:title="@string/ux_button"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/ux_tutorial_fragment"
+        android:icon="@drawable/ic_baseline_help_center_24"
+        android:title="@string/ux_tutorial"
+        app:showAsAction="ifRoom" />
 </menu>

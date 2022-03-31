@@ -60,5 +60,6 @@
     <string name="ux_button">Show buttons</string>
     <string name="ux_main_text">Select one item in bottom menu</string>
     <string name="some_text">Here is some text</string>
+    <string name="ux_tutorial">Show tutorial</string>
 
 </resources>

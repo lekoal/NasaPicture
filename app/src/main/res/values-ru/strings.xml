@@ -60,5 +60,6 @@
     <string name="ux_button">Показать кнопки</string>
     <string name="ux_main_text">Выберите один из пунктов меню</string>
     <string name="some_text">Здесь какой-то тест</string>
+    <string name="ux_tutorial">Руководство</string>
 
 </resources>
