@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ui.ux.UxButtonFragment">
+
+    <LinearLayout
+        android:id="@+id/wrong_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red_700"
+            android:padding="20dp"
+            android:text="@string/some_text"
+            android:textSize="25sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/dark_red"
+            android:padding="15dp"
+            android:text="@string/some_text"
+            android:textSize="20sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red_200"
+            android:text="@string/some_text"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <LinearLayout
+        android:id="@+id/correct_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/some_text"
+            android:textSize="20sp" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/some_text"
+            android:textSize="20sp" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/some_text"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+</LinearLayout>

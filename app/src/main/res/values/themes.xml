@@ -127,4 +127,8 @@
         <item name="materialButtonStyle">@style/buttons</item>
         <item name="collapsingToolbarLayoutStyle">@style/tf_toolbar</item>
     </style>
+
+    <style name="MySplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
 </resources>

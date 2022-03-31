@@ -10,4 +10,5 @@
     <dimen name="menu_min_size">40dp</dimen>
     <dimen name="favorite_height">24dp</dimen>
     <dimen name="description_text_size">24sp</dimen>
+    <dimen name="splash_image_size">350dp</dimen>
 </resources>

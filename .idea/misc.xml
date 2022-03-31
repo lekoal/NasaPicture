@@ -44,9 +44,13 @@
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.3005" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/drawable/ic_earth.xml" value="0.3005" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/drawable/ic_mars.xml" value="0.3005" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/drawable/ic_planet_clipart_transparent_7.xml" value="0.3005" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/drawable/loading_text.xml" value="0.3005" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/drawable/planet_clipart.xml" value="0.3005" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/drawable/splash_background.xml" value="0.335" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/font/oswald.xml" value="0.5564814814814815" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.3625" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/activity_main.xml" value="0.5415384615384615" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/bottom_sheet_layout.xml" value="0.5138888888888888" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_animation.xml" value="0.55" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_animation_bonus_start.xml" value="0.55" />
@@ -57,12 +61,18 @@
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_recycler_list.xml" value="0.55" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_recycler_mars_item.xml" value="0.55" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_solar_system.xml" value="0.55" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_splash_screen.xml" value="0.5415384615384615" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_ux.xml" value="0.55" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_ux_button.xml" value="0.55" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/fragment_ux_text.xml" value="0.55" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/navigation_drawer_layout.xml" value="0.3625" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/layout/picture_of_the_day_fragment.xml" value="0.33" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/menu/bottom_app_bar_menu.xml" value="0.3625" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/menu/menu_bottom_app_bar.xml" value="0.55" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/menu/menu_bottom_bar_other_screen.xml" value="0.3625" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.3625" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/menu/menu_bottom_navigation_view.xml" value="0.55" />
+        <entry key="..\:/kotlin/NasaPicture/app/src/main/res/menu/ux_bottom_navigation_menu.xml" value="0.55" />
         <entry key="..\:/kotlin/NasaPicture/app/src/main/res/xml/motion_scene_wiki.xml" value="0.55" />
       </map>
     </option>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ui.ux.UxTextFragment">
+
+    <LinearLayout
+        android:id="@+id/wrong_block_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue_200"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/some_text"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="200dp"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/some_text"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="200dp"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/some_text"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="italic" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="200dp"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wrong_block_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green_200"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/some_text"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="200dp"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/some_text"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="200dp"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/some_text"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="italic" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="200dp"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wrong_block_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/some_text"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="200dp"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/some_text"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="200dp"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/some_text"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="italic" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="200dp"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/correct_block_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="5dp"
+            android:text="@string/some_text"
+            android:textColor="@color/textDarkPrimary" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/some_text"
+            android:textColor="@color/textDarkSecondary" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/some_text"
+            android:textColor="@color/textDarkDisabled" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:id="@+id/correct_block_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green_200"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="5dp"
+            android:text="@string/some_text"
+            android:textColor="@color/textDarkPrimary" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/some_text"
+            android:textColor="@color/textDarkSecondary" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/some_text"
+            android:textColor="@color/textDarkDisabled" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:id="@+id/correct_block_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue_200"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="5dp"
+            android:text="@string/some_text"
+            android:textColor="@color/textDarkPrimary" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/some_text"
+            android:textColor="@color/textDarkSecondary" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/some_text"
+            android:textColor="@color/textDarkDisabled" />
+
+    </LinearLayout>
+
+</LinearLayout>

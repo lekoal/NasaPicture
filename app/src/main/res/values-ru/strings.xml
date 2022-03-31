@@ -55,5 +55,11 @@
     <string name="earth_long_description">Земля — третья по удалённости от Солнца планета Солнечной системы. Самая плотная, пятая по диаметру и массе среди всех планет и крупнейшая среди планет земной группы, в которую входят также Меркурий, Венера и Марс. Единственное известное человеку в настоящее время тело во Вселенной, населённое живыми организмами.</string>
     <string name="fragment_recycler_search_fab">Найти элемент</string>
     <string name="search_item">Найти объект на странице</string>
+    <string name="ux_fragment">Открыть фрагмент UX</string>
+    <string name="ux_text">Показать текст</string>
+    <string name="ux_button">Показать кнопки</string>
+    <string name="ux_main_text">Выберите один из пунктов меню</string>
+    <string name="some_text">Здесь какой-то тест</string>
+    <string name="ux_tutorial">Руководство</string>
 
 </resources>
