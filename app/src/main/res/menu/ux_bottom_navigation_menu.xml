@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<item
+    android:id="@+id/ux_text_fragment"
+    android:icon="@drawable/ic_baseline_text_fields_24"
+    android:title="@string/ux_text"
+    app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/ux_button_fragment"
+        android:icon="@drawable/ic_baseline_smart_button_24"
+        android:title="@string/ux_button"
+        app:showAsAction="ifRoom" />
+</menu>

@@ -32,4 +32,10 @@
         android:title="@string/recycler_list_page"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/ux_fragment"
+        android:icon="@drawable/ic_baseline_auto_awesome_24"
+        android:title="@string/ux_fragment"
+        app:showAsAction="ifRoom" />
+
 </menu>

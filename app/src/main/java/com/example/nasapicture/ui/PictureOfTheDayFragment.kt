@@ -26,6 +26,7 @@ import coil.load
 import com.example.nasapicture.R
 import com.example.nasapicture.databinding.PictureOfTheDayFragmentBinding
 import com.example.nasapicture.ui.navigation.BottomNavigationActivity
+import com.example.nasapicture.ui.ux.UxFragment
 import com.example.nasapicture.viewmodel.PictureOfTheDayState
 import com.example.nasapicture.viewmodel.PictureOfTheDayViewModel
 import com.google.android.material.bottomappbar.BottomAppBar
@@ -349,6 +350,9 @@ class PictureOfTheDayFragment : Fragment() {
             }
             R.id.recycler_list_page -> {
                 fragmentNavigation(RecyclerListFragment())
+            }
+            R.id.ux_fragment -> {
+                fragmentNavigation(UxFragment())
             }
         }
         return super.onOptionsItemSelected(item)

@@ -2,6 +2,8 @@ package com.example.nasapicture.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.nasapicture.R
@@ -51,5 +53,10 @@ class MainActivity : AppCompatActivity() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
+    }
+
+    override fun onBackPressed() {
+        findViewById<TextView>(R.id.ux_main_text).visibility = View.VISIBLE
+        super.onBackPressed()
     }
 }
